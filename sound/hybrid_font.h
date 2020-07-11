@@ -334,7 +334,7 @@ public:
   }
   void SB_Force() override { PlayCommon(&SFX_force); }
   void SB_Blast() override { Play(&SFX_blaster, &SFX_blst); }
-  void SB_Boot() override { PlayPolyphonic(&SFX_boot); }
+  void SB_Boot() override { beeper.Beep(0.05, 1000); }
 
   // Blaster effects, auto fire is handled by begin/end lockup
   void SB_Stun() override { PlayCommon(&SFX_stun); }
