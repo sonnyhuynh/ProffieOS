@@ -710,6 +710,9 @@ public:
       Say(spZERO);
       return;
     }
+    if (n < 0) {
+      Say(spNEGATIVE);
+    }
     if (n / 1000000) {
       SayNumber(n/1000000);
       Say(spMILLION);
