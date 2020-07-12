@@ -20,6 +20,9 @@
 //
 // Button configs:
 //
+// 0 Buttons:
+// Turn on/off blade - twist
+//
 // 1 Button:
 // Activate Muted - double click and hold while OFF
 // Activate - short click while OFF
@@ -185,7 +188,11 @@ public:
       return true;
 
 // Saber ON AND Volume Down
+#if NUM_BUTTONS == 0
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
+#else
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
+#endif
 #ifdef SHTOK_GESTURE_IGNITION
   case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_OFF):
 #endif
@@ -241,16 +248,22 @@ public:
     return true;
 
 // Turn Blade OFF
+#if NUM_BUTTONS == 0
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
+    Off();
+    swing_blast_ = false;
+    return true;
+#else
+
+#ifdef SHTOK_GESTURE_IGNITION
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
+#endif
 #if NUM_BUTTONS > 1
 // 2 and 3 button
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
 #else
 // 1 button
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_ON):
-#endif
-#ifdef SHTOK_GESTURE_IGNITION
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
-#endif
     if (!SaberBase::Lockup()) {
 #ifndef DISABLE_COLOR_CHANGE
       if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
@@ -264,6 +277,8 @@ public:
     }
     swing_blast_ = false;
     return true;
+#endif
+#endif
 
 // 1 button Force and Color Change mode
 #if NUM_BUTTONS == 1
