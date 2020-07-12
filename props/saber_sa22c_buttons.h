@@ -171,7 +171,7 @@ public:
         }
       return true;
 
-// Saber ON AND Volume Up
+// Saber ON AND Volume Down
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
 #ifdef SHTOK_GESTURE_IGNITION
   case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_OFF):
@@ -179,7 +179,7 @@ public:
     if (!mode_volume_) {
       On();
     } else {
-      ChangeVolume(true);
+      ChangeVolume(false);
     }
     return true;
 
@@ -189,7 +189,7 @@ public:
     if (!mode_volume_) {
       next_preset();
     } else {
-      ChangeVolume(false);
+      ChangeVolume(true);
     }
     return true;
 #else
