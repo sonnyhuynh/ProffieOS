@@ -105,6 +105,14 @@
 #define BUTTON_HELD_LONG_TIMEOUT 2000
 #endif
 
+#ifndef VOLUME_INCREMENT_LEVEL
+#define VOLUME_INCREMENT_LEVEL 100
+#endif
+
+#ifndef MAX_VOLUME
+#define MAX_VOLUME 1000
+#endif
+
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSA22CButtons : public PropBase {
@@ -128,24 +136,22 @@ public:
   void ChangeVolume(bool up) {
     if (up) {
       STDOUT.println("Volume up");
-      if (dynamic_mixer.get_volume() < VOLUME) {
-        dynamic_mixer.set_volume(std::min<int>(VOLUME + VOLUME * 0.1,
-          dynamic_mixer.get_volume() + VOLUME * 0.10));
-        beeper.Beep(0.5, 2000);
+      if (dynamic_mixer.get_volume() < MAX_VOLUME) {
+        dynamic_mixer.set_volume(dynamic_mixer.get_volume() + VOLUME_INCREMENT_LEVEL);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
+        talkie.SayNumber(dynamic_mixer.get_volume());
       }
       else {
         beeper.Beep(0.5, 3000);
       }
     } else {
       STDOUT.println("Volume Down");
-      if (dynamic_mixer.get_volume() > (0.10 * VOLUME)) {
-        dynamic_mixer.set_volume(std::max<int>(VOLUME * 0.1,
-          dynamic_mixer.get_volume() - VOLUME * 0.10));
-        beeper.Beep(0.5, 2000);
+      if (dynamic_mixer.get_volume() > 100) {
+        dynamic_mixer.set_volume(dynamic_mixer.get_volume() - VOLUME_INCREMENT_LEVEL);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
+        talkie.SayNumber(dynamic_mixer.get_volume());
       }
       else{
         beeper.Beep(0.5, 1000);
