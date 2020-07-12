@@ -22,6 +22,7 @@
 //
 // 0 Buttons:
 // Turn on/off blade - twist
+// Next Preset - clash while OFF
 //
 // 1 Button:
 // Activate Muted - double click and hold while OFF
@@ -203,9 +204,13 @@ public:
     }
     return true;
 
+#if NUM_BUTTONS == 0
+  case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF):
+    next_preset();
+    return true;
+#elif NUM_BUTTONS == 1
+  // 1-button: Next Preset AND Volume Up
   case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
-  // 1-button: Next Preset AND Volume Down
-#if NUM_BUTTONS == 1
     if (!mode_volume_) {
       next_preset();
     } else {
@@ -213,6 +218,7 @@ public:
     }
     return true;
 #else
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
   // 2 and 3 button: Start or Stop Track
     StartOrStopTrack();
     return true;
