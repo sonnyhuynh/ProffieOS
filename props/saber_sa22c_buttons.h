@@ -24,6 +24,8 @@
 // Turn on/off blade - twist
 // Next Preset - clash while OFF
 // Check battery - shake while OFF
+// Color change mode - shake while ON
+// Accept color change - clash while in Color change mode
 //
 // 1 Button:
 // Activate Muted - double click and hold while OFF
@@ -283,6 +285,27 @@ public:
       Off();
     }
     swing_blast_ = false;
+    return true;
+#endif
+#endif
+
+// 0 button Color Change
+#if NUM_BUTTONS == 0
+#ifndef DISABLE_COLOR_CHANGE
+  // Exit color change mode.
+  case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON):
+    if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
+      ToggleColorChangeMode();
+    }
+    else {
+      SaberBase::DoClash();
+    }
+    return true;
+  // Enter color change mode
+  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_ON):
+    if (SaberBase::GetColorChangeMode() == SaberBase::COLOR_CHANGE_MODE_NONE) {
+      ToggleColorChangeMode();
+    }
     return true;
 #endif
 #endif
