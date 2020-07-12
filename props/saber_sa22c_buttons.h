@@ -394,11 +394,13 @@ public:
 #endif
     if (!mode_volume_) {
       mode_volume_ = true;
-      beeper.Beep(0.5, 3000);
+      talkie.Say(spCURRENT);
+      talkie.SayNumber(dynamic_mixer.get_volume());
       STDOUT.println("Enter Volume Menu");
     } else {
       mode_volume_ = false;
-      beeper.Beep(0.5, 3000);
+      talkie.Say(spEXIT);
+      talkie.SayNumber(dynamic_mixer.get_volume());
       STDOUT.println("Exit Volume Menu");
     }
     return true;
