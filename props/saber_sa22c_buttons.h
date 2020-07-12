@@ -23,6 +23,7 @@
 // 0 Buttons:
 // Turn on/off blade - twist
 // Next Preset - clash while OFF
+// Check battery - shake while OFF
 //
 // 1 Button:
 // Activate Muted - double click and hold while OFF
@@ -440,7 +441,9 @@ public:
     return true;
 
 // Battery level
-#if NUM_BUTTONS == 1
+#if NUM_BUTTONS == 0
+  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
+#elif NUM_BUTTONS == 1
   // 1 button
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
 #else
