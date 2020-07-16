@@ -2,7 +2,7 @@
 #include "proffieboard_v2_config.h"
 // npxl
 #define NUM_BLADES 2
-#define NUM_BUTTONS 0
+#define NUM_BUTTONS 1
 #define VOLUME 500
 #define MAX_VOLUME 1000
 const unsigned int maxLedsPerStrip = 144;
@@ -16,7 +16,7 @@ const unsigned int maxLedsPerStrip = 144;
 // npxl
 #define SHARED_POWER_PINS
 
-//#define SHTOK_GESTURE_IGNITION
+#define SHTOK_GESTURE_IGNITION
 #endif
 
 #ifdef CONFIG_PROP
