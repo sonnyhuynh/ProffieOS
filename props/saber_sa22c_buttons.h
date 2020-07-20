@@ -241,7 +241,7 @@ public:
   case EVENTID(BUTTON_AUX2, EVENT_FIRST_CLICK_SHORT, MODE_OFF):
 #else
    // 1 and 2 button: Previous Preset
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
 #endif
     if (!mode_volume_) {
       previous_preset();
