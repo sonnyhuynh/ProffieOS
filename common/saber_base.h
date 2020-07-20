@@ -58,7 +58,11 @@ public:
 #if NUM_BUTTONS == 0
     return true;
 #else
+#ifdef SHTOK_GESTURE_IGNITION
+    return true;
+#else
     return IsOn() || (millis() - last_motion_request_) < 20000;
+#endif
 #endif
   }
   static void RequestMotion() {
