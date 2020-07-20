@@ -267,12 +267,7 @@ public:
 #ifdef SHTOK_GESTURE_IGNITION
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
 #endif
-#if NUM_BUTTONS > 1
-// 2 and 3 button
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
-#else
-// 1 button
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_ON):
     if (!SaberBase::Lockup()) {
 #ifndef DISABLE_COLOR_CHANGE
       if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
@@ -286,7 +281,6 @@ public:
     }
     swing_blast_ = false;
     return true;
-#endif
 #endif
 
 // 0 button Color Change
