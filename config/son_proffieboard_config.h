@@ -6,7 +6,7 @@
 #define VOLUME 500
 #define MAX_VOLUME 1000
 const unsigned int maxLedsPerStrip = 144;
-#define CLASH_THRESHOLD_G 3.0
+#define CLASH_THRESHOLD_G 2.9
 #define ENABLE_AUDIO
 #define ENABLE_MOTION
 #define ENABLE_WS2811
