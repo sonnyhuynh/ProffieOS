@@ -1,6 +1,7 @@
 // sa22c props file, includes 1,2 and 3 button modes.  Incorporates multi-blast
-// by fett263, gesture ignition by ShtokyD, on-the-fly volume controls and
-// full access to all features with 1,2 or 3 button sabers
+// by fett263, gesture ignition by ShtokyD (modified by son), swing ignition by
+// fett263 (modified by son) on-the-fly volume controls and full access to all 
+// features with 1,2 or 3 button sabers
 //
 // New #define SA22C_NO_LOCKUP_HOLD
 // reverts to lockup being triggered only by clash + aux in 2-button mode
@@ -12,6 +13,9 @@
 //
 // #define SON_TWIST_OFF
 // turn off saber with twist
+//
+// #define SON_SWING_ON
+// turn on saber with swing
 //
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
@@ -122,6 +126,10 @@
 #define MAX_VOLUME 1000
 #endif
 
+#ifndef MOTION_TIMEOUT
+#define MOTION_TIMEOUT 60 * 5 * 1000
+#endif
+
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSA22CButtons : public PropBase {
@@ -133,6 +141,16 @@ public:
   bool swinging_ = false;
   void Loop() override {
     PropBase::Loop();
+    if(!SaberBase::IsOn() ) {
+      if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
+        SaberBase::RequestMotion();
+        DoLoop();
+      }
+    }
+    DoLoop();
+  }
+
+  void DoLoop() {
     if (!swinging_ && fusor.swing_speed() > 250) {
       swinging_ = true;
       Event(BUTTON_NONE, EVENT_SWING);
@@ -199,6 +217,9 @@ public:
 #else
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
 #endif
+#ifdef SON_SWING_ON
+  case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
+#endif
 #ifdef SON_TWIST_ON
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
 #endif
@@ -261,7 +282,10 @@ public:
 // Turn Blade OFF
 #if NUM_BUTTONS == 0
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
-    Off();
+    if (!swinging_) {
+      Off();
+      saber_off_time_ = millis();
+    }
     swing_blast_ = false;
     return true;
 #else
@@ -279,7 +303,10 @@ public:
         return true;
       }
 #endif
-      Off();
+      if (!swinging_) {
+        Off();
+        saber_off_time_ = millis();
+      }
     }
     swing_blast_ = false;
     return true;
@@ -508,6 +535,7 @@ private:
   bool pointing_down_ = false;
   bool mode_volume_ = false;
   bool swing_blast_ = false;
+  uint32_t saber_off_time_ = millis();
 };
 
 #endif
