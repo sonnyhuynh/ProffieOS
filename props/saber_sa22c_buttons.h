@@ -7,9 +7,11 @@
 // Also sets multi-blast to trigger while holding aux and swinging, rather than
 // double click and hold
 //
-// Gesture ignition
-// if you add #define SHTOK_GESTURE_IGNITION to your config file, you can
-// turn on the saber using the stab motion, and turn off with a twist.
+// #define SON_TWIST_ON
+// turn on saber with twist
+//
+// #define SON_TWIST_OFF
+// turn off saber with twist
 //
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
@@ -197,7 +199,7 @@ public:
 #else
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
 #endif
-#ifdef SHTOK_GESTURE_IGNITION
+#ifdef SON_TWIST_ON
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
 #endif
     if (!mode_volume_) {
@@ -264,7 +266,7 @@ public:
     return true;
 #else
 
-#ifdef SHTOK_GESTURE_IGNITION
+#ifdef SON_TWIST_OFF
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
 #endif
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
