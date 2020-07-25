@@ -16,6 +16,7 @@
 //
 // #define SON_SWING_ON
 // turn on saber with swing (only for 1+ buttons)
+// Toggle swing on/off - shake while off
 //
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
@@ -145,12 +146,14 @@ public:
   bool swinging_ = false;
   void Loop() override {
     PropBase::Loop();
-    if(!SaberBase::IsOn() ) {
+#ifdef SON_SWING_ON
+    if(swing_on_ && !SaberBase::IsOn()) {
       if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
         SaberBase::RequestMotion();
         DoLoop();
       }
     }
+#endif
     DoLoop();
   }
 
@@ -232,7 +235,17 @@ public:
 
 #ifdef SON_SWING_ON
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
-    OnWithCooldown();
+    if (swing_on_ && millis() > 3000) {
+      OnWithCooldown();
+    }
+    return true;
+  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
+    swing_on_ = !swing_on_;
+    if (swing_on_) {
+      talkie.Say(spON);
+    } else {
+      talkie.Say(spOFF);
+    }
     return true;
 #endif
 #endif
@@ -556,6 +569,9 @@ private:
   bool mode_volume_ = false;
   bool swing_blast_ = false;
   uint32_t saber_off_time_ = millis();
+#ifdef SON_SWING_ON
+  bool swing_on_ = true;
+#endif
 };
 
 #endif
