@@ -496,12 +496,12 @@ public:
     if (!mode_volume_) {
       mode_volume_ = true;
       talkie.Say(spCURRENT);
-      talkie.SayNumber(dynamic_mixer.get_volume());
+      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       STDOUT.println("Enter Volume Menu");
     } else {
       mode_volume_ = false;
       talkie.Say(spEXIT);
-      talkie.SayNumber(dynamic_mixer.get_volume());
+      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       STDOUT.println("Exit Volume Menu");
     }
     return true;
