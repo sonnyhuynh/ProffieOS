@@ -131,7 +131,7 @@
 #endif
 
 #ifndef IGNITION_COOLDOWN
-#define IGNITION_COOLDOWN 2000
+#define IGNITION_COOLDOWN 1500
 #endif
 
 // The Saber class implements the basic states and actions
