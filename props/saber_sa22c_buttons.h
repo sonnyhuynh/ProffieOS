@@ -130,6 +130,10 @@
 #define MOTION_TIMEOUT 60 * 5 * 1000
 #endif
 
+#ifndef IGNITION_COOLDOWN
+#define IGNITION_COOLDOWN 2000
+#endif
+
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSA22CButtons : public PropBase {
@@ -199,6 +203,14 @@ public:
     }
   }
 
+  void OnWithCooldown() {
+    if (!mode_volume_) {
+      if (millis() - saber_off_time_ > IGNITION_COOLDOWN) {
+        On();
+      }
+    }
+  }
+
   bool Event2(enum BUTTON button, EVENT event, uint32_t modifiers) override {
     switch (EVENTID(button, event, modifiers)) {
       case EVENTID(BUTTON_POWER, EVENT_PRESSED, MODE_ON):
@@ -211,17 +223,25 @@ public:
         }
       return true;
 
+#if NUM_BUTTONS != 0
+#ifdef SON_TWIST_ON
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
+    OnWithCooldown();
+    return true;
+#endif
+#endif
+
+#ifdef SON_SWING_ON
+  case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
+    OnWithCooldown();
+    return true;
+#endif
+
 // Saber ON AND Volume Down
 #if NUM_BUTTONS == 0
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
 #else
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
-#endif
-#ifdef SON_SWING_ON
-  case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
-#endif
-#ifdef SON_TWIST_ON
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
 #endif
     if (!mode_volume_) {
       On();
