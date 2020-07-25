@@ -179,8 +179,8 @@ public:
     uint32_t now = micros();
     if (!accel_extrapolator_.ready()) return;
     if (!gyro_extrapolator_.ready()) return;
-    if (now - accel_extrapolator_.last_time() > 20000) return;
-    if (now - gyro_extrapolator_.last_time() > 20000) return;
+    if (now - accel_extrapolator_.last_time() > 1000000) return;
+    if (now - gyro_extrapolator_.last_time() > 1000000) return;
 
     float delta_t = (now - last_micros_) / 1000000.0;
     last_micros_ = now;
