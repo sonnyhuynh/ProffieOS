@@ -184,7 +184,7 @@ public:
         dynamic_mixer.set_volume(dynamic_mixer.get_volume() + VOLUME_INCREMENT_LEVEL);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
-        talkie.SayNumber(dynamic_mixer.get_volume());
+        talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       }
       else {
         beeper.Beep(0.5, 3000);
@@ -195,7 +195,7 @@ public:
         dynamic_mixer.set_volume(dynamic_mixer.get_volume() - VOLUME_INCREMENT_LEVEL);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
-        talkie.SayNumber(dynamic_mixer.get_volume());
+        talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       }
       else{
         beeper.Beep(0.5, 1000);
