@@ -9,13 +9,13 @@
 // double click and hold
 //
 // #define SON_TWIST_ON
-// turn on saber with twist
+// turn on saber with twist (only for 1+ buttons)
 //
 // #define SON_TWIST_OFF
-// turn off saber with twist
+// turn off saber with twist (only for 1+ buttons)
 //
 // #define SON_SWING_ON
-// turn on saber with swing
+// turn on saber with swing (only for 1+ buttons)
 //
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
@@ -229,12 +229,12 @@ public:
     OnWithCooldown();
     return true;
 #endif
-#endif
 
 #ifdef SON_SWING_ON
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
     OnWithCooldown();
     return true;
+#endif
 #endif
 
 // Saber ON AND Volume Down
