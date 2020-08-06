@@ -52,7 +52,8 @@
 //               to exit, hold while swinging for one second and release
 // Force Effects - hold + twist the hilt while ON (while pointing up)
 // Color Change mode - hold + twist the hilt while ON (pointing down)
-// Enter Volume - Menu hold + clash while OFF
+// Enter/Exit Volume - triple click hold while OFF
+// Exit Volume (alternative) - hold and wait until menu exit
 // Volume UP - hold and release while in Volume Menu
 // Volume DOWN - click while in Volume Menu
 // Exit Volume Menu - Menu hold + clash while OFF
@@ -178,6 +179,13 @@ public:
   void SayBatteryPercent() {
     talkie.SayNumber((int)floorf(battery_monitor.battery_percent()));
     talkie.Say(spPERCENT);
+  }
+
+  void ExitVolumeMenu() {
+      mode_volume_ = false;
+      talkie.Say(spEXIT);
+      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
+      STDOUT.println("Exit Volume Menu");
   }
 
   void ChangeVolume(bool up) {
@@ -512,12 +520,18 @@ public:
       talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       STDOUT.println("Enter Volume Menu");
     } else {
-      mode_volume_ = false;
-      talkie.Say(spEXIT);
-      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
-      STDOUT.println("Exit Volume Menu");
+      ExitVolumeMenu();
     }
     return true;
+
+// Exit Volume MENU
+#if NUM_BUTTONS == 1
+  case EVENTID(BUTTON_NONE, EVENT_FIRST_HELD_LONG, MODE_OFF):
+    if (mode_volume_) {
+      ExitVolumeMenu();
+    }
+    return true;
+#endif
 
 // Battery level
 #if NUM_BUTTONS == 0
