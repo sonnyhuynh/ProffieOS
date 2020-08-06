@@ -2,8 +2,8 @@
 #include "proffieboard_v2_config.h"
 
 #define NUM_BLADES 2
-#define NUM_BUTTONS 1
-#define VOLUME 100
+#define NUM_BUTTONS 2
+#define VOLUME 1000
 #define MAX_VOLUME 1500
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 2.9
@@ -143,5 +143,6 @@ BladeConfig blades[] = {
 
 #ifdef CONFIG_BUTTONS
 Button PowerButton(BUTTON_POWER, powerButtonPin, "pow");
+Button AuxButton(BUTTON_AUX, auxPin, "aux");
 #endif
 
