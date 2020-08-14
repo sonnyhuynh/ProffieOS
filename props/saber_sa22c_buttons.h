@@ -64,7 +64,7 @@
 // POWER
 // Activate Muted - double click and hold while OFF
 // Activate - short click while OFF
-// Play/Stop Music - hold and release while OFF
+// Play/Stop Music - double click while OFF
 // Turn off blade - hold and wait till blade is off while ON
 // Force Effects - double click while ON
 // Volume UP - short click while OFF and in VOLUME MENU
@@ -284,12 +284,12 @@ public:
       ChangeVolume(true);
     }
     return true;
-#else
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
-  // 2 and 3 button: Start or Stop Track
+#endif
+
+  // all buttons
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
     StartOrStopTrack();
     return true;
-#endif
 
   // 2 and 3 button: Next Preset and Volume Down
   case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_SHORT, MODE_OFF):
@@ -492,13 +492,6 @@ public:
     }
     break;
 
-// Start or Stop Track
-#if NUM_BUTTONS == 1
-  // 1 button
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
-    StartOrStopTrack();
-    return true;
-#endif
 
   case EVENTID(BUTTON_POWER, EVENT_PRESSED, MODE_OFF):
   case EVENTID(BUTTON_AUX, EVENT_PRESSED, MODE_OFF):
