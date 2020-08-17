@@ -67,11 +67,15 @@
 // Play/Stop Music - double click while OFF
 // Turn off blade - hold and wait till blade is off while ON
 // Force Effects - double click while ON
+// Enter/Exit Volume - triple click hold while OFF
+// Exit Volume (alternative) - hold power and wait
 // Volume UP - short click while OFF and in VOLUME MENU
 // Prev Preset - hold and wait while OFF
 // Color Change mode - hold + toggle AUX while ON
 // Lightning Block - double click and hold while ON
 // Melt - hold while stabbing (clash with forward motion, horizontal)
+// Battery Level - triple click while OFF
+//
 // AUX
 // Blaster blocks - short click/double click/triple click while ON
 // Multi-Blast - double-click and hold for half a second
@@ -80,9 +84,9 @@
 // Next Preset - short click while OFF
 // Lockup - hold while ON
 // Drag - hold while ON pointing the blade tip down
-// Enter VOLUME MENU - long click while OFF
 // Volume down - short click while OFF and in VOLUME MENU
-// Battery level - hold while off
+//
+//
 //
 // 3 Button: Same as two button except for the following
 //
@@ -275,8 +279,8 @@ public:
   case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF):
     next_preset();
     return true;
-#elif NUM_BUTTONS == 1
-  // 1-button: Next Preset AND Volume Up
+#else
+  // 1+ buttons: Next Preset AND Volume Up
   case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
     if (!mode_volume_) {
       next_preset();
@@ -387,14 +391,16 @@ public:
     SaberBase::DoForce();
 #endif
     return true;
-#else
+#endif
+
+#if NUMBUTTONS > 1
   // 2 and 3 button Force effect
   case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_SHORT, MODE_ON):
     SaberBase::DoForce();
     return true;
   // 2 and 3 button color change
 #ifndef DISABLE_COLOR_CHANGE
-  case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_SHORT, MODE_ON | BUTTON_POWER):
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
     ToggleColorChangeMode();
     return true;
 #endif
@@ -410,7 +416,7 @@ public:
   // 2 and 3 button
   case EVENTID(BUTTON_AUX, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
   case EVENTID(BUTTON_AUX, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_AUX, EVENT_THIRD_CLICK_SHORT, MODE_ON):
+  case EVENTID(BUTTON_AUX, EVENT_THIRD_CLICK_SHORT, MODE_ON): 
 #endif
     swing_blast_ = false;
     SaberBase::DoBlast();
@@ -500,13 +506,8 @@ public:
     return true;
 
 // Enter Volume MENU
-#if NUM_BUTTONS == 1
-  // 1 button
+  // all buttons
   case EVENTID(BUTTON_NONE, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
-#else
-  // 2 and 3 button
-  case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_LONG, MODE_OFF):
-#endif
     if (!mode_volume_) {
       mode_volume_ = true;
       talkie.Say(spCURRENT);
@@ -518,7 +519,7 @@ public:
     return true;
 
 // Exit Volume MENU
-#if NUM_BUTTONS == 1
+#if NUM_BUTTONS >= 1
   case EVENTID(BUTTON_NONE, EVENT_FIRST_HELD_LONG, MODE_OFF):
     if (mode_volume_) {
       ExitVolumeMenu();
@@ -529,12 +530,9 @@ public:
 // Battery level
 #if NUM_BUTTONS == 0
   case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
-#elif NUM_BUTTONS == 1
+#else
   // 1 button
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
-#else
-  // 2 and 3 button
-  case EVENTID(BUTTON_AUX, EVENT_FIRST_HELD_LONG, MODE_OFF):
 #endif
     //SayBatteryVoltage();
     SayBatteryPercent();
