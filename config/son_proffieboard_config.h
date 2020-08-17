@@ -3,7 +3,7 @@
 
 #define NUM_BLADES 2
 #define NUM_BUTTONS 2
-#define VOLUME 500
+#define VOLUME 200
 #define MAX_VOLUME 1500
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 2.9
