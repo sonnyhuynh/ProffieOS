@@ -577,7 +577,7 @@ private:
   bool swing_blast_ = false;
   uint32_t saber_off_time_ = millis();
 #ifdef SON_SWING_ON
-  bool swing_on_ = true;
+  bool swing_on_ = false;
 #endif
 };
 
