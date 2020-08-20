@@ -393,7 +393,7 @@ public:
     return true;
 #endif
 
-#if NUMBUTTONS > 1
+#if NUM_BUTTONS > 1
   // 2 and 3 button Force effect
   case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_SHORT, MODE_ON):
     SaberBase::DoForce();
