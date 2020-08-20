@@ -16,6 +16,7 @@ const unsigned int maxLedsPerStrip = 144;
 // npxl
 #define SHARED_POWER_PINS
 
+#define SA22C_NO_LOCKUP_HOLD
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
