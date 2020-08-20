@@ -19,6 +19,7 @@ const unsigned int maxLedsPerStrip = 144;
 // blade detect
 #define BLADE_DETECT_PIN blade3Pin
 
+#define SA22C_NO_LOCKUP_HOLD
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
