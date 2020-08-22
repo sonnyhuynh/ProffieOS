@@ -86,8 +86,8 @@ Preset vaderPreset = {
 
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
-  noblade,
-  noblade,
+  nobladeStyle,
+  nobladeStyle,
   "noblade",
 };
 
