@@ -58,6 +58,7 @@
 // Volume DOWN - click while in Volume Menu
 // Exit Volume Menu - Menu hold + clash while OFF
 // Battery Level - triple click while OFF
+// Direct Color Change - triple click and hold while ON
 //
 //
 // 2 Button:
@@ -71,10 +72,11 @@
 // Exit Volume (alternative) - hold power and wait
 // Volume UP - short click while OFF and in VOLUME MENU
 // Prev Preset - hold and wait while OFF
-// Color Change mode - hold + toggle AUX while ON
+// Color Change mode - hold + twist the hilt while ON (pointing down)
 // Lightning Block - double click and hold while ON
 // Melt - hold while stabbing (clash with forward motion, horizontal)
 // Battery Level - triple click while OFF
+// Direct Color Change - triple click while ON
 //
 // AUX
 // Blaster blocks - short click/double click/triple click while ON
@@ -408,8 +410,10 @@ public:
 
 // direct color change
 #ifdef COLOR_CHANGE_DIRECT
-#if NUM_BUTTONS > 1
 #ifndef DISABLE_COLOR_CHANGE
+#if NUM_BUTTONS == 1
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_ON):
+#elif NUM_BUTTONS > 1
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
     DirectColorChange();
     return true;
