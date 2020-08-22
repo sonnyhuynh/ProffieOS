@@ -28,7 +28,7 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "../blades/son_blades.h"
+#include "son_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -41,78 +41,18 @@ Preset lengthFinder[] = {
 */
 
 Preset presets[] = {
-  {
-    "son/owk;son/common;heroes/owk;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
-    owk,
-    owk,
-    "OWK",
-  },
-  {
-    "son/common;Rogue", "heroes/common/tracks/BattleOfHeros.wav",
-    rogue,
-    rogue,
-    "son",
-  },
-  {
-    "son/rey;son/common;OB4", "heroes/common/tracks/BattleOfHeros.wav",
-    rey,
-    rey,
-    "rey",
-  },
-  {
-    "son/common;workshop/purple;The_Tragedy", "The_Tragedy/tracks/track1.wav",
-    purple,
-    purple,
-    "tragedy",
-  },
-  {
-    "son/common;OB4", "OB4/tracks/Force_Theme.wav",
-    ob4,
-    ob4,
-    "ob4",
-  },
-  {
-    "son/kylo;son/common;Unstable_v2", "Unstable_v2/tracks/track4.wav",
-    kylo,
-    kylo,
-    "kylo",
-  },
-  {
-    "son/yoda;son/common;Little_Green_Friend", "Little_Green_Friend/tracks/YvsD.wav",
-    yoda,
-    yoda,
-    "yoda",
-  },
-  {
-    "son/common;Dark_V2/Moff_Gideon;Dark_V2/Font", "Dark_V2/Font/tracks/track2.wav",
-    darksaber,
-    darksaber,
-    "darksaber",
-  },
-  {
-    "son/ezra;son/common;Staple_Sword", "Staple_Sword/tracks/EzraTheme.wav",
-    ezra,
-    ezra,
-    "ezra",
-  },
-  {
-    "son/ahsoka;son/common;Code_Fulcrum", "Code_Fulcrum/tracks/track1.wav",
-    ahsoka,
-    ahsoka,
-    "ahsoka",
-  },
-  {
-    "son/luke;son/common;ANH_Training", "ANH_Training/tracks/Training_Ambience.wav",
-    luke,
-    luke,
-    "luke",
-  },
-  {
-    "son/vader;son/common;Father", "Father/tracks/Imperial_March_Short.wav",
-    vader,
-    vader,
-    "vader",
-  },
+  owkPreset,
+  sonPreset,
+  reyPreset,
+  purplePreset,
+  ob4Preset,
+  kyloPreset,
+  yodaPreset,
+  darksaberPreset,
+  ezraPreset,
+  ahsokaPreset,
+  lukePreset,
+  vaderPreset,
 };
 
 BladeConfig blades[] = {
