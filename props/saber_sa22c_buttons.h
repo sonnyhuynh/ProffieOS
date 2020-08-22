@@ -507,7 +507,7 @@ public:
 
 // Enter Volume MENU
   // all buttons
-  case EVENTID(BUTTON_NONE, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
     if (!mode_volume_) {
       mode_volume_ = true;
       talkie.Say(spCURRENT);
@@ -518,9 +518,9 @@ public:
     }
     return true;
 
-// Exit Volume MENU
+// Exit Volume MENU (alternate)
 #if NUM_BUTTONS >= 1
-  case EVENTID(BUTTON_NONE, EVENT_FIRST_HELD_LONG, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
     if (mode_volume_) {
       ExitVolumeMenu();
     }
