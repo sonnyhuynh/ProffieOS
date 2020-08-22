@@ -58,6 +58,7 @@
 // Volume DOWN - click while in Volume Menu
 // Exit Volume Menu - Menu hold + clash while OFF
 // Battery Level - triple click while OFF
+// Direct Color Change - triple click and hold while ON
 //
 //
 // 2 Button:
@@ -408,8 +409,10 @@ public:
 
 // direct color change
 #ifdef COLOR_CHANGE_DIRECT
-#if NUM_BUTTONS > 1
 #ifndef DISABLE_COLOR_CHANGE
+#if NUM_BUTTONS == 1
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_ON):
+#elif NUM_BUTTONS > 1
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
     DirectColorChange();
     return true;
