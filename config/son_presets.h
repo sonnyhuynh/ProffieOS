@@ -9,8 +9,8 @@ Preset owkPreset = {
 
 Preset sonPreset = {
   "son/common;Rogue", "son/tracks/TheForce4.wav",
-  rogueStyle,
-  rogueStyle,
+  sonStyle,
+  sonStyle,
   "son",
 };
 
@@ -86,8 +86,8 @@ Preset vaderPreset = {
 
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
-  noblade,
-  noblade,
+  nobladeStyle,
+  nobladeStyle,
   "noblade",
 };
 

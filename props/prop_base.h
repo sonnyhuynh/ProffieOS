@@ -873,19 +873,33 @@ public:
 
         SaberBase::SetColorChangeMode(SaberBase::COLOR_CHANGE_MODE_SMOOTH);
       } else {
-#ifdef COLOR_CHANGE_DIRECT
-        STDOUT << "Color change, TICK+\n";
-        SaberBase::UpdateVariation(1);
-#else
         STDOUT << "Entering stepped color change mode.\n";
         SaberBase::SetColorChangeMode(SaberBase::COLOR_CHANGE_MODE_STEPPED);
-#endif
       }
     } else {
       STDOUT << "Color change mode done, variation = " << SaberBase::GetCurrentVariation() << "\n";
       SaberBase::SetColorChangeMode(SaberBase::COLOR_CHANGE_MODE_NONE);
     }
   }
+
+#ifdef COLOR_CHANGE_DIRECT
+  void DirectColorChange() {
+    if (!current_style()) return;
+    if (SaberBase::GetColorChangeMode() == SaberBase::COLOR_CHANGE_MODE_NONE) {
+      current_tick_angle_ = fusor.angle2();
+      bool handles_color_change = false;
+#define CHECK_SUPPORTS_COLOR_CHANGE(N) \
+      handles_color_change |= current_config->blade##N->current_style() && current_config->blade##N->current_style()->IsHandled(HANDLED_FEATURE_CHANGE_TICKED);
+      ONCEPERBLADE(CHECK_SUPPORTS_COLOR_CHANGE)
+      STDOUT << "Color change, TICK+\n";
+      SaberBase::UpdateVariation(1);
+    } else {
+      STDOUT << "Color change mode done, variation = " << SaberBase::GetCurrentVariation() << "\n";
+      SaberBase::SetColorChangeMode(SaberBase::COLOR_CHANGE_MODE_NONE);
+    }
+  }
+#endif
+
 #endif // DISABLE_COLOR_CHANGE  
 
   void PrintButton(uint32_t b) {

@@ -24,6 +24,9 @@ const unsigned int maxLedsPerStrip = 144;
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
 
+// dual phase styles
+#define COLOR_CHANGE_DIRECT
+
 #endif
 
 #ifdef CONFIG_PROP

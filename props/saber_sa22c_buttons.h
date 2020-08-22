@@ -395,7 +395,7 @@ public:
 
 #if NUM_BUTTONS > 1
   // 2 and 3 button Force effect
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_SHORT, MODE_ON):
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
     SaberBase::DoForce();
     return true;
   // 2 and 3 button color change
@@ -403,6 +403,17 @@ public:
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
     ToggleColorChangeMode();
     return true;
+#endif
+#endif
+
+// direct color change
+#ifdef COLOR_CHANGE_DIRECT
+#if NUM_BUTTONS > 1
+#ifndef DISABLE_COLOR_CHANGE
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
+    DirectColorChange();
+    return true;
+#endif
 #endif
 #endif
 
@@ -507,7 +518,7 @@ public:
 
 // Enter Volume MENU
   // all buttons
-  case EVENTID(BUTTON_NONE, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
     if (!mode_volume_) {
       mode_volume_ = true;
       talkie.Say(spCURRENT);
@@ -518,9 +529,9 @@ public:
     }
     return true;
 
-// Exit Volume MENU
+// Exit Volume MENU (alternate)
 #if NUM_BUTTONS >= 1
-  case EVENTID(BUTTON_NONE, EVENT_FIRST_HELD_LONG, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
     if (mode_volume_) {
       ExitVolumeMenu();
     }
