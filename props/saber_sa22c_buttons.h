@@ -72,10 +72,11 @@
 // Exit Volume (alternative) - hold power and wait
 // Volume UP - short click while OFF and in VOLUME MENU
 // Prev Preset - hold and wait while OFF
-// Color Change mode - hold + toggle AUX while ON
+// Color Change mode - hold + twist the hilt while ON (pointing down)
 // Lightning Block - double click and hold while ON
 // Melt - hold while stabbing (clash with forward motion, horizontal)
 // Battery Level - triple click while OFF
+// Direct Color Change - triple click while ON
 //
 // AUX
 // Blaster blocks - short click/double click/triple click while ON
