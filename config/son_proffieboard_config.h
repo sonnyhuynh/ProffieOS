@@ -43,6 +43,22 @@ Preset lengthFinder[] = {
 };
 */
 
+Preset noBladePresets[] = {
+  noBladePreset,
+  owkPreset,
+  sonPreset,
+  reyPreset,
+  purplePreset,
+  ob4Preset,
+  kyloPreset,
+  yodaPreset,
+  darksaberPreset,
+  ezraPreset,
+  ahsokaPreset,
+  lukePreset,
+  vaderPreset,
+};
+
 Preset presets[] = {
   owkPreset,
   sonPreset,
@@ -81,7 +97,7 @@ BladeConfig blades[] = {
 //    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    CONFIGARRAY(presets)
+    CONFIGARRAY(noBladePresets)
   },
 };
 #endif
