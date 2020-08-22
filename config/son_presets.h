@@ -9,8 +9,8 @@ Preset owkPreset = {
 
 Preset sonPreset = {
   "son/common;Rogue", "son/tracks/TheForce4.wav",
-  rogueStyle,
-  rogueStyle,
+  sonStyle,
+  sonStyle,
   "son",
 };
 
