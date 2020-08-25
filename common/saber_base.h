@@ -184,6 +184,13 @@ public:                                                         \
     current_variation_ = v;
   }
 
+#ifdef RESET_COLOR
+  static void ResetVariation() {
+    current_variation_ = 0;
+    DoChange(CHANGE_COLOR);
+  }
+#endif
+
   enum ColorChangeMode {
     COLOR_CHANGE_MODE_NONE,
     COLOR_CHANGE_MODE_STEPPED,
