@@ -12,6 +12,8 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_WS2811
 #define ENABLE_SD
 #define SAVE_PRESET
+// this creates the preset.ini file
+#define SAVE_COLOR_CHANGE
 
 // npxl
 #define SHARED_POWER_PINS
@@ -23,6 +25,9 @@ const unsigned int maxLedsPerStrip = 144;
 
 // dual phase styles
 #define COLOR_CHANGE_DIRECT
+
+// reset blade color
+#define RESET_COLOR
 
 #endif
 
