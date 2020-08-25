@@ -900,6 +900,13 @@ public:
   }
 #endif
 
+#ifdef RESET_COLOR
+  void ResetBladeColor() {
+    SaberBase::ResetVariation();
+    SaveColorChangeIfNeeded();
+  }
+#endif
+
 #endif // DISABLE_COLOR_CHANGE  
 
   void PrintButton(uint32_t b) {

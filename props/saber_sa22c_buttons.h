@@ -18,6 +18,10 @@
 // turn on saber with swing (only for 1+ buttons)
 // Toggle swing on/off - shake while off
 //
+// #define RESET_COLOR
+// resets blade color to original (only for 1+ buttons)
+// hold PWR + twist while OFF
+//
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
 // to 300ms.  I think it feels more responsive this way but still gives enough
@@ -52,6 +56,7 @@
 //               to exit, hold while swinging for one second and release
 // Force Effects - hold + twist the hilt while ON (while pointing up)
 // Color Change mode - hold + twist the hilt while ON (pointing down)
+// Reset Blade Color - hold + twist the hilt while OFF
 // Enter/Exit Volume - triple click hold while OFF
 // Exit Volume (alternative) - hold and wait until menu exit
 // Volume UP - hold and release while in Volume Menu
@@ -73,6 +78,7 @@
 // Volume UP - short click while OFF and in VOLUME MENU
 // Prev Preset - hold and wait while OFF
 // Color Change mode - hold + twist the hilt while ON (pointing down)
+// Reset Blade Color - hold + twist the hilt while OFF
 // Lightning Block - double click and hold while ON
 // Melt - hold while stabbing (clash with forward motion, horizontal)
 // Battery Level - triple click while OFF
@@ -376,6 +382,15 @@ public:
     if (SaberBase::GetColorChangeMode() == SaberBase::COLOR_CHANGE_MODE_NONE) {
       ToggleColorChangeMode();
     }
+    return true;
+#endif
+#endif
+
+// Reset Blade Color
+#ifdef RESET_COLOR
+#if NUM_BUTTONS > 0
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
+    PropBase::ResetBladeColor();
     return true;
 #endif
 #endif
