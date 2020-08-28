@@ -420,6 +420,7 @@ struct is_same_type<T, T> { static const bool value = true; };
 #include "functions/twist_angle.h"
 #include "functions/layer_functions.h"
 #include "functions/islessthan.h"
+#include "functions/wav_time.h"
 
 // transitions
 #include "transitions/fade.h"
