@@ -79,6 +79,16 @@ public:
     avg_t_ = sum_t / SIZE;
     CHECK_NAN(avg_t_);
 
+#if 0
+    // Enable this code if response becomes too slow in low-power mode
+    if (avg_t > 200000 /* 200ms */) {
+      // Just use last value if everything is too spread out.
+      avg_ = last();
+      slope_ = T(0.0f);
+      return;
+    }
+#endif    
+
     T dot_sum(0.0f);
     float t_square_sum = 0.0;
     for (size_t i = 0; i < SIZE; i++) {

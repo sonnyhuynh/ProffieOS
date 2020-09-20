@@ -223,6 +223,10 @@ class Effect {
   void Select(int n) {
     selected_ = n;
   }
+  void SelectNext() {
+    selected_++;
+    if (selected_ == (int)files_found()) selected_ = 0;
+  }
 
   Effect* GetFollowing() const {
     return following_;
@@ -447,6 +451,9 @@ EFFECT2(pwroff, pstoff);
 EFFECT(clash);
 EFFECT(force);    // also polyphonic
 EFFECT(stab);     // also polyphonic
+#ifdef ENABLE_SPINS
+EFFECT(spin);     // also polyphonic
+#endif
 EFFECT(blaster);
 EFFECT2(lockup, lockup);
 EFFECT(poweronf); // force poweron
@@ -519,6 +526,9 @@ EFFECT(unjam);
 
 // battery low
 EFFECT(lowbatt);	// battery low
+
+// per-font tracks
+EFFECT(track);
 
 // TODO: Optimize this and make it possible
 // have the WAV reader use this.

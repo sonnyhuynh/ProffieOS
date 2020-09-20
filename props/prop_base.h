@@ -23,7 +23,11 @@ class PropBase : CommandParser, Looper, protected SaberBase {
 public:
   PropBase() : CommandParser() {}
   BladeStyle* current_style(){
+#if NUM_BLADES == 0
+    return nullptr;
+#else    
     return current_config->blade1->current_style();
+#endif    
   }
 
   bool NeedsPower() {
@@ -350,6 +354,11 @@ public:
     BLADE_ID_CLASS_INTERNAL blade_id;
     float ret = blade_id.id();
     STDOUT << "ID: " << ret << "\n";
+#ifdef SPEAK_BLADE_ID
+    talkie.Say(spI);
+    talkie.Say(spD);
+    talkie.SayNumber((int)ret);
+#endif    
 #ifdef BLADE_DETECT_PIN
     if (!blade_detected_) {
       STDOUT << "NO ";
@@ -394,12 +403,16 @@ public:
 #endif
     return;
 
-   bad_blade:
+#if NUM_BLADES != 0    
+
+  bad_blade:
     STDOUT.println("BAD BLADE");
 #ifdef ENABLE_AUDIO
     talkie.Say(talkie_error_in_15, 15);
     talkie.Say(talkie_blade_array_15, 15);
 #endif
+
+#endif    
   }
 
   void ResumePreset() {
@@ -734,7 +747,7 @@ public:
       EnableAmplifier();
       track_player_ = GetFreeWavPlayer();
       if (track_player_) {
-        track_player_->Play(current_preset_.track.get());
+	track_player_->Play(current_preset_.track.get());
       } else {
         STDOUT.println("No available WAV players.");
       }
@@ -825,6 +838,7 @@ public:
     if (monitor.ShouldPrint(Monitoring::MonitorVariation)) {
       STDOUT << " variation = " << SaberBase::GetCurrentVariation()
              << " ccmode = " << SaberBase::GetColorChangeMode()
+//	     << " color = " << current_config->blade1->current_style()->getColor(0)
              << "\n";
     }
 
@@ -1280,8 +1294,16 @@ public:
     }
 
     if (!strcmp(cmd, "set_preset") && arg) {
-      size_t preset = strtol(arg, NULL, 0);
+      int preset = strtol(arg, NULL, 0);
       SetPreset(preset, true);
+      return true;
+    }
+
+    if (!strcmp(cmd, "change_preset") && arg) {
+      int preset = strtol(arg, NULL, 0);
+      if (preset != current_preset_.preset_num) {
+	SetPreset(preset, true);
+      }
       return true;
     }
 
@@ -1376,11 +1398,12 @@ public:
     }
 
     if (Event2(button, event, current_modifiers | (IsOn() ? MODE_ON : MODE_OFF))) {
-      current_modifiers = BUTTON_NONE;
+      current_modifiers = 0;
       return true;
     }
     if (Event2(button, event,  MODE_ANY_BUTTON | (IsOn() ? MODE_ON : MODE_OFF))) {
-      current_modifiers = BUTTON_NONE;
+      // Not matching modifiers, so no need to clear them.
+      current_modifiers &= ~button;
       return true;
     }
     return false;

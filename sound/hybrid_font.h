@@ -16,6 +16,9 @@ public:
     CONFIG_VARIABLE(ProffieOSSwingLowerThreshold, 200.0f);
     CONFIG_VARIABLE(ProffieOSSlashAccelerationThreshold, 130.0f);
     CONFIG_VARIABLE(ProffieOSAnimationFrameRate, 0.0f);
+#ifdef ENABLE_SPINS    
+    CONFIG_VARIABLE(ProffieOSSpinDegrees, 360.0f);
+#endif    
   }
   // Igniter compat
   // This specifies how many milliseconds before the end of the
@@ -52,6 +55,12 @@ public:
   float ProffieOSSlashAccelerationThreshold;
   // For OLED displays, this specifies the frame rate of animations.
   float ProffieOSAnimationFrameRate;
+#ifdef ENABLE_SPINS  
+  // number of degrees the blade must travel while staying above the
+  // swing threshold in order to trigger a spin sound.  Default is 360 or
+  // one full rotation.
+  float ProffieOSSpinDegrees;
+#endif  
 };
 
 FontConfigFile font_config;
@@ -115,7 +124,6 @@ public:
     lock_player_.Free();
     hum_player_.Free();
     next_hum_player_.Free();
-    inout_player_.Free();         // BC in/out wav length V2
     swing_player_.Free();
     SaberBase::Unlink(this);
     state_ = STATE_OFF;
@@ -123,7 +131,6 @@ public:
 
   RefPtr<BufferedWavPlayer> hum_player_;
   RefPtr<BufferedWavPlayer> next_hum_player_;
-  RefPtr<BufferedWavPlayer> inout_player_;           // BC in/out wav length V2
   RefPtr<BufferedWavPlayer> swing_player_;
   RefPtr<BufferedWavPlayer> lock_player_;
 
@@ -142,9 +149,9 @@ public:
       hum_player_.Free();
       next_hum_player_->set_volume_now(0);
       next_hum_player_->set_fade_time(0.003);
-      next_hum_player_->set_volume(font_config.volEff / 16.0);
+      next_hum_player_->set_volume(font_config.volEff / 16.0f);
     } else {
-      next_hum_player_->set_volume_now(font_config.volEff / 16.0);
+      next_hum_player_->set_volume_now(font_config.volEff / 16.0f);
     }
     hum_player_ = next_hum_player_;
     next_hum_player_.Free();
@@ -158,7 +165,7 @@ public:
     if (!f->files_found()) return RefPtr<BufferedWavPlayer>(nullptr);
     RefPtr<BufferedWavPlayer> player = GetFreeWavPlayer();
     if (player) {
-      player->set_volume_now(font_config.volEff / 16.0);
+      player->set_volume_now(font_config.volEff / 16.0f);
       player->PlayOnce(f);
       current_effect_length_ = player->length();
     }
@@ -188,7 +195,15 @@ public:
     // Radians per second per second
     float rss = sqrtf(gyro_slope.z * gyro_slope.z + gyro_slope.y * gyro_slope.y) * (M_PI / 180);
     float swing_speed = fusor.swing_speed();
+    uint32_t now = micros();
+    uint32_t delta_micros = now - last_swing_micros_;
+    last_swing_micros_ = now;
+    if (delta_micros > 1000000) delta_micros = 1;
     if (swing_speed > swingThreshold) {
+      float delta = delta_micros * 0.000001;
+#ifdef ENABLE_SPINS      
+      angle_ += swing_speed * delta;
+#endif      
       if (!guess_monophonic_) {
         if (swing_player_) {
           // avoid overlapping swings, based on value set in ProffieOSSwingOverlap.  Value is
@@ -209,17 +224,39 @@ public:
               swing_player_ = PlayPolyphonic(&SFX_swing);
             }
             swinging_ = true;
+          } else {
+#ifdef ENABLE_SPINS
+            if (angle_ > font_config.ProffieOSSpinDegrees) {
+              if (SFX_spin) {
+                swing_player_ = PlayPolyphonic(&SFX_spin);
+              }
+              angle_ -= font_config.ProffieOSSpinDegrees;
+            }
+#endif	    
           }
         }
-      } else if (!swinging_ && swing_speed > swingThreshold) {
-        PlayMonophonic(&SFX_swing, &SFX_hum);
-        swinging_ = true;
+      } else if (swing_speed > swingThreshold) {
+        if (!swinging_) {
+          PlayMonophonic(&SFX_swing, &SFX_hum);
+          swinging_ = true;
+        }
+#ifdef ENABLE_SPINS	
+        if (angle_ > 360 && swinging_) {
+          if (SFX_spin) {
+            PlayMonophonic(&SFX_spin, &SFX_hum);
+          }
+          angle_ -= font_config.ProffieOSSpinDegrees;
+        }
+#endif	
       }
       float swing_strength = std::min<float>(1.0, swing_speed / swingThreshold);
       SetSwingVolume(swing_strength, 1.0);
     } else if (swing_speed <= font_config.ProffieOSSwingLowerThreshold) {
       swinging_ = false;
       swing_player_.Free();
+#ifdef ENABLE_SPINS      
+      angle_ = 0;
+#endif      
     }
     float vol = 1.0f;
     if (!swinging_) {
@@ -271,22 +308,14 @@ public:
         hum_player_->PlayLoop(SFX_humm ? &SFX_humm : &SFX_hum);
         hum_start_ = millis();
       }
-      // RefPtr<BufferedWavPlayer> tmp = PlayPolyphonic(SFX_out ? &SFX_out : &SFX_poweron);    // BC for variable in/out
-      //   out_wavtime = current_effect_length_;                                              // BC for variable in/out
-      //   STDOUT << "out wav length: " << current_effect_length_ << "\n";                    // BC for variable in/out
-      inout_player_ = GetFreeWavPlayer();                                                    // BC for variable in/out
-      inout_player_->PlayOnce(SFX_out ? &SFX_out : &SFX_poweron);                            // BC for variable in/out
-    STDOUT << "out wav length: " << inout_player_->length() << "\n";                          // BC for variable in/out
-    hum_fade_in_ = 0.2;
-      if (SFX_humm) {
-	//hum_fade_in_ = tmp->length();                                              // BC for variable in/out
-        hum_fade_in_ = inout_player_->length();                                 // BC for variable in/out
-  STDOUT << "HUM fade-in time: " << hum_fade_in_ << "\n";
+      RefPtr<BufferedWavPlayer> tmp = PlayPolyphonic(SFX_out ? &SFX_out : &SFX_poweron);
+      hum_fade_in_ = 0.2;
+      if (SFX_humm && tmp) {
+	hum_fade_in_ = tmp->length();
+	STDOUT << "HUM fade-in time: " << hum_fade_in_ << "\n";
       }
-      // else if (font_config.humStart && tmp) {                                            // BC for variable in/out
-      //   int delay_ms = 1000 * tmp->length() - font_config.humStart;                       // BC for variable in/out
-      else if (font_config.humStart && inout_player_) {                                      // BC for variable in/out
-        int delay_ms = 1000 * inout_player_->length() - font_config.humStart;               // BC for variable in/out
+      else if (font_config.humStart && tmp) {
+        int delay_ms = 1000 * tmp->length() - font_config.humStart;
         if (delay_ms > 0 && delay_ms < 30000) {
           hum_start_ += delay_ms;
         }
@@ -317,11 +346,8 @@ public:
           }
         } else {
           state_ = STATE_HUM_FADE_OUT;
-          // PlayPolyphonic(&SFX_in);                                    // BC for variable in/out
-	  inout_player_ = GetFreeWavPlayer();                                  // BC for variable in/out
-      inout_player_->PlayOnce(&SFX_in);                                 // BC for variable in/out
-    STDOUT << "in wav length: " << inout_player_->length() << "\n";      // BC for variable in/out
-    hum_fade_out_ = 0.2;
+          PlayPolyphonic(&SFX_in);
+	  hum_fade_out_ = 0.2;
         }
 	state_ = monophonic_hum_ ? STATE_OFF : STATE_HUM_FADE_OUT;
         break;
@@ -347,7 +373,7 @@ public:
   }
   void SB_Force() override { PlayCommon(&SFX_force); }
   void SB_Blast() override { Play(&SFX_blaster, &SFX_blst); }
-  void SB_Boot() override { beeper.Beep(0.05, 1000); }
+  void SB_Boot() override { PlayPolyphonic(&SFX_boot); }
 
   // Blaster effects, auto fire is handled by begin/end lockup
   void SB_Stun() override { PlayCommon(&SFX_stun); }
@@ -447,7 +473,7 @@ public:
 
     if (!loop) loop = SFX_lockup ? &SFX_lockup : &SFX_lock;
     if (!once) once = loop;
-    
+
     if (SFX_lockup && !SFX_humm) {
       // Monophonic
       PlayMonophonic(once, loop);
@@ -588,17 +614,22 @@ public:
 #endif
     }
   }
-	
+
  private:
   uint32_t last_micros_;
+  uint32_t last_swing_micros_;
   uint32_t hum_start_;
   float hum_fade_in_;
   float hum_fade_out_;
+#ifdef ENABLE_SPINS      
+  float angle_;
+#endif  
   bool monophonic_hum_;
   bool guess_monophonic_;
   State state_;
   float volume_;
   float current_effect_length_ = 0.0;
+
 };
 
 #endif
