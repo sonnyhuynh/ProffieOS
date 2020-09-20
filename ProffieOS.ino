@@ -21,7 +21,7 @@
 // You can have multiple configuration files, and specify which one
 // to use here.
 
-#define CONFIG_FILE "config/default_proffieboard_config.h"
+#define CONFIG_FILE "config/son_proffieboard_config.h"
 // #define CONFIG_FILE "config/default_v3_config.h"
 // #define CONFIG_FILE "config/crossguard_config.h"
 // #define CONFIG_FILE "config/graflex_v1_config.h"
@@ -434,6 +434,7 @@ struct is_same_type<T, T> { static const bool value = true; };
 #include "functions/marble.h"
 #include "functions/slice.h"
 #include "functions/mult.h"
+#include "functions/wav_time.h"
 
 // transitions
 #include "transitions/fade.h"
