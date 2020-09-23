@@ -18,10 +18,10 @@ const unsigned int maxLedsPerStrip = 144;
 // npxl
 #define SHARED_POWER_PINS
 
-#define SA22C_NO_LOCKUP_HOLD
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
+#define FETT263_BATTLE_MODE
 
 // dual phase styles
 #define COLOR_CHANGE_DIRECT
@@ -32,7 +32,7 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PROP
-#include "../props/saber_sa22c_buttons.h"
+#include "../props/saber_son_buttons.h"
 #endif
 
 #ifdef CONFIG_PRESETS
