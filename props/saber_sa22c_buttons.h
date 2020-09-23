@@ -148,6 +148,10 @@
 #define IGNITION_COOLDOWN 1500
 #endif
 
+#ifndef FETT263_LOCKUP_DELAY
+#define FETT263_LOCKUP_DELAY 200
+#endif
+
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSA22CButtons : public PropBase {
@@ -159,18 +163,50 @@ public:
   bool swinging_ = false;
   void Loop() override {
     PropBase::Loop();
-#ifdef SON_SWING_ON
-    if(swing_on_ && !SaberBase::IsOn()) {
-      if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
-        SaberBase::RequestMotion();
-        DoLoop();
+    if (SaberBase::IsOn()) {
+        // Edit '250' value in line below to change swing on sensitivity when on
+        // 250 ~ 400 work best in testing
+      if (!swinging_ && fusor.swing_speed() > 250) {
+        swinging_ = true;
+        Event(BUTTON_NONE, EVENT_SWING);
+      }
+      if (auto_lockup_on_ &&
+          !swinging_ &&
+          fusor.swing_speed() > 120 &&
+          millis() - clash_impact_millis_ > FETT263_LOCKUP_DELAY &&
+          SaberBase::Lockup()) {
+        SaberBase::DoEndLockup();
+        SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
+        auto_lockup_on_ = false;
+      }
+      // SON TODO check if order of this thing below matters... if it doesn't, use DoLoop instead
+      if (swinging_ && fusor.swing_speed() < 100) {
+        swinging_ = false;
+      }
+      if (auto_melt_on_ &&
+          !swinging_ &&
+          fusor.swing_speed() > 60 &&
+          millis() - clash_impact_millis_ > FETT263_LOCKUP_DELAY &&
+          SaberBase::Lockup()) {
+        SaberBase::DoEndLockup();
+        SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
+        auto_melt_on_ = false;
+      }
+    } else {
+      if(swing_on_) {
+        // Swing On gesture control this portion allows fine tuning of speed needed to ignite
+        if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
+          SaberBase::RequestMotion();
+          DoLoop();
+        }
       }
     }
-#endif
-    DoLoop();
+
   }
 
   void DoLoop() {
+    // Edit '250' value in line below to change swing on sensitivity when off
+    // 250 ~ 400 work best in testing
     if (!swinging_ && fusor.swing_speed() > 250) {
       swinging_ = true;
       Event(BUTTON_NONE, EVENT_SWING);
@@ -249,14 +285,21 @@ public:
 #if NUM_BUTTONS != 0
 #ifdef SON_TWIST_ON
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
-    OnWithCooldown();
+    // Delay twist events to prevent false trigger from over twisting
+    if (millis() - last_twist_ > 3000) {
+      OnWithCooldown();
+      last_twist_ = millis();
+      battle_mode_ = true;
+    }
     return true;
 #endif
 
 #ifdef SON_SWING_ON
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
+    // Due to motion chip startup on boot creating false ignition we delay Swing On at boot for 3000ms
     if (swing_on_ && millis() > 3000) {
       OnWithCooldown();
+      battle_mode_ = true;
     }
     return true;
   case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
@@ -335,8 +378,10 @@ public:
 // Turn Blade OFF
 #if NUM_BUTTONS == 0
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
-    if (!swinging_) {
+    // Delay twist events to prevent false trigger from over twisting
+    if (!swinging_ && (millis() - last_twist_ > 3000)) {
       Off();
+      last_twist_ = millis();
       saber_off_time_ = millis();
     }
     swing_blast_ = false;
@@ -356,8 +401,10 @@ public:
         return true;
       }
 #endif
-      if (!swinging_) {
+      // Delay twist events to prevent false trigger from over twisting
+      if (!swinging_ && (millis() - last_twist_ > 3000)) {
         Off();
+        last_twist_ = millis();
         saber_off_time_ = millis();
       }
     }
@@ -588,6 +635,54 @@ public:
         return true;
 #endif
 
+
+// FETT263 BATTLE MODE
+// TODO check cases for duplicates
+#ifdef FETT263_BATTLE_MODE
+//#define SON_SWING_ON
+#define SON_TWIST_OFF
+        /*
+       case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_AUX):
+         if (!battle_mode_) {
+           battle_mode_ = true;
+           // Force sound plays when entering Battle Mode
+           hybrid_font.SB_Force();
+         } else {
+           battle_mode_ = false;
+           // Exit Color Change sound plays when exiting Battle Mode
+           hybrid_font.SB_Change(EXIT_COLOR_CHANGE);
+         }
+         return true;
+         */
+
+      // Auto Lockup Mode
+      case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON):
+        if (!battle_mode_) return false;
+        clash_impact_millis_ = millis();
+        swing_blast_ = false;
+        if (!swinging_) {
+          SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
+          auto_lockup_on_ = true;
+          SaberBase::DoBeginLockup();
+        }
+        return true;
+
+      case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_ON):
+        if (!battle_mode_) return false;
+        clash_impact_millis_ = millis();
+        swing_blast_ = false;
+        if (!swinging_) {
+          if (fusor.angle1() < - M_PI / 4) {
+            SaberBase::SetLockup(SaberBase::LOCKUP_DRAG);
+          } else {
+            SaberBase::SetLockup(SaberBase::LOCKUP_MELT);
+          }
+          auto_melt_on_ = true;
+          SaberBase::DoBeginLockup();
+        }
+        return true;
+#endif
+
   // Events that needs to be handled regardless of what other buttons
   // are pressed.
     case EVENTID(BUTTON_POWER, EVENT_RELEASED, MODE_ANY_BUTTON | MODE_ON):
@@ -605,10 +700,15 @@ private:
   bool pointing_down_ = false;
   bool mode_volume_ = false;
   bool swing_blast_ = false;
-  uint32_t saber_off_time_ = millis();
 #ifdef SON_SWING_ON
   bool swing_on_ = false;
 #endif
+  bool auto_lockup_on_ = false;
+  bool auto_melt_on_ = false;
+  bool battle_mode_ = false;
+  uint32_t clash_impact_millis_ = millis();
+  uint32_t last_twist_ = millis();
+  uint32_t saber_off_time_ = millis();
 };
 
 #endif
