@@ -21,6 +21,9 @@ const unsigned int maxLedsPerStrip = 144;
 // blade detect
 #define BLADE_DETECT_PIN blade3Pin
 
+// blade id
+#define ENABLE_POWER_FOR_ID PowerPINS<bladePowerPin2,bladePowerPin3>
+
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
@@ -84,13 +87,18 @@ Preset presets[] = {
 
 BladeConfig blades[] = {
   {
-    0,
+    28,
 // 28" bendu blade
     WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+// npxl
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    38,
 // 20" bendu blade
-//    WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-// 7" bendu blade
-//    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
@@ -98,12 +106,8 @@ BladeConfig blades[] = {
   },
   {
     NO_BLADE,
-// 28" bendu blade
-    WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-// 20" bendu blade
-//    WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // 7" bendu blade
-//    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
