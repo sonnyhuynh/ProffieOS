@@ -1,26 +1,15 @@
 // sa22c props file, includes 1,2 and 3 button modes.  Incorporates multi-blast
-// by fett263, gesture ignition by ShtokyD (modified by son), swing ignition by
-// fett263 (modified by son) on-the-fly volume controls and full access to all 
-// features with 1,2 or 3 button sabers
+// by fett263, gesture ignition by ShtokyD, on-the-fly volume controls and
+// full access to all features with 1,2 or 3 button sabers
 //
 // New #define SA22C_NO_LOCKUP_HOLD
 // reverts to lockup being triggered only by clash + aux in 2-button mode
 // Also sets multi-blast to trigger while holding aux and swinging, rather than
 // double click and hold
 //
-// #define SON_TWIST_ON
-// turn on saber with twist (only for 1+ buttons)
-//
-// #define SON_TWIST_OFF
-// turn off saber with twist (only for 1+ buttons)
-//
-// #define SON_SWING_ON
-// turn on saber with swing (only for 1+ buttons)
-// Toggle swing on/off - shake while off
-//
-// #define RESET_COLOR
-// resets blade color to original (only for 1+ buttons)
-// hold PWR + twist while OFF
+// Gesture ignition
+// if you add #define SHTOK_GESTURE_IGNITION to your config file, you can
+// turn on the saber using the stab motion, and turn off with a twist.
 //
 // Tightened click timings
 // I've shortened the timeout for short and double click detection from 500ms
@@ -30,13 +19,6 @@
 // individual tastes.
 //
 // Button configs:
-//
-// 0 Buttons:
-// Turn on/off blade - twist
-// Next Preset - clash while OFF
-// Check battery - shake while OFF
-// Color change mode - shake while ON
-// Accept color change - clash while in Color change mode
 //
 // 1 Button:
 // Activate Muted - double click and hold while OFF
@@ -56,34 +38,25 @@
 //               to exit, hold while swinging for one second and release
 // Force Effects - hold + twist the hilt while ON (while pointing up)
 // Color Change mode - hold + twist the hilt while ON (pointing down)
-// Reset Blade Color - hold + twist the hilt while OFF
-// Enter/Exit Volume - triple click hold while OFF
-// Exit Volume (alternative) - hold and wait until menu exit
+// Enter Volume - Menu hold + clash while OFF
 // Volume UP - hold and release while in Volume Menu
 // Volume DOWN - click while in Volume Menu
 // Exit Volume Menu - Menu hold + clash while OFF
 // Battery Level - triple click while OFF
-// Direct Color Change - triple click and hold while ON
 //
 //
 // 2 Button:
 // POWER
 // Activate Muted - double click and hold while OFF
 // Activate - short click while OFF
-// Play/Stop Music - double click while OFF
+// Play/Stop Music - hold and release while OFF
 // Turn off blade - hold and wait till blade is off while ON
 // Force Effects - double click while ON
-// Enter/Exit Volume - triple click hold while OFF
-// Exit Volume (alternative) - hold power and wait
 // Volume UP - short click while OFF and in VOLUME MENU
 // Prev Preset - hold and wait while OFF
-// Color Change mode - hold + twist the hilt while ON (pointing down)
-// Reset Blade Color - hold + twist the hilt while OFF
+// Color Change mode - hold + toggle AUX while ON
 // Lightning Block - double click and hold while ON
 // Melt - hold while stabbing (clash with forward motion, horizontal)
-// Battery Level - triple click while OFF
-// Direct Color Change - triple click while ON
-//
 // AUX
 // Blaster blocks - short click/double click/triple click while ON
 // Multi-Blast - double-click and hold for half a second
@@ -92,9 +65,9 @@
 // Next Preset - short click while OFF
 // Lockup - hold while ON
 // Drag - hold while ON pointing the blade tip down
+// Enter VOLUME MENU - long click while OFF
 // Volume down - short click while OFF and in VOLUME MENU
-//
-//
+// Battery level - hold while off
 //
 // 3 Button: Same as two button except for the following
 //
@@ -132,26 +105,6 @@
 #define BUTTON_HELD_LONG_TIMEOUT 2000
 #endif
 
-#ifndef VOLUME_INCREMENT_LEVEL
-#define VOLUME_INCREMENT_LEVEL 100
-#endif
-
-#ifndef MAX_VOLUME
-#define MAX_VOLUME 1000
-#endif
-
-#ifndef MOTION_TIMEOUT
-#define MOTION_TIMEOUT 60 * 5 * 1000
-#endif
-
-#ifndef IGNITION_COOLDOWN
-#define IGNITION_COOLDOWN 1500
-#endif
-
-#ifndef FETT263_LOCKUP_DELAY
-#define FETT263_LOCKUP_DELAY 200
-#endif
-
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSA22CButtons : public PropBase {
@@ -159,113 +112,36 @@ public:
   SaberSA22CButtons() : PropBase() {}
   const char* name() override { return "SaberSA22CButtons"; }
 
-  // EVENT_SWING
-  bool swinging_ = false;
   void Loop() override {
     PropBase::Loop();
-    if (SaberBase::IsOn()) {
-        // Edit '250' value in line below to change swing on sensitivity when on
-        // 250 ~ 400 work best in testing
-      if (!swinging_ && fusor.swing_speed() > 250) {
-        swinging_ = true;
-        Event(BUTTON_NONE, EVENT_SWING);
-      }
-      if (auto_lockup_on_ &&
-          !swinging_ &&
-          fusor.swing_speed() > 120 &&
-          millis() - clash_impact_millis_ > FETT263_LOCKUP_DELAY &&
-          SaberBase::Lockup()) {
-        SaberBase::DoEndLockup();
-        SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
-        auto_lockup_on_ = false;
-      }
-      // SON TODO check if order of this thing below matters... if it doesn't, use DoLoop instead
-      if (swinging_ && fusor.swing_speed() < 100) {
-        swinging_ = false;
-      }
-      if (auto_melt_on_ &&
-          !swinging_ &&
-          fusor.swing_speed() > 60 &&
-          millis() - clash_impact_millis_ > FETT263_LOCKUP_DELAY &&
-          SaberBase::Lockup()) {
-        SaberBase::DoEndLockup();
-        SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
-        auto_melt_on_ = false;
-      }
-    } else {
-      if(swing_on_) {
-        // Swing On gesture control this portion allows fine tuning of speed needed to ignite
-        if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
-          SaberBase::RequestMotion();
-          DoLoop();
-        }
-      }
-    }
-
-  }
-
-  void DoLoop() {
-    // Edit '250' value in line below to change swing on sensitivity when off
-    // 250 ~ 400 work best in testing
-    if (!swinging_ && fusor.swing_speed() > 250) {
-      swinging_ = true;
-      Event(BUTTON_NONE, EVENT_SWING);
-    }
-    if (swinging_ && fusor.swing_speed() < 100) {
-      swinging_ = false;
-    }
-  }
-
-  void SayBatteryVoltage() {
-    talkie.SayDigit((int)floorf(battery_monitor.battery()));
-    talkie.Say(spPOINT);
-    talkie.SayDigit(((int)floorf(battery_monitor.battery() * 10)) % 10);
-    talkie.SayDigit(((int)floorf(battery_monitor.battery() * 100)) % 10);
-    talkie.Say(spVOLTS);
-  }
-
-  void SayBatteryPercent() {
-    talkie.SayNumber((int)floorf(battery_monitor.battery_percent()));
-    talkie.Say(spPERCENT);
-  }
-
-  void ExitVolumeMenu() {
-      mode_volume_ = false;
-      talkie.Say(spEXIT);
-      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
-      STDOUT.println("Exit Volume Menu");
+    DetectTwist();
+    DetectSwing();
   }
 
   void ChangeVolume(bool up) {
     if (up) {
       STDOUT.println("Volume up");
-      if (dynamic_mixer.get_volume() < MAX_VOLUME) {
-        dynamic_mixer.set_volume(dynamic_mixer.get_volume() + VOLUME_INCREMENT_LEVEL);
+      if (dynamic_mixer.get_volume() < VOLUME) {
+        dynamic_mixer.set_volume(std::min<int>(VOLUME + VOLUME * 0.1,
+          dynamic_mixer.get_volume() + VOLUME * 0.10));
+        beeper.Beep(0.5, 2000);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
-        talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       }
       else {
         beeper.Beep(0.5, 3000);
       }
     } else {
       STDOUT.println("Volume Down");
-      if (dynamic_mixer.get_volume() > 100) {
-        dynamic_mixer.set_volume(dynamic_mixer.get_volume() - VOLUME_INCREMENT_LEVEL);
+      if (dynamic_mixer.get_volume() > (0.10 * VOLUME)) {
+        dynamic_mixer.set_volume(std::max<int>(VOLUME * 0.1,
+          dynamic_mixer.get_volume() - VOLUME * 0.10));
+        beeper.Beep(0.5, 2000);
         STDOUT.print("Current Volume: ");
         STDOUT.println(dynamic_mixer.get_volume());
-        talkie.SayNumber(dynamic_mixer.get_volume() / 100);
       }
       else{
         beeper.Beep(0.5, 1000);
-      }
-    }
-  }
-
-  void OnWithCooldown() {
-    if (!mode_volume_) {
-      if (millis() - saber_off_time_ > IGNITION_COOLDOWN) {
-        On();
       }
     }
   }
@@ -282,69 +158,32 @@ public:
         }
       return true;
 
-#if NUM_BUTTONS != 0
-#ifdef SON_TWIST_ON
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
-    // Delay twist events to prevent false trigger from over twisting
-    if (millis() - last_twist_ > 3000) {
-      OnWithCooldown();
-      last_twist_ = millis();
-      battle_mode_ = true;
-    }
-    return true;
-#endif
-
-#ifdef SON_SWING_ON
-  case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
-    // Due to motion chip startup on boot creating false ignition we delay Swing On at boot for 3000ms
-    if (swing_on_ && millis() > 3000) {
-      OnWithCooldown();
-      battle_mode_ = true;
-    }
-    return true;
-  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
-    swing_on_ = !swing_on_;
-    if (swing_on_) {
-      talkie.Say(spON);
-    } else {
-      talkie.Say(spOFF);
-    }
-    return true;
-#endif
-#endif
-
-// Saber ON AND Volume Down
-#if NUM_BUTTONS == 0
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF):
-#else
+// Saber ON AND Volume Up
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_OFF):
+#ifdef SHTOK_GESTURE_IGNITION
+  case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_OFF):
 #endif
     if (!mode_volume_) {
       On();
     } else {
-      ChangeVolume(false);
-    }
-    return true;
-
-#if NUM_BUTTONS == 0
-  case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF):
-    next_preset();
-    return true;
-#else
-  // 1+ buttons: Next Preset AND Volume Up
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
-    if (!mode_volume_) {
-      next_preset();
-    } else {
       ChangeVolume(true);
     }
     return true;
-#endif
 
-  // all buttons
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_CLICK_LONG, MODE_OFF):
+  // 1-button: Next Preset AND Volume Down
+#if NUM_BUTTONS == 1
+    if (!mode_volume_) {
+      next_preset();
+    } else {
+      ChangeVolume(false);
+    }
+    return true;
+#else
+  // 2 and 3 button: Start or Stop Track
     StartOrStopTrack();
     return true;
+#endif
 
   // 2 and 3 button: Next Preset and Volume Down
   case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_SHORT, MODE_OFF):
@@ -360,7 +199,7 @@ public:
   case EVENTID(BUTTON_AUX2, EVENT_FIRST_CLICK_SHORT, MODE_OFF):
 #else
    // 1 and 2 button: Previous Preset
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
 #endif
     if (!mode_volume_) {
       previous_preset();
@@ -376,22 +215,16 @@ public:
     return true;
 
 // Turn Blade OFF
-#if NUM_BUTTONS == 0
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
-    // Delay twist events to prevent false trigger from over twisting
-    if (!swinging_ && (millis() - last_twist_ > 3000)) {
-      Off();
-      last_twist_ = millis();
-      saber_off_time_ = millis();
-    }
-    swing_blast_ = false;
-    return true;
+#if NUM_BUTTONS > 1
+// 2 and 3 button
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
 #else
-
-#ifdef SON_TWIST_OFF
+// 1 button
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_ON):
+#endif
+#ifdef SHTOK_GESTURE_IGNITION
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON):
 #endif
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
     if (!SaberBase::Lockup()) {
 #ifndef DISABLE_COLOR_CHANGE
       if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
@@ -401,46 +234,10 @@ public:
         return true;
       }
 #endif
-      // Delay twist events to prevent false trigger from over twisting
-      if (!swinging_ && (millis() - last_twist_ > 3000)) {
-        Off();
-        last_twist_ = millis();
-        saber_off_time_ = millis();
-      }
+      Off();
     }
     swing_blast_ = false;
     return true;
-#endif
-
-// 0 button Color Change
-#if NUM_BUTTONS == 0
-#ifndef DISABLE_COLOR_CHANGE
-  // Exit color change mode.
-  case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON):
-    if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
-      ToggleColorChangeMode();
-    }
-    else {
-      SaberBase::DoClash();
-    }
-    return true;
-  // Enter color change mode
-  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_ON):
-    if (SaberBase::GetColorChangeMode() == SaberBase::COLOR_CHANGE_MODE_NONE) {
-      ToggleColorChangeMode();
-    }
-    return true;
-#endif
-#endif
-
-// Reset Blade Color
-#ifdef RESET_COLOR
-#if NUM_BUTTONS > 0
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_OFF | BUTTON_POWER):
-    PropBase::ResetBladeColor();
-    return true;
-#endif
-#endif
 
 // 1 button Force and Color Change mode
 #if NUM_BUTTONS == 1
@@ -455,33 +252,16 @@ public:
     SaberBase::DoForce();
 #endif
     return true;
-#endif
-
-#if NUM_BUTTONS > 1
+#else
   // 2 and 3 button Force effect
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_SHORT, MODE_ON):
     SaberBase::DoForce();
     return true;
   // 2 and 3 button color change
 #ifndef DISABLE_COLOR_CHANGE
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
+  case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_SHORT, MODE_ON | BUTTON_POWER):
     ToggleColorChangeMode();
     return true;
-#endif
-#endif
-
-// direct color change
-#ifdef COLOR_CHANGE_DIRECT
-#ifndef DISABLE_COLOR_CHANGE
-#if NUM_BUTTONS > 0
-#if NUM_BUTTONS == 1
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD, MODE_ON):
-#elif NUM_BUTTONS > 1
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
-#endif
-    DirectColorChange();
-    return true;
-#endif
 #endif
 #endif
 
@@ -489,13 +269,13 @@ public:
 #if NUM_BUTTONS == 1
   // 1 button
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_CLICK_SHORT, MODE_ON):
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_CLICK_SHORT, MODE_ON):
 #else
   // 2 and 3 button
   case EVENTID(BUTTON_AUX, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
   case EVENTID(BUTTON_AUX, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_AUX, EVENT_THIRD_CLICK_SHORT, MODE_ON): 
+  case EVENTID(BUTTON_AUX, EVENT_THIRD_CLICK_SHORT, MODE_ON):
 #endif
     swing_blast_ = false;
     SaberBase::DoBlast();
@@ -577,6 +357,13 @@ public:
     }
     break;
 
+// Start or Stop Track
+#if NUM_BUTTONS == 1
+  // 1 button
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_OFF):
+    StartOrStopTrack();
+    return true;
+#endif
 
   case EVENTID(BUTTON_POWER, EVENT_PRESSED, MODE_OFF):
   case EVENTID(BUTTON_AUX, EVENT_PRESSED, MODE_OFF):
@@ -585,36 +372,37 @@ public:
     return true;
 
 // Enter Volume MENU
-  // all buttons
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD_MEDIUM, MODE_OFF):
+#if NUM_BUTTONS == 1
+  // 1 button
+  case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_OFF | BUTTON_POWER):
+#else
+  // 2 and 3 button
+  case EVENTID(BUTTON_AUX, EVENT_FIRST_CLICK_LONG, MODE_OFF):
+#endif
     if (!mode_volume_) {
       mode_volume_ = true;
-      talkie.Say(spCURRENT);
-      talkie.SayNumber(dynamic_mixer.get_volume() / 100);
+      beeper.Beep(0.5, 3000);
       STDOUT.println("Enter Volume Menu");
     } else {
-      ExitVolumeMenu();
+      mode_volume_ = false;
+      beeper.Beep(0.5, 3000);
+      STDOUT.println("Exit Volume Menu");
     }
     return true;
-
-// Exit Volume MENU (alternate)
-#if NUM_BUTTONS >= 1
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
-    if (mode_volume_) {
-      ExitVolumeMenu();
-    }
-    return true;
-#endif
 
 // Battery level
-#if NUM_BUTTONS == 0
-  case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
-#else
+#if NUM_BUTTONS == 1
   // 1 button
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
+#else
+  // 2 and 3 button
+  case EVENTID(BUTTON_AUX, EVENT_FIRST_HELD_LONG, MODE_OFF):
 #endif
-    //SayBatteryVoltage();
-    SayBatteryPercent();
+    talkie.SayDigit((int)floorf(battery_monitor.battery()));
+    talkie.Say(spPOINT);
+    talkie.SayDigit(((int)floorf(battery_monitor.battery() * 10)) % 10);
+    talkie.SayDigit(((int)floorf(battery_monitor.battery() * 100)) % 10);
+    talkie.Say(spVOLTS);
     return true;
 
 #ifdef BLADE_DETECT_PIN
@@ -635,54 +423,6 @@ public:
         return true;
 #endif
 
-
-// FETT263 BATTLE MODE
-// TODO check cases for duplicates
-#ifdef FETT263_BATTLE_MODE
-//#define SON_SWING_ON
-#define SON_TWIST_OFF
-        /*
-       case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_AUX):
-         if (!battle_mode_) {
-           battle_mode_ = true;
-           // Force sound plays when entering Battle Mode
-           hybrid_font.SB_Force();
-         } else {
-           battle_mode_ = false;
-           // Exit Color Change sound plays when exiting Battle Mode
-           hybrid_font.SB_Change(EXIT_COLOR_CHANGE);
-         }
-         return true;
-         */
-
-      // Auto Lockup Mode
-      case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON):
-        if (!battle_mode_) return false;
-        clash_impact_millis_ = millis();
-        swing_blast_ = false;
-        if (!swinging_) {
-          SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
-          auto_lockup_on_ = true;
-          SaberBase::DoBeginLockup();
-        }
-        return true;
-
-      case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_ON):
-        if (!battle_mode_) return false;
-        clash_impact_millis_ = millis();
-        swing_blast_ = false;
-        if (!swinging_) {
-          if (fusor.angle1() < - M_PI / 4) {
-            SaberBase::SetLockup(SaberBase::LOCKUP_DRAG);
-          } else {
-            SaberBase::SetLockup(SaberBase::LOCKUP_MELT);
-          }
-          auto_melt_on_ = true;
-          SaberBase::DoBeginLockup();
-        }
-        return true;
-#endif
-
   // Events that needs to be handled regardless of what other buttons
   // are pressed.
     case EVENTID(BUTTON_POWER, EVENT_RELEASED, MODE_ANY_BUTTON | MODE_ON):
@@ -700,15 +440,6 @@ private:
   bool pointing_down_ = false;
   bool mode_volume_ = false;
   bool swing_blast_ = false;
-#ifdef SON_SWING_ON
-  bool swing_on_ = false;
-#endif
-  bool auto_lockup_on_ = false;
-  bool auto_melt_on_ = false;
-  bool battle_mode_ = false;
-  uint32_t clash_impact_millis_ = millis();
-  uint32_t last_twist_ = millis();
-  uint32_t saber_off_time_ = millis();
 };
 
 #endif
