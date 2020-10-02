@@ -155,17 +155,12 @@ public:
   SaberSonButtons() : PropBase() {}
   const char* name() override { return "SaberSonButtons"; }
 
-  // EVENT_SWING
-  bool swinging_ = false;
   void Loop() override {
     PropBase::Loop();
+    DetectTwist();
+    DetectShake();
     if (SaberBase::IsOn()) {
-        // Edit '250' value in line below to change swing on sensitivity when on
-        // 250 ~ 400 work best in testing
-      if (!swinging_ && fusor.swing_speed() > 250) {
-        swinging_ = true;
-        Event(BUTTON_NONE, EVENT_SWING);
-      }
+      DetectSwing();
       if (auto_lockup_on_ &&
           !swinging_ &&
           fusor.swing_speed() > 120 &&
@@ -174,10 +169,6 @@ public:
         SaberBase::DoEndLockup();
         SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
         auto_lockup_on_ = false;
-      }
-      // SON TODO check if order of this thing below matters... if it doesn't, use DoLoop instead
-      if (swinging_ && fusor.swing_speed() < 100) {
-        swinging_ = false;
       }
       if (auto_melt_on_ &&
           !swinging_ &&
@@ -193,23 +184,11 @@ public:
         // Swing On gesture control this portion allows fine tuning of speed needed to ignite
         if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
           SaberBase::RequestMotion();
-          DoLoop();
+          DetectSwing();
         }
       }
     }
 
-  }
-
-  void DoLoop() {
-    // Edit '250' value in line below to change swing on sensitivity when off
-    // 250 ~ 400 work best in testing
-    if (!swinging_ && fusor.swing_speed() > 250) {
-      swinging_ = true;
-      Event(BUTTON_NONE, EVENT_SWING);
-    }
-    if (swinging_ && fusor.swing_speed() < 100) {
-      swinging_ = false;
-    }
   }
 
   void SayBatteryVoltage() {
