@@ -137,7 +137,7 @@
 #endif
 
 #ifndef MOTION_TIMEOUT
-#define MOTION_TIMEOUT 60 * 5 * 1000
+#define MOTION_TIMEOUT 60 * 1 * 1000
 #endif
 
 #ifndef IGNITION_COOLDOWN
