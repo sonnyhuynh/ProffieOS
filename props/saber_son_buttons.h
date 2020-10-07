@@ -532,10 +532,10 @@ public:
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_POWER):
     if (!swing_blast_) {
       swing_blast_ = true;
-      hybrid_font.SB_Blast();
+      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     } else {
       swing_blast_ = false;
-      hybrid_font.SB_Blast();
+      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     }
     return true;
 
@@ -621,10 +621,10 @@ public:
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_AUX):
     if (!swing_blast_) {
       swing_blast_ = true;
-      hybrid_font.SB_Blast();
+      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     } else {
       swing_blast_ = false;
-      hybrid_font.SB_Blast();
+      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     }
     return true;
 
