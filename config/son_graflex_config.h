@@ -125,7 +125,7 @@ BladeConfig blades[] = {
     WS281XBladePtr<1, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
-    "noblade",
+    "CONFIG/noblade",
   },
 };
 #endif
