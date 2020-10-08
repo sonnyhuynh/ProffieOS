@@ -11,7 +11,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_MOTION
 #define ENABLE_WS2811
 #define ENABLE_SD
-#define ENABLE_SSD1306
+//#define ENABLE_SSD1306
 #define SAVE_PRESET
 // this creates the preset.ini file
 #define SAVE_COLOR_CHANGE
