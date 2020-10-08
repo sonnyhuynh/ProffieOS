@@ -90,7 +90,15 @@ Preset presets[] = {
 
 BladeConfig blades[] = {
   {
-    28,
+    0,
+    WS281XBladePtr<144, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+// npxl
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    5700,
 // 28" bendu blade
     WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
@@ -99,7 +107,16 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    38,
+    7400,
+// 7" bendu blade
+    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+// npxl
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    8400,
 // 20" bendu blade
     WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
@@ -110,7 +127,7 @@ BladeConfig blades[] = {
   {
     NO_BLADE,
 // 7" bendu blade
-    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<1, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
