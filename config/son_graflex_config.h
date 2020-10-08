@@ -24,6 +24,9 @@ const unsigned int maxLedsPerStrip = 144;
 // blade id
 #define ENABLE_POWER_FOR_ID PowerPINS<bladePowerPin2,bladePowerPin3>
 
+// blade id pull up
+#define BLADE_ID_CLASS ExternalPullupBladeID<bladeIdentifyPin, 22000>
+
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
