@@ -76,6 +76,7 @@ public:
     if (IsOn()) return;
     if (current_style() && current_style()->NoOnOff())
       return;
+    FindBladeAgain();
     activated_ = millis();
     STDOUT.println("Ignition.");
     MountSDCard();
