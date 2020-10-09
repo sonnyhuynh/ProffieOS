@@ -1,7 +1,7 @@
 #ifdef CONFIG_TOP
 #include "proffieboard_v2_config.h"
 
-#define NUM_BLADES 3
+#define NUM_BLADES 2
 #define NUM_BUTTONS 2
 #define VOLUME 100
 #define MAX_VOLUME 1500
@@ -46,7 +46,7 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "son_k4_presets.h"
+#include "son_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -92,29 +92,51 @@ Preset presets[] = {
 BladeConfig blades[] = {
   {
     0,
-    SubBlade(5, 101,
-    // 28" bendu blade, 97px + 5px emitter
-    WS281XBladePtr<102, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()
-    ),
-    // npxl emitter, 5px
-    SubBlade(0,4, NULL),
-    // npxl chassis
+    WS281XBladePtr<144, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
-    NO_BLADE,
-    SubBlade(1, 1,
-    // 28" bendu blade, 97px + 5px emitter
-    WS281XBladePtr<2, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >()
-    ),
-    // npxl emitter, 5px
-    SubBlade(0,0, NULL),
-    // npxl chassis
+    6200,
+    // 28" bendu blade
+    WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    8100,
+    // 7" bendu blade
+    WS281XBladePtr<19, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    9000,
+    // 20" bendu blade
+    WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    // no blade
+    670000,
+    WS281XBladePtr<5, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
     "CONFIG/noblade"
+  },
+  {
+    // no emitter
+    NO_BLADE,
+    WS281XBladePtr<1, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    // npxl chassis
+    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(noBladePresets),
+    "CONFIG/noemitter"
   },
 };
 
