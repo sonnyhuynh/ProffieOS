@@ -11,7 +11,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_MOTION
 #define ENABLE_WS2811
 #define ENABLE_SD
-//#define ENABLE_SSD1306
+#define ENABLE_SSD1306
 #define SAVE_PRESET
 // this creates the preset.ini file
 #define SAVE_COLOR_CHANGE
@@ -38,6 +38,8 @@ const unsigned int maxLedsPerStrip = 144;
 
 // reset blade color
 #define RESET_COLOR
+
+#define IDLE_OFF_TIME 30 * 1000
 
 #endif
 
