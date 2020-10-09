@@ -107,7 +107,7 @@ BladeConfig blades[] = {
   {
     NO_BLADE,
 // 7" bendu blade
-    WS281XBladePtr<21, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<19, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
 // npxl
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
