@@ -5,7 +5,10 @@
 //  - gesture ignition by ShtokyD
 //  - swing ignition by fett263
 //  - battle mode by fett263
-//  - on-the-fly volume controls
+//  - on-the-fly volume controls by sa22c
+//  - fast on by fett263
+//  - force push gesture by fett263
+//  - thrust gesture by fett263
 //
 // Tightened click timings (sa22c)
 // I've shortened the timeout for short and double click detection from 500ms
@@ -29,6 +32,10 @@
 // #define RESET_COLOR
 // resets blade color to original (only for 1+ buttons)
 // hold PWR + twist while OFF
+//
+// #define FETT263_FORCE_PUSH
+// To enable gesture controlled Force Push during Battle Mode
+// (will use push.wav or force.wav if not present)
 //
 // ALL SABERS
 // Change color - rotate while in Color change mode
@@ -98,6 +105,11 @@
 //     Blaster deflection - triple click
 //     Multi-blast mode - hold + swing
 //     Lockup - hold + clash
+//
+// CUSTOM SOUNDS SUPPORTED (add to font to enable):
+//
+// Fast On (optional) - faston.wav
+// Force Push (optional) - push.wav
 
 #ifndef PROPS_SABER_SON_BUTTONS_H
 #define PROPS_SABER_SON_BUTTONS_H
@@ -148,6 +160,9 @@
 #define FETT263_LOCKUP_DELAY 200
 #endif
 
+EFFECT(faston); // for EFFECT_FAST_ON
+EFFECT(push); // for Force Push gesture in Battle Mode
+
 // The Saber class implements the basic states and actions
 // for the saber.
 class SaberSonButtons : public PropBase {
@@ -159,6 +174,7 @@ public:
     PropBase::Loop();
     DetectTwist();
     DetectShake();
+    Vec3 mss = fusor.mss();
     if (SaberBase::IsOn()) {
       DetectSwing();
       if (auto_lockup_on_ &&
@@ -179,16 +195,50 @@ public:
         SaberBase::SetLockup(SaberBase::LOCKUP_NONE);
         auto_melt_on_ = false;
       }
+
+      // EVENT_PUSH
+      if (fabs(mss.x) < 3.0 &&
+          mss.y * mss.y + mss.z * mss.z > 120 &&
+          fusor.swing_speed() < 30 &&
+          fabs(fusor.gyro().x) < 10) {
+        Event(BUTTON_NONE, EVENT_PUSH);
+      }
+
     } else {
       if(swing_on_) {
-        // Swing On gesture control this portion allows fine tuning of speed needed to ignite
+        // EVENT_SWING - Swing On gesture control to allow fine tuning of speed needed to ignite
         if (millis() - saber_off_time_ < MOTION_TIMEOUT) {
           SaberBase::RequestMotion();
           DetectSwing();
         }
+
+        // EVENT_THRUST
+        if (mss.y * mss.y + mss.z * mss.z < 16.0 &&
+          mss.x > 14  &&
+          fusor.swing_speed() < 150) {
+          Event(BUTTON_NONE, EVENT_THRUST);
+        }
       }
     }
 
+  }
+
+  // Fast On Gesture Ignition
+  virtual void FastOn() {
+    if (IsOn()) return;
+    if (current_style() && current_style()->NoOnOff())
+      return;
+    activated_ = millis();
+    STDOUT.println("Ignition.");
+    MountSDCard();
+    EnableAmplifier();
+    SaberBase::RequestMotion();
+    // Avoid clashes a little bit while turning on.
+    // It might be a "clicky" power button...
+    IgnoreClash(500);
+    SaberBase::TurnOn();
+    // Optional effects
+    SaberBase::DoEffect(EFFECT_FAST_ON, 0);
   }
 
   void SayBatteryVoltage() {
@@ -240,7 +290,7 @@ public:
   void OnWithCooldown() {
     if (!mode_volume_) {
       if (millis() - saber_off_time_ > IGNITION_COOLDOWN) {
-        On();
+        FastOn();
       }
     }
   }
@@ -293,11 +343,26 @@ public:
     }
     return true;
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_OFF):
+  case EVENTID(BUTTON_NONE, EVENT_THRUST, MODE_OFF):
     // Due to motion chip startup on boot creating false ignition we delay Swing On at boot for 3000ms
     if (swing_on_ && millis() > 3000) {
       OnWithCooldown();
     }
     return true;
+#endif
+
+#ifdef FETT263_FORCE_PUSH
+      case EVENTID(BUTTON_NONE, EVENT_PUSH, MODE_ON):
+        if (battle_mode_ &&
+            millis() - last_push_ > 2000) {
+          if (SFX_push) {
+            hybrid_font.PlayCommon(&SFX_push);
+          } else {
+            hybrid_font.DoEffect(EFFECT_FORCE, 0);
+          }
+          last_push_ = millis();
+        }
+        return true;
 #endif
 
 
@@ -705,6 +770,17 @@ public:
     }
     return false;
   }
+
+  void SB_Effect(EffectType effect, float location) override {
+    switch (effect) {
+      case EFFECT_FAST_ON:
+        if (SFX_faston) {
+          hybrid_font.PlayCommon(&SFX_faston);
+        }
+        return;
+    }
+  }
+
 private:
   bool pointing_down_ = false;
   bool mode_volume_ = false;
@@ -719,6 +795,7 @@ private:
 #endif
   uint32_t clash_impact_millis_ = millis();
   uint32_t last_twist_ = millis();
+  uint32_t last_push_ = millis();
   uint32_t saber_off_time_ = millis();
 };
 
