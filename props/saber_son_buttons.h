@@ -526,7 +526,11 @@ public:
   // Melt
   case EVENTID(BUTTON_NONE, EVENT_STAB, MODE_ON | BUTTON_POWER):
     if (!SaberBase::Lockup()) {
-      SaberBase::SetLockup(SaberBase::LOCKUP_MELT);
+      if (fusor.angle1() < - M_PI / 4) {
+        SaberBase::SetLockup(SaberBase::LOCKUP_DRAG);
+      } else {
+        SaberBase::SetLockup(SaberBase::LOCKUP_MELT);
+      }
       swing_blast_ = false;
       SaberBase::DoBeginLockup();
       return true;
@@ -613,11 +617,7 @@ public:
   // Lockup
   case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON | BUTTON_POWER):
     if (!battle_mode_ && !SaberBase::Lockup()) {
-      if (pointing_down_) {
-        SaberBase::SetLockup(SaberBase::LOCKUP_DRAG);
-      } else {
-        SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
-      }
+      SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
       swing_blast_ = false;
       SaberBase::DoBeginLockup();
       return true;
@@ -702,11 +702,7 @@ public:
   // Lockup
   case EVENTID(BUTTON_NONE, EVENT_CLASH, MODE_ON | BUTTON_AUX):
     if (!battle_mode_ && !SaberBase::Lockup()) {
-      if (pointing_down_) {
-        SaberBase::SetLockup(SaberBase::LOCKUP_DRAG);
-      } else {
-        SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
-      }
+      SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
       swing_blast_ = false;
       SaberBase::DoBeginLockup();
       return true;
