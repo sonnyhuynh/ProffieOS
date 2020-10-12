@@ -59,33 +59,27 @@ Preset lengthFinder[] = {
 
 Preset noBladePresets[] = {
   noBladePreset,
-  owkPreset,
+  lukePreset,
+  vaderPreset,
   sonPreset,
-  reyPreset,
   purplePreset,
-  ob4Preset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
-  lukePreset,
-  vaderPreset,
 };
 
 Preset presets[] = {
-  owkPreset,
+  lukePreset,
+  vaderPreset,
   sonPreset,
-  reyPreset,
   purplePreset,
-  ob4Preset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
-  lukePreset,
-  vaderPreset,
 };
 
 BladeConfig blades[] = {
