@@ -57,13 +57,18 @@ Preset lengthFinder[] = {
 };
 */
 
+Preset catPreset = {
+  "cfx/poly/shrodinger_cat;son/common", "",
+  StyleRainbowPtr<300,800>(),
+  StyleRainbowPtr<300,800>(),
+  "meow",
+};
+
 Preset noBladePresets[] = {
   noBladePreset,
   owkPreset,
   sonPreset,
-  reyPreset,
   purplePreset,
-  ob4Preset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
@@ -71,14 +76,14 @@ Preset noBladePresets[] = {
   ahsokaPreset,
   lukePreset,
   vaderPreset,
+  catPreset,
 };
+
 
 Preset presets[] = {
   owkPreset,
   sonPreset,
-  reyPreset,
   purplePreset,
-  ob4Preset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
@@ -86,6 +91,7 @@ Preset presets[] = {
   ahsokaPreset,
   lukePreset,
   vaderPreset,
+  catPreset,
 };
 
 BladeConfig blades[] = {
