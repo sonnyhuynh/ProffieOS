@@ -84,6 +84,20 @@ Preset vaderPreset = {
   "vader",
 };
 
+Preset reyFlexPreset = {
+  "son/common;ReFlex/rey", "ReFlex/tracks/Trailer2_Short.wav",
+  lukeStyle,
+  lukeStyle,
+  "reyflex",
+};
+
+Preset benFlexPreset = {
+  "son/common;ReFlex/ben", "ReFlex/tracks/Ben_vs_Knights.wav",
+  lukeStyle,
+  lukeStyle,
+  "benflex",
+};
+
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
   nobladeStyle,

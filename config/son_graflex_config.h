@@ -60,6 +60,8 @@ Preset lengthFinder[] = {
 Preset noBladePresets[] = {
   noBladePreset,
   lukePreset,
+  reyFlexPreset,
+  benFlexPreset,
   vaderPreset,
   sonPreset,
   purplePreset,
@@ -72,6 +74,8 @@ Preset noBladePresets[] = {
 
 Preset presets[] = {
   lukePreset,
+  reyFlexPreset,
+  benFlexPreset,
   vaderPreset,
   sonPreset,
   purplePreset,
