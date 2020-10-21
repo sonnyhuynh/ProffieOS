@@ -15,7 +15,7 @@ Preset sonPreset = {
 };
 
 Preset reyPreset = {
-  "son/rey;son/common;OB4", "heroes/common/tracks/BattleOfHeros.wav",
+  "son/common;FinalSteps", "FinalSteps/tracks/track1.wav",
   reyStyle,
   reyStyle,
   "rey",
