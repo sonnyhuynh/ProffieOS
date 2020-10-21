@@ -98,6 +98,13 @@ Preset benFlexPreset = {
   "benflex",
 };
 
+Preset spitfirePreset = {
+  "son/common;Spitfire", "son/tracks/TheForce4.wav",
+  spitfireStyle,
+  spitfireStyle,
+  "spitfire",
+};
+
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
   nobladeStyle,
