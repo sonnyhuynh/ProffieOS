@@ -60,9 +60,9 @@ Preset lengthFinder[] = {
 Preset noBladePresets[] = {
   noBladePreset,
   sonPreset,
-  purplePreset,
-  reyPreset,
   spitfirePreset,
+  reyPreset,
+  purplePreset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
@@ -72,9 +72,9 @@ Preset noBladePresets[] = {
 
 Preset presets[] = {
   sonPreset,
-  purplePreset,
-  reyPreset,
   spitfirePreset,
+  reyPreset,
+  purplePreset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
