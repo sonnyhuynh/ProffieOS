@@ -57,39 +57,31 @@ Preset lengthFinder[] = {
 };
 */
 
-Preset catPreset = {
-  "cfx/poly/shrodinger_cat;son/common", "",
-  StyleRainbowPtr<300,800>(),
-  StyleRainbowPtr<300,800>(),
-  "meow",
-};
-
 Preset noBladePresets[] = {
   noBladePreset,
   owkPreset,
   sonPreset,
+  spitfirePreset,
   purplePreset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
-  lukePreset,
   vaderPreset,
   catPreset,
 };
 
-
 Preset presets[] = {
   owkPreset,
   sonPreset,
+  spitfirePreset,
   purplePreset,
   kyloPreset,
   yodaPreset,
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
-  lukePreset,
   vaderPreset,
   catPreset,
 };
