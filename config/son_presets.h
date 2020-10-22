@@ -105,6 +105,13 @@ Preset spitfirePreset = {
   "spitfire",
 };
 
+Preset catPreset = {
+  "shrodinger_cat;son/common", "",
+  rainbowStyle,
+  rainbowStyle,
+  "meow",
+};
+
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
   nobladeStyle,
