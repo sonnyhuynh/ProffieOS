@@ -68,6 +68,7 @@ Preset noBladePresets[] = {
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
+  catPreset,
 };
 
 Preset presets[] = {
@@ -80,6 +81,7 @@ Preset presets[] = {
   darksaberPreset,
   ezraPreset,
   ahsokaPreset,
+  catPreset,
 };
 
 BladeConfig blades[] = {
