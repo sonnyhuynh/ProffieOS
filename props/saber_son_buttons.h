@@ -198,10 +198,15 @@ public:
 
       // EVENT_PUSH
       if (fabs(mss.x) < 3.0 &&
-          mss.y * mss.y + mss.z * mss.z > 120 &&
+          mss.y * mss.y + mss.z * mss.z > 70 &&
           fusor.swing_speed() < 30 &&
           fabs(fusor.gyro().x) < 10) {
-        Event(BUTTON_NONE, EVENT_PUSH);
+        if (millis() - push_begin_millis_ > 5) {
+          Event(BUTTON_NONE, EVENT_PUSH);
+          push_begin_millis_ = millis();
+        } 
+      } else {
+        push_begin_millis_ = millis();
       }
 
     } else {
@@ -214,9 +219,14 @@ public:
 
         // EVENT_THRUST
         if (mss.y * mss.y + mss.z * mss.z < 16.0 &&
-          mss.x > 14  &&
-          fusor.swing_speed() < 150) {
-          Event(BUTTON_NONE, EVENT_THRUST);
+            mss.x > 14  &&
+            fusor.swing_speed() < 150) {
+          if (millis() - thrust_begin_millis_ > 15) {
+            Event(BUTTON_NONE, EVENT_THRUST);
+            thrust_begin_millis_ = millis();
+          } 
+        } else {
+          thrust_begin_millis_ = millis();
         }
       }
     }
@@ -790,6 +800,8 @@ private:
 #else
   bool battle_mode_ = false;
 #endif
+  uint32_t thrust_begin_millis_ = millis();
+  uint32_t push_begin_millis_ = millis();
   uint32_t clash_impact_millis_ = millis();
   uint32_t last_twist_ = millis();
   uint32_t last_push_ = millis();
