@@ -9,6 +9,7 @@
 //  - fast on by fett263
 //  - force push gesture by fett263
 //  - thrust gesture by fett263
+//  - power save by fett263
 //
 // Tightened click timings (sa22c)
 // I've shortened the timeout for short and double click detection from 500ms
@@ -80,6 +81,7 @@
 //     Force Effects - hold + twist (while pointing up)
 //     Color Change mode - hold + twist (while pointing down)
 //     Direct Color Change - triple click and hold
+//     Power Save - triple click and hold (while pointing up or straight up?)
 //     Blaster deflection - short click
 //     Blaster deflection - double click
 //     Blaster deflection - triple click
@@ -92,6 +94,7 @@
 //   while ON
 //     Force Effects - double click
 //     Direct Color Change - triple click
+//     Power Save - triple click (while pointing up or straight up?)
 //
 // AUX
 //   while OFF
@@ -160,6 +163,7 @@
 #define FETT263_LOCKUP_DELAY 200
 #endif
 
+EFFECT(dim); // for EFFECT_POWERSAVE
 EFFECT(faston); // for EFFECT_FAST_ON
 EFFECT(push); // for Force Push gesture in Battle Mode
 
@@ -596,7 +600,11 @@ public:
 // direct color change
 #ifdef COLOR_CHANGE_DIRECT
   case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD, MODE_ON):
-    DirectColorChange();
+    if (fusor.angle1() >  M_PI / 3) {
+      SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+    } else {
+      DirectColorChange();
+    }
     return true;
 #endif
 
@@ -681,7 +689,11 @@ public:
 // direct color change
 #ifdef COLOR_CHANGE_DIRECT
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
-    DirectColorChange();
+    if (fusor.angle1() >  M_PI / 3) {
+      SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+    } else {
+      DirectColorChange();
+    }
     return true;
 #endif
 
@@ -780,6 +792,13 @@ public:
 
   void SB_Effect(EffectType effect, float location) override {
     switch (effect) {
+      case EFFECT_POWERSAVE:
+        if (SFX_dim) {
+          hybrid_font.PlayCommon(&SFX_dim);
+        } else {
+          beeper.Beep(0.5, 3000);
+        }
+        return;
       case EFFECT_FAST_ON:
         if (SFX_faston) {
           hybrid_font.PlayCommon(&SFX_faston);
