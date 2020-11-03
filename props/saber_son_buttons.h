@@ -417,11 +417,10 @@ public:
       } else {
         clash_impact_millis_ = millis();
         swing_blast_ = false;
-        if (!swinging_) {
-          SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
-          auto_lockup_on_ = true;
-          SaberBase::DoBeginLockup();
-        }
+        if (swinging_) return false;
+        SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
+        auto_lockup_on_ = true;
+        SaberBase::DoBeginLockup();
       }
     }
     return true;
@@ -560,11 +559,10 @@ public:
     } else {
       clash_impact_millis_ = millis();
       swing_blast_ = false;
-      if (!swinging_) {
-        SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
-        auto_lockup_on_ = true;
-        SaberBase::DoBeginLockup();
-      }
+      if (swinging_) return false;
+      SaberBase::SetLockup(SaberBase::LOCKUP_NORMAL);
+      auto_lockup_on_ = true;
+      SaberBase::DoBeginLockup();
     }
     return true;
 #endif
