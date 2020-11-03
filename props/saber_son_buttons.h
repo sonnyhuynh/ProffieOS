@@ -38,6 +38,10 @@
 // To enable gesture controlled Force Push during Battle Mode
 // (will use push.wav or force.wav if not present)
 //
+// #define FETT263_FORCE_PUSH_LENGTH 5
+// Allows for adjustment to Push gesture length in millis needed to trigger Force Push
+// Recommended range 1 ~ 10, 1 = shortest, easiest to trigger, 10 = longest
+//
 // ALL SABERS
 // Change color - rotate while in Color change mode
 //
@@ -163,6 +167,10 @@
 #define FETT263_LOCKUP_DELAY 200
 #endif
 
+#ifndef FETT263_FORCE_PUSH_LENGTH
+#define FETT263_FORCE_PUSH_LENGTH 5
+#endif
+
 EFFECT(dim); // for EFFECT_POWERSAVE
 EFFECT(faston); // for EFFECT_FAST_ON
 EFFECT(push); // for Force Push gesture in Battle Mode
@@ -205,7 +213,7 @@ public:
           mss.y * mss.y + mss.z * mss.z > 70 &&
           fusor.swing_speed() < 30 &&
           fabs(fusor.gyro().x) < 10) {
-        if (millis() - push_begin_millis_ > 5) {
+        if (millis() - push_begin_millis_ > FETT263_FORCE_PUSH_LENGTH) {
           Event(BUTTON_NONE, EVENT_PUSH);
           push_begin_millis_ = millis();
         } 
