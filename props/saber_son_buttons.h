@@ -250,7 +250,9 @@ public:
     if (IsOn()) return;
     if (current_style() && current_style()->NoOnOff())
       return;
+#ifdef BLADE_ID_POWER_ON
     FindBladeAgain();
+#endif
     activated_ = millis();
     STDOUT.println("Ignition.");
     MountSDCard();

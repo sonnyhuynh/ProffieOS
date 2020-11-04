@@ -28,6 +28,10 @@ const unsigned int maxLedsPerStrip = 144;
 // blade id pull up
 #define BLADE_ID_CLASS ExternalPullupBladeID<bladeIdentifyPin, 27000>
 
+// blade id when turnig on saber b/c no detection between blade + emitter
+// this causes tracks to stop playing
+#define BLADE_ID_POWER_ON
+
 #define SON_SWING_ON
 #define SON_TWIST_ON
 #define SON_TWIST_OFF
