@@ -1,4 +1,4 @@
-#include "../blades/son_common_blades.h"
+#include "../../blades/son/common_blades.h"
 
 Preset sonPreset = {
   "son/common;Rogue", "son/tracks/TheForce4.wav",

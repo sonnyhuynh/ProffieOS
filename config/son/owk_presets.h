@@ -1,4 +1,4 @@
-#include "../blades/son_owk_blades.h"
+#include "../../blades/son/owk_blades.h"
 
 Preset owkPreset = {
   "son/owk;son/common;heroes/owk;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",

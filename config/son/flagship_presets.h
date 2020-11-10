@@ -1,4 +1,4 @@
-#include "../blades/son_flagship_blades.h"
+#include "../../blades/son/flagship_blades.h"
 
 Preset reyPreset = {
   "son/common;FinalSteps", "FinalSteps/tracks/track1.wav",

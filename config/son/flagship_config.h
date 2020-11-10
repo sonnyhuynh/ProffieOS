@@ -1,5 +1,5 @@
 #ifdef CONFIG_TOP
-#include "proffieboard_v2_config.h"
+#include "../proffieboard_v2_config.h"
 
 #define NUM_BLADES 2
 #define NUM_BUTTONS 1
@@ -41,12 +41,12 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PROP
-#include "../props/saber_son_buttons.h"
+#include "../../props/saber_son_buttons.h"
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "son_common_presets.h"
-#include "son_owk_presets.h"
+#include "common_presets.h"
+#include "flagship_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -60,24 +60,28 @@ Preset lengthFinder[] = {
 
 Preset noBladePresets[] = {
   noBladePreset,
-  owkPreset,
   sonPreset,
   spitfirePreset,
+  reyPreset,
+  purplePreset,
   kyloPreset,
   yodaPreset,
+  darksaberPreset,
   ezraPreset,
-  vaderPreset,
+  ahsokaPreset,
   catPreset,
 };
 
 Preset presets[] = {
-  owkPreset,
   sonPreset,
   spitfirePreset,
+  reyPreset,
+  purplePreset,
   kyloPreset,
   yodaPreset,
+  darksaberPreset,
   ezraPreset,
-  vaderPreset,
+  ahsokaPreset,
   catPreset,
 };
 
@@ -85,15 +89,15 @@ BladeConfig blades[] = {
   {
     0,
     WS281XBladePtr<144, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     5600,
-// 28" bendu blade
+    // 28" bendu blade
     WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
@@ -101,7 +105,7 @@ BladeConfig blades[] = {
     7400,
     // 7" bendu blade
     WS281XBladePtr<19, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
@@ -109,7 +113,7 @@ BladeConfig blades[] = {
     8400,
     // 20" bendu blade
     WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
@@ -117,7 +121,7 @@ BladeConfig blades[] = {
     39000,
     // 24" blade
     WS281XBladePtr<83, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
@@ -125,13 +129,13 @@ BladeConfig blades[] = {
     68000,
     // 16" blade
     WS281XBladePtr<54, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     NO_BLADE,
-    WS281XBladePtr<1, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(noBladePresets),
     "CONFIG/noblade",

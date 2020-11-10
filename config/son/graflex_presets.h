@@ -1,4 +1,4 @@
-#include "../blades/son_graflex_blades.h"
+#include "../../blades/son/graflex_blades.h"
 
 Preset lukePreset = {
   "son/luke;son/common;ANH_Training", "ANH_Training/tracks/Training_Ambience.wav",
