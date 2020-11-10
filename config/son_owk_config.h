@@ -45,7 +45,8 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "son_presets.h"
+#include "son_common_presets.h"
+#include "son_owk_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -62,12 +63,9 @@ Preset noBladePresets[] = {
   owkPreset,
   sonPreset,
   spitfirePreset,
-  purplePreset,
   kyloPreset,
   yodaPreset,
-  darksaberPreset,
   ezraPreset,
-  ahsokaPreset,
   vaderPreset,
   catPreset,
 };
@@ -76,12 +74,9 @@ Preset presets[] = {
   owkPreset,
   sonPreset,
   spitfirePreset,
-  purplePreset,
   kyloPreset,
   yodaPreset,
-  darksaberPreset,
   ezraPreset,
-  ahsokaPreset,
   vaderPreset,
   catPreset,
 };

@@ -45,7 +45,8 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "son_presets.h"
+#include "son_common_presets.h"
+#include "son_graflex_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -64,12 +65,11 @@ Preset noBladePresets[] = {
   benFlexPreset,
   vaderPreset,
   sonPreset,
-  purplePreset,
+  spitfirePreset,
   kyloPreset,
   yodaPreset,
-  darksaberPreset,
   ezraPreset,
-  ahsokaPreset,
+  catPreset,
 };
 
 Preset presets[] = {
@@ -78,12 +78,11 @@ Preset presets[] = {
   benFlexPreset,
   vaderPreset,
   sonPreset,
-  purplePreset,
+  spitfirePreset,
   kyloPreset,
   yodaPreset,
-  darksaberPreset,
   ezraPreset,
-  ahsokaPreset,
+  catPreset,
 };
 
 BladeConfig blades[] = {

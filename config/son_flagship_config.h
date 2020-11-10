@@ -45,7 +45,8 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
-#include "son_presets.h"
+#include "son_common_presets.h"
+#include "son_flagship_presets.h"
 
 /*
 Preset lengthFinder[] = {
