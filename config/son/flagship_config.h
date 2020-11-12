@@ -68,6 +68,7 @@ Preset noBladePresets[] = {
   yodaPreset,
   darksaberPreset,
   ezraPreset,
+  tanoPreset,
   ahsokaPreset,
   catPreset,
 };
@@ -81,6 +82,7 @@ Preset presets[] = {
   yodaPreset,
   darksaberPreset,
   ezraPreset,
+  tanoPreset,
   ahsokaPreset,
   catPreset,
 };
