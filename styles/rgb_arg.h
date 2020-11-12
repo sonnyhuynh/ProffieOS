@@ -34,7 +34,7 @@ protected:
       int g = strtol(tmp+1, &tmp, 0);
       int b = strtol(tmp+1, NULL, 0);
       // TODO: color names?
-      color_ = Color16(r, g, b);
+      color_ = Color16(Color8(r, g, b));
     }
   }
 
