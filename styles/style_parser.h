@@ -4,6 +4,7 @@
 #include "../common/preset.h"
 #include "../common/arg_parser.h"
 #include "../functions/int_arg.h"
+#include "../blades/son/preset_blades.h"
 
 class NamedStyle {
 public:
@@ -92,6 +93,14 @@ NamedStyle named_styles[] = {
   },
   { "rainbow", StyleRainbowPtrX<IntArg<1, 300>, IntArg<2, 800>>(),
     "Rainbow blade, extension time, retraction time"
+  },
+  { "audioflicker",
+    audioflickerArgStyle,
+    "audioflicker blade, primary color, flicker color 1, flicker color 2, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
+  },
+  { "supremeleader",
+    supremeLeaderArgStyle,
+    "supreme leader blade, primary color, flicker color 1, flicker color 2, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
   },
   { "charging", &style_charging, "Charging style" },
   { "builtin", &builtin_preset_allocator,
