@@ -41,11 +41,11 @@ public:
 BuiltinPresetAllocator builtin_preset_allocator;
 
 NamedStyle named_styles[] = {
-  { "audioflicker",
+  { "standard",
     audioflickerArgStyle,
     "audioflicker blade, primary color, flicker color 1, flicker color 2, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
   },
-  { "supremeleader",
+  { "unstable",
     supremeLeaderArgStyle,
     "supreme leader blade, primary color, flicker color 1, flicker color 2, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
   },
