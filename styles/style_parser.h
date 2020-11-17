@@ -53,6 +53,10 @@ NamedStyle named_styles[] = {
     fallenOrderArgStyle,
     "pulsing blade, primary color, pulse color, force color, lockup color, stab color, melt color 1, melt color 2",
   },
+  { "runningpulse",
+    secondSisterArgStyle,
+    "running pulse blade, primary color, running color 1, running color 2, running color 3, lockup color, stab color, melt color 1, melt color 2",
+  },
   { "builtin", &builtin_preset_allocator,
     "builtin preset styles, preset num, style index"
   },
