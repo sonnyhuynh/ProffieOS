@@ -1,4 +1,4 @@
-// fully responsive audioflicker color swing w/ font battery monitor dodger blue
+// fully responsive audioflicker bright color swing w/ font battery monitor dodger blue
 // multi-blast effects
 // power save all effects 25%
 StyleAllocator audioflickerArgStyle =
