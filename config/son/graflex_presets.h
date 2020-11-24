@@ -9,15 +9,15 @@ Preset lukePreset = {
 
 Preset reyFlexPreset = {
   "son/common;ReFlex/rey", "ReFlex/tracks/Trailer2_Short.wav",
-  lukeStyle,
-  lukeStyle,
+  sequelStyle,
+  sequelStyle,
   "reyflex",
 };
 
 Preset benFlexPreset = {
   "son/common;ReFlex/ben", "ReFlex/tracks/Ben_vs_Knights.wav",
-  lukeStyle,
-  lukeStyle,
+  sequelStyle,
+  sequelStyle,
   "benflex",
 };
 
