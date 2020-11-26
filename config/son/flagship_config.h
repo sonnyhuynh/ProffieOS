@@ -46,6 +46,7 @@ const unsigned int maxLedsPerStrip = 144;
 
 #ifdef CONFIG_PRESETS
 #include "common_presets.h"
+#include "ninja_presets.h"
 #include "flagship_presets.h"
 
 /*
