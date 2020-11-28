@@ -99,7 +99,6 @@ Preset noBladePresets[] = {
 
   // rebels
   ezraPreset,
-  kananPreset,
   darksaberPreset,
 
   // prequel
