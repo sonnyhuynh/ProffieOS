@@ -7,6 +7,13 @@ Preset lukePreset = {
   "luke",
 };
 
+Preset esbPreset = {
+  "son/common;ESB_Graflex", "ESB_Graflex/tracks/LvsV.wav",
+  lukeStyle,
+  lukeStyle,
+  "esb",
+};
+
 Preset reyFlexPreset = {
   "son/common;ReFlex/rey", "ReFlex/tracks/Trailer2_Short.wav",
   sequelStyle,
