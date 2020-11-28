@@ -7,20 +7,6 @@ Preset darksaberPreset = {
   "darksaber",
 };
 
-Preset tanoPreset = {
-  "son/common;Commander_Tano", "Commander_Tano/tracks/track2.wav",
-  tanoStyle,
-  tanoStyle,
-  "tano",
-};
-
-Preset ahsokaPreset = {
-  "son/ahsoka;son/common;Code_Fulcrum", "Code_Fulcrum/tracks/track1.wav",
-  ahsokaStyle,
-  ahsokaStyle,
-  "ahsoka",
-};
-
 Preset kananPreset = {
   "son/common;Blind_Cowboy", "Blind_Cowboy/tracks/track1.wav",
   kananStyle,
