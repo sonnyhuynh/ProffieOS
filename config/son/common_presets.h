@@ -7,6 +7,13 @@ Preset sonPreset = {
   "son",
 };
 
+Preset reyPreset = {
+  "son/common;FinalSteps", "FinalSteps/tracks/track1.wav",
+  reyStyle,
+  reyStyle,
+  "rey",
+};
+
 Preset kyloPreset = {
   "son/kylo;son/common;Unstable_v2", "Unstable_v2/tracks/track4.wav",
   kyloStyle,
