@@ -21,3 +21,10 @@ Preset ahsokaPreset = {
   "ahsoka",
 };
 
+Preset kananPreset = {
+  "son/common;Blind_Cowboy", "Blind_Cowboy/tracks/track1.wav",
+  kananStyle,
+  kananStyle,
+  "kanan",
+};
+
