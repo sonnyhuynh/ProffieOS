@@ -69,6 +69,9 @@ Preset noBladePresets[] = {
   //kotor
   revanPreset,
 
+  // original
+  vaderPreset,
+
   // sequel
   kyloPreset,
 
@@ -95,6 +98,9 @@ Preset presets[] = {
 
   //kotor
   revanPreset,
+
+  // original
+  vaderPreset,
 
   // sequel
   kyloPreset,
