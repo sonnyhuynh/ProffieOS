@@ -7,3 +7,10 @@ Preset pikachuPreset = {
   "pikachu",
 };
 
+Preset smashPreset = {
+  "son/common;Smash_Sword", "",
+  smashStyle,
+  smashStyle,
+  "smash",
+};
+

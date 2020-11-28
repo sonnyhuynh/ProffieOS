@@ -24,3 +24,30 @@ StylePtr<Layers<
 >>()
 ;
 
+// TODO
+// smash style from kyberphonics
+StyleAllocator smashStyle =
+StylePtr<
+  InOutHelper<
+    SimpleClash<
+      Lockup<
+        Blast<
+          Gradient<Gradient<Cyan,Blue,Magenta>,Gradient<Red,Red,OrangeRed>>,
+          White,
+          200,
+          100,
+          400
+        >,
+        AudioFlicker<Gradient<Red,Blue>,White>,
+        AudioFlicker<Gradient<Red,Blue>,White>
+      >,
+      Gradient<Cyan,Yellow>,
+      40
+    >,
+    300,
+    800,
+    Black
+  >
+>()
+;
+
