@@ -47,7 +47,9 @@ const unsigned int maxLedsPerStrip = 144;
 #ifdef CONFIG_PRESETS
 #include "common_presets.h"
 #include "ninja_presets.h"
-#include "flagship_presets.h"
+#include "double_presets.h"
+#include "fun_presets.h"
+#include "fo_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -61,30 +63,93 @@ Preset lengthFinder[] = {
 
 Preset noBladePresets[] = {
   noBladePreset,
+
+  // personal
   sonPreset,
   spitfirePreset,
+
+  //kotor
+  revanPreset,
+
+  // sequel
   reyPreset,
-  purplePreset,
   kyloPreset,
-  yodaPreset,
-  darksaberPreset,
-  ezraPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
+
+  // ahsoka
+  snipsPreset,
+  shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  maulPreset,
+
+  // rebels
+  ezraPreset,
+  kananPreset,
+  darksaberPreset,
+
+  // prequel
+  yodaPreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
   catPreset,
 };
 
 Preset presets[] = {
+  // personal
   sonPreset,
   spitfirePreset,
+
+  //kotor
+  revanPreset,
+
+  // sequel
   reyPreset,
-  purplePreset,
   kyloPreset,
-  yodaPreset,
-  darksaberPreset,
-  ezraPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
+
+  // ahsoka
+  snipsPreset,
+  shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  maulPreset,
+
+  // rebels
+  ezraPreset,
+  kananPreset,
+  darksaberPreset,
+
+  // prequel
+  yodaPreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
   catPreset,
 };
 
