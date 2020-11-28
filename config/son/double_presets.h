@@ -1,5 +1,19 @@
 #include "../../blades/son/double_blades.h"
 
+Preset snipsPreset = {
+  "son/ahsoka;son/common;heroes/ahsoka;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
+  snipsStyle,
+  snipsStyle,
+  "snips",
+};
+
+Preset shotoPreset = {
+  "son/ahsoka;son/common;heroes/ahsoka;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
+  shotoStyle,
+  shotoStyle,
+  "shoto",
+};
+
 Preset tanoPreset = {
   "son/common;Commander_Tano", "Commander_Tano/tracks/track2.wav",
   tanoStyle,
