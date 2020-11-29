@@ -22,7 +22,7 @@ Preset tanoPreset = {
 };
 
 Preset ahsokaPreset = {
-  "son/ahsoka;son/common;Code_Fulcrum", "Code_Fulcrum/tracks/track1.wav",
+  "son/common;Code_Fulcrum", "Code_Fulcrum/tracks/track1.wav",
   ahsokaStyle,
   ahsokaStyle,
   "ahsoka",
