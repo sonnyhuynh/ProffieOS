@@ -42,6 +42,9 @@
 // Allows for adjustment to Push gesture length in millis needed to trigger Force Push
 // Recommended range 1 ~ 10, 1 = shortest, easiest to trigger, 10 = longest
 //
+// #define COLOR_CHANGE_DIRECT
+// Bump color change variation up 1
+//
 // ALL SABERS
 // Change color - rotate while in Color change mode
 //
@@ -605,16 +608,18 @@ public:
     }
     return true;
 
-// direct color change
-#ifdef COLOR_CHANGE_DIRECT
+// direct color change and power save
   case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD, MODE_ON):
+#ifdef COLOR_CHANGE_DIRECT
     if (fusor.angle1() >  M_PI / 3) {
       SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
     } else {
       DirectColorChange();
     }
-    return true;
+#else
+    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
 #endif
+    return true;
 
   // Blaster Deflection
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
@@ -694,16 +699,18 @@ public:
     ToggleColorChangeMode();
     return true;
 
-// direct color change
-#ifdef COLOR_CHANGE_DIRECT
+// direct color change and power save
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
+#ifdef COLOR_CHANGE_DIRECT
     if (fusor.angle1() >  M_PI / 3) {
       SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
     } else {
       DirectColorChange();
     }
-    return true;
+#else
+    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
 #endif
+    return true;
 
   // Blaster Deflection
   case EVENTID(BUTTON_AUX, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
