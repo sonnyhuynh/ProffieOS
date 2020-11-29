@@ -42,6 +42,13 @@ Preset vaderPreset = {
   "vader",
 };
 
+Preset rogueVaderPreset = {
+  "son/common;RogueVader", "RogueVader/tracks/hallway.wav",
+  vaderStyle,
+  vaderStyle,
+  "rogue vader",
+};
+
 Preset spitfirePreset = {
   "son/common;Spitfire", "son/tracks/TheForce4.wav",
   spitfireStyle,
