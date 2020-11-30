@@ -15,14 +15,14 @@ Preset esbPreset = {
 };
 
 Preset reyFlexPreset = {
-  "son/common;ReFlex/rey", "ReFlex/tracks/Trailer2_Short.wav",
+  "son/common;ReFLEX/rey", "ReFLEX/tracks/Trailer2_Short.wav",
   sequelStyle,
   sequelStyle,
   "reyflex",
 };
 
 Preset benFlexPreset = {
-  "son/common;ReFlex/ben", "ReFlex/tracks/Ben_vs_Knights.wav",
+  "son/common;ReFLEX/ben", "ReFLEX/tracks/Ben_vs_Knights.wav",
   sequelStyle,
   sequelStyle,
   "benflex",
