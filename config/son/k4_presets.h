@@ -7,3 +7,10 @@ Preset ob4Preset = {
   "ob4",
 };
 
+Preset ls6Preset = {
+  "son/common;LS6", "LS6/tracks/luke_intro.wav",
+  ls6Style,
+  ls6Style,
+  "ls6",
+};
+
