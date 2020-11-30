@@ -46,6 +46,9 @@ const unsigned int maxLedsPerStrip = 144;
 
 #ifdef CONFIG_PRESETS
 #include "common_presets.h"
+#include "mw2_presets.h"
+#include "fun_presets.h"
+#include "double_presets.h"
 #include "owk_presets.h"
 
 /*
@@ -60,25 +63,52 @@ Preset lengthFinder[] = {
 
 Preset noBladePresets[] = {
   noBladePreset,
+
+  // prequel
   owkPreset,
+  maulPreset,
+  yodaPreset,
+  macePreset,
+
+  // original
+  vaderPreset,
+
+  // sequel
+  reyPreset,
+  kyloPreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
+  catPreset,
+
+  // personal
   sonPreset,
   spitfirePreset,
-  kyloPreset,
-  yodaPreset,
-  ezraPreset,
-  vaderPreset,
-  catPreset,
 };
 
 Preset presets[] = {
+  // prequel
   owkPreset,
+  maulPreset,
+  yodaPreset,
+  macePreset,
+
+  // original
+  vaderPreset,
+
+  // sequel
+  reyPreset,
+  kyloPreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
+  catPreset,
+
+  // personal
   sonPreset,
   spitfirePreset,
-  kyloPreset,
-  yodaPreset,
-  ezraPreset,
-  vaderPreset,
-  catPreset,
 };
 
 #include "blade_config.h"
