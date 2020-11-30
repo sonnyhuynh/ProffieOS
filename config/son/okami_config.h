@@ -71,6 +71,7 @@ Preset noBladePresets[] = {
 
   // original
   vaderPreset,
+  rogueVaderPreset,
 
   // sequel
   kyloPreset,
@@ -101,6 +102,7 @@ Preset presets[] = {
 
   // original
   vaderPreset,
+  rogueVaderPreset,
 
   // sequel
   kyloPreset,
