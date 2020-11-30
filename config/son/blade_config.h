@@ -55,6 +55,14 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
+    800000,
+    // 28" vv blade
+    WS281XBladePtr<100, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
     NO_BLADE,
     WS281XBladePtr<0, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
