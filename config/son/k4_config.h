@@ -54,6 +54,8 @@ const unsigned int maxLedsPerStrip = 144;
 #ifdef CONFIG_PRESETS
 #include "common_presets.h"
 #include "k4_presets.h"
+#include "mw2_presets.h"
+#include "fun_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -67,24 +69,51 @@ Preset lengthFinder[] = {
 
 Preset noBladePresets[] = {
   noBladePreset,
+
+  // original
   ob4Preset,
   vaderPreset,
+  ls6Preset,
+
+  // personal
   sonPreset,
   spitfirePreset,
+
+  // sequel
+  reyPreset,
   kyloPreset,
+
+  // prequel
   yodaPreset,
-  ezraPreset,
+  macePreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
   catPreset,
 };
 
 Preset presets[] = {
+  // original
   ob4Preset,
   vaderPreset,
+  ls6Preset,
+
+  // personal
   sonPreset,
   spitfirePreset,
+
+  // sequel
+  reyPreset,
   kyloPreset,
+
+  // prequel
   yodaPreset,
-  ezraPreset,
+  macePreset,
+
+  // fun
+  pikachuPreset,
+  smashPreset,
   catPreset,
 };
 
@@ -117,6 +146,14 @@ BladeConfig blades[] = {
     // 20" bendu blade
     WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    33000,
+    // 28" blade
+    WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
