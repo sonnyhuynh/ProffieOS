@@ -10,6 +10,7 @@
 //  - force push gesture by fett263
 //  - thrust gesture by fett263
 //  - power save by fett263
+//  - on demand battery level by fett263
 //
 // Tightened click timings (sa22c)
 // I've shortened the timeout for short and double click detection from 500ms
@@ -118,6 +119,8 @@
 //
 // CUSTOM SOUNDS SUPPORTED (add to font to enable):
 //
+// On Demand Power Save - dim.wav
+// On Demand Battery Level - battery.wav
 // Fast On (optional) - faston.wav
 // Force Push (optional) - push.wav
 
@@ -175,6 +178,7 @@
 #endif
 
 EFFECT(dim); // for EFFECT_POWERSAVE
+EFFECT(battery); // for EFFECT_BATTERY_LEVEL
 EFFECT(faston); // for EFFECT_FAST_ON
 EFFECT(push); // for Force Push gesture in Battle Mode
 
@@ -405,8 +409,7 @@ public:
 
   // Battery level
   case EVENTID(BUTTON_NONE, EVENT_SHAKE, MODE_OFF):
-    //SayBatteryVoltage();
-    SayBatteryPercent();
+    SaberBase::DoEffect(EFFECT_BATTERY_LEVEL, 0);
     return true;
 
 //// while ON ////
@@ -470,8 +473,7 @@ public:
 
   // Battery level
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
-    //SayBatteryVoltage();
-    SayBatteryPercent();
+    SaberBase::DoEffect(EFFECT_BATTERY_LEVEL, 0);
     return true;
 
   // Activate Muted
@@ -812,6 +814,14 @@ public:
           hybrid_font.PlayCommon(&SFX_dim);
         } else {
           beeper.Beep(0.5, 3000);
+        }
+        return;
+      case EFFECT_BATTERY_LEVEL:
+        if (SFX_battery) {
+          hybrid_font.PlayCommon(&SFX_battery);
+        } else {
+          //SayBatteryVoltage();
+          SayBatteryPercent();
         }
         return;
       case EFFECT_FAST_ON:
