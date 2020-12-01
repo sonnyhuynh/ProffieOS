@@ -1,5 +1,6 @@
-// fully responsive audioflicker bright color swing w/ font battery monitor dodger blue
-// multi-blast effects
+// fully responsive audioflicker bright color swing dodger blue
+// multi-blast effect
+// on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator audioflickerArgStyle =
 StylePtr<Layers<
@@ -21,13 +22,13 @@ StylePtr<Layers<
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<12,Red>,RgbArg<13,Orange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
   EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeIn<500>>,
-  TransitionEffectL<TrConcat<TrDelay<1500>,Black,TrFade<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_BOOT>,
-  TransitionEffectL<TrConcat<TrInstant,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_NEWFONT>
+  TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
 ;
 
-// supreme leader kylo unstable w/ font battery monitor red
-// multi-blast effects
+// supreme leader kylo unstable red
+// multi-blast effect
+// on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator supremeLeaderArgStyle =
 StylePtr<Layers<
@@ -49,13 +50,13 @@ StylePtr<Layers<
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<12,Rgb<255,200,0>>,RgbArg<13,DarkOrange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
   EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeIn<500>,Black>,
-  TransitionEffectL<TrConcat<TrDelay<1500>,Black,TrFade<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_BOOT>,
-  TransitionEffectL<TrConcat<TrInstant,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_NEWFONT>
+  TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
 ;
 
-// fallen order w/ font battery monitor blue
-// multi-blast effects
+// fallen order blue
+// multi-blast effect
+// on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator fallenOrderArgStyle =
 StylePtr<Layers<
@@ -86,13 +87,13 @@ StylePtr<Layers<
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<6,Red>,RgbArg<7,Orange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
   EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeIn<500>,Black>,
-  TransitionEffectL<TrConcat<TrDelay<1500>,Black,TrFade<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_BOOT>,
-  TransitionEffectL<TrConcat<TrInstant,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_NEWFONT>
+  TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
 ;
 
-// second sister w/ font battery monitor red
-// multi-blast effects
+// second sister red
+// multi-blast effect
+// on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator secondSisterArgStyle =
 StylePtr<Layers<
@@ -114,7 +115,6 @@ StylePtr<Layers<
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<7,Rgb<255,200,0>>,RgbArg<8,DarkOrange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
   EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeIn<500>,Black>,
-  TransitionEffectL<TrConcat<TrDelay<1500>,Black,TrFade<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_BOOT>,
-  TransitionEffectL<TrConcat<TrInstant,AlphaL<Mix<BatteryLevel,Red,Green>,Bump<Int<0>,Int<6000>>>,TrFade<3000>>,EFFECT_NEWFONT>
+  TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
 ;
