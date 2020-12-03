@@ -69,7 +69,7 @@ Preset noBladePresets[] = {
   macePreset,
 
   // blue
-  lukePreset,
+  anhPreset,
   reyFlexPreset,
   benFlexPreset,
   ob4Preset,
@@ -110,7 +110,7 @@ Preset presets[] = {
   macePreset,
 
   // blue
-  lukePreset,
+  anhPreset,
   reyFlexPreset,
   benFlexPreset,
   ob4Preset,
