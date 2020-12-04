@@ -28,3 +28,17 @@ Preset benFlexPreset = {
   "benflex",
 };
 
+Preset anakinHeroPreset = {
+  "son/common;TheChosenOne/Hero", "TheChosenOne/tracks/Battle of the Heroes.wav",
+  skinnyflexStyle,
+  skinnyflexStyle,
+  "anakin",
+};
+
+Preset anakinVillainPreset = {
+  "son/common;TheChosenOne/Villain", "TheChosenOne/tracks/Anakin vs Obi.wav",
+  skinnyflexStyle,
+  skinnyflexStyle,
+  "chosen one",
+};
+
