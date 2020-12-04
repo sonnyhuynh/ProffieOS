@@ -64,9 +64,13 @@ Preset lengthFinder[] = {
 Preset noBladePresets[] = {
   noBladePreset,
 
-  // original
+  // graflex/skinnyflex
   anhPreset,
   esbPreset,
+  anakinHeroPreset,
+  anakinVillainPreset,
+
+  // original
   vaderPreset,
   rogueVaderPreset,
   ls6Preset,
@@ -92,9 +96,13 @@ Preset noBladePresets[] = {
 };
 
 Preset presets[] = {
-  // original
+  // graflex/skinnyflex
   anhPreset,
   esbPreset,
+  anakinHeroPreset,
+  anakinVillainPreset,
+
+  // original
   vaderPreset,
   rogueVaderPreset,
   ls6Preset,
