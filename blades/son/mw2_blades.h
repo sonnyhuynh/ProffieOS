@@ -5,6 +5,7 @@
 // multi-blast 2
 // blast color: prequel trilogy
 // clash color: prequel trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator maceStyle =

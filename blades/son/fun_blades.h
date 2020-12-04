@@ -1,4 +1,5 @@
 // pikachu style
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 StyleAllocator pikachuStyle =
 StylePtr<Layers<

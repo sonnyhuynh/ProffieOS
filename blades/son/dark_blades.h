@@ -6,6 +6,7 @@
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 // preon delay to wavlen
@@ -21,6 +22,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Red>,RotateColorsX<Variatio
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator purpleStyle =

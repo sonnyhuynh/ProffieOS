@@ -5,6 +5,7 @@
 // multi-blast 2
 // blast color: red
 // clash color: animated trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator darksaberStyle =
@@ -18,6 +19,7 @@ StylePtr<Layers<AudioFlicker<BrownNoiseFlicker<Mix<SwingSpeed<400>,RotateColorsX
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator kananStyle =

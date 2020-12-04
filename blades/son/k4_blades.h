@@ -5,6 +5,7 @@
 // multi-blast 2
 // blast color: original trilogy
 // clash color: original trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator ob4Style =
@@ -18,6 +19,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,DodgerBlue>,RotateColorsX<V
 // multi-blast 2
 // blast color: original trilogy
 // clash color: original trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator ls6Style =

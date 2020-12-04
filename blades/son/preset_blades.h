@@ -1,5 +1,6 @@
 // fully responsive audioflicker bright color swing dodger blue
 // multi-blast effect
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator audioflickerArgStyle =
@@ -28,6 +29,7 @@ StylePtr<Layers<
 
 // supreme leader kylo unstable red
 // multi-blast effect
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator supremeLeaderArgStyle =
@@ -56,6 +58,7 @@ StylePtr<Layers<
 
 // fallen order blue
 // multi-blast effect
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator fallenOrderArgStyle =
@@ -93,6 +96,7 @@ StylePtr<Layers<
 
 // second sister red
 // multi-blast effect
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
 // power save all effects 25%
 StyleAllocator secondSisterArgStyle =

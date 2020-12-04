@@ -7,6 +7,7 @@
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator blueFoStyle =
@@ -22,6 +23,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Blue>,Pulsing<Rotate
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator greenFoStyle =
@@ -37,6 +39,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Green>,Pulsing<Rotat
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator purpleFoStyle =
@@ -52,6 +55,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Rgb<110,15,200>>,Pul
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator orangeFoStyle =
@@ -67,6 +71,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,DarkOrange>,Pulsing<
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator yellowFoStyle =
@@ -82,6 +87,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Rgb<180,180,0>>,Puls
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator cyanFoStyle =
@@ -97,6 +103,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Rgb<30,120,150>>,Pul
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator magentaFoStyle =
@@ -112,6 +119,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Rgb<180,30,140>>,Pul
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator indigoFoStyle =
@@ -127,6 +135,7 @@ StylePtr<Layers<Stripes<16000,-1000,RotateColorsX<Variation,Rgb<80,50,200>>,Puls
 // clash color: animated series
 // swing effect: static color
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator redFoStyle =

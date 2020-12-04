@@ -5,6 +5,7 @@
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator snipsStyle =
@@ -18,6 +19,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Green>,RotateColorsX<Variat
 // multi-blast 2
 // blast color: white
 // clash color: white
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator shotoStyle =
@@ -31,6 +33,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,GreenYellow>,RotateColorsX<
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator tanoStyle =
@@ -46,6 +49,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,DodgerBlue>,RotateColorsX<V
 // clash color: white (red mod)
 // swing effect: white
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator ahsokaStyle =
@@ -59,6 +63,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Rgb<100,100,150>>,RotateCol
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator secondSisterStyle =
@@ -73,6 +78,7 @@ StylePtr<Layers<Stripes<10000,-1700,RotateColorsX<Variation,Rgb<80,0,0>>,RotateC
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 // preon delay to wavlen
@@ -87,6 +93,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Rgb<95,0,210>>,RotateColors
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator maulStyle =

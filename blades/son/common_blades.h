@@ -7,7 +7,7 @@
 //
 // color change mods to ColorChange<TrInstant,Rgb<48,0,105>,Orange>
 // multi blast 2
-// retraction 1000ms
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator sonStyle =
@@ -46,6 +46,7 @@ StylePtr<Layers<
 // multi-blast 2
 // blast color: sequel trilogy
 // clash color: sequel trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 // preon change delay to fade for 300ms
@@ -60,6 +61,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Rgb<180,130,0>>,RotateColor
 // multi-blast 2
 // blast color: sequel trilogy
 // clash color: sequel trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator kyloStyle =
@@ -73,6 +75,7 @@ StylePtr<Layers<StripesX<Int<1500>,Scale<SlowNoise<Int<2500>>,Int<-3000>,Int<-50
 // multi-blast 2
 // blast color: prequel trilogy
 // clash color: prequel trilogy
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator yodaStyle =
@@ -88,6 +91,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Green>,RotateColorsX<Variat
 // clash color: animated series
 // swing effect: white
 // swing response: enhanced
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator ezraStyle =
@@ -101,6 +105,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Blue>,RotateColorsX<Variati
 // multi-blast 2
 // blast color: animated series
 // clash color: animated series
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator vaderStyle =
@@ -114,6 +119,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Red>,RotateColorsX<Variatio
 // multi-blast 2
 // blast color: compound red + white
 // clash color: red (mod)
+// retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
 // power save all effects 25%
 StyleAllocator spitfireStyle =
@@ -143,7 +149,7 @@ StylePtr<Layers<
 // mod to Stripes<10000,-175,Red,Orange,Yellow,Green,Cyan,Blue,Magenta>
 // multi-blast 2
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)
-// retraction 800ms
+// retraction wavlen
 // power save all effects 25%
 StyleAllocator rainbowStyle =
 StylePtr<Layers<
