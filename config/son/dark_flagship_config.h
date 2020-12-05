@@ -69,6 +69,7 @@ Preset noBladePresets[] = {
   sonPreset,
   spitfirePreset,
   purplePreset,
+  ascensionPreset,
 
   //kotor
   malakPreset,
@@ -116,6 +117,7 @@ Preset presets[] = {
   sonPreset,
   spitfirePreset,
   purplePreset,
+  ascensionPreset,
 
   //kotor
   malakPreset,
