@@ -63,6 +63,13 @@ Preset catPreset = {
   "meow",
 };
 
+Preset ascensionPreset = {
+  "son/common;Ascension", "",
+  ascensionStyle,
+  ascensionStyle,
+  "ascension",
+};
+
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
   nobladeStyle,
