@@ -78,6 +78,7 @@ Preset noBladePresets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 
   // sequel
   reyPreset,
@@ -102,6 +103,7 @@ Preset presets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 
   // sequel
   reyPreset,

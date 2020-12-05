@@ -93,6 +93,7 @@ Preset noBladePresets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 };
 
 Preset presets[] = {
@@ -125,6 +126,7 @@ Preset presets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 };
 
 #include "blade_config.h"

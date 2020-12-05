@@ -65,6 +65,7 @@ Preset noBladePresets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 
   //kotor
   revanPreset,
@@ -96,6 +97,7 @@ Preset presets[] = {
   // personal
   sonPreset,
   spitfirePreset,
+  ascensionPreset,
 
   //kotor
   revanPreset,
