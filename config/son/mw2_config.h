@@ -73,6 +73,7 @@ Preset noBladePresets[] = {
   reyFlexPreset,
   benFlexPreset,
   ob4Preset,
+  anakinVillainPreset,
   ezraPreset,
   kananPreset,
 
@@ -114,6 +115,7 @@ Preset presets[] = {
   reyFlexPreset,
   benFlexPreset,
   ob4Preset,
+  anakinVillainPreset,
   ezraPreset,
   kananPreset,
 
