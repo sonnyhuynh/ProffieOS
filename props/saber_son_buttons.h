@@ -86,13 +86,11 @@
 //     Battle mode - hold + clash
 //
 //   while ON
-//     Force Effects - hold + twist (while pointing up)
+//     Force Effects - double click
 //     Color Change mode - hold + twist (while pointing down)
 //     Direct Color Change - triple click and hold
-//     Power Save - triple click and hold (while pointing up or straight up?)
+//     Power Save - triple click
 //     Blaster deflection - short click
-//     Blaster deflection - double click
-//     Blaster deflection - triple click
 //     Multi-blast mode - hold + swing
 //     Lockup - hold + clash while Battle mode OFF
 //
@@ -601,32 +599,30 @@ public:
      return true;
 #endif
 
-  // 1 button Force and Color Change mode
-  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
-    if (accel_.x < -0.15) {
-      ToggleColorChangeMode();
-    } else {
-      SaberBase::DoForce();
-    }
+  // Force
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
+    SaberBase::DoForce();
     return true;
 
-// direct color change and power save
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD, MODE_ON):
+  // Color change mode
+  case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
+    ToggleColorChangeMode();
+    return true;
+
+  // direct color change
 #ifdef COLOR_CHANGE_DIRECT
-    if (fusor.angle1() >  M_PI / 3) {
-      SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
-    } else {
-      DirectColorChange();
-    }
-#else
-    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_HELD, MODE_ON):
+    DirectColorChange();
+    return true;
 #endif
+
+  // power save
+  case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
+    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
     return true;
 
   // Blaster Deflection
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-  case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
     swing_blast_ = false;
     SaberBase::DoBlast();
     return true;
