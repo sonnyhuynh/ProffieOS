@@ -78,6 +78,7 @@
 //   while ON
 //     Turn off blade - hold and wait until blade is off
 //     Set color - hold and wait until sound confirmation
+//     Force Effects - double click
 //     Lightning Block - double click and hold
 //     Melt - hold while stabbing (clash with forward motion, horizontal)
 //
@@ -86,7 +87,6 @@
 //     Battle mode - hold + clash
 //
 //   while ON
-//     Force Effects - double click
 //     Color Change mode - hold + twist (while pointing down)
 //     Direct Color Change - triple click and hold
 //     Power Save - triple click
@@ -98,7 +98,6 @@
 //
 // POWER
 //   while ON
-//     Force Effects - double click
 //     Direct Color Change - triple click
 //     Power Save - triple click (while pointing up or straight up?)
 //
@@ -523,7 +522,6 @@ public:
 
 //// WHILE ON ////
 
-
   // Turn Blade OFF
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
     if (!SaberBase::Lockup()) {
@@ -541,6 +539,11 @@ public:
       }
     }
     swing_blast_ = false;
+    return true;
+
+  // Force effect
+  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
+    SaberBase::DoForce();
     return true;
 
   // Lightning Block
@@ -598,11 +601,6 @@ public:
      }
      return true;
 #endif
-
-  // Force
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-    SaberBase::DoForce();
-    return true;
 
   // Color change mode
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
@@ -686,11 +684,6 @@ public:
      }
      return true;
 #endif
-
-  // Force effect
-  case EVENTID(BUTTON_POWER, EVENT_SECOND_SAVED_CLICK_SHORT, MODE_ON):
-    SaberBase::DoForce();
-    return true;
 
 // Color Change
   case EVENTID(BUTTON_NONE, EVENT_TWIST, MODE_ON | BUTTON_POWER):
