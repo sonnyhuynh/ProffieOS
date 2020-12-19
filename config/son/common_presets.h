@@ -21,13 +21,6 @@ Preset yodaPreset = {
   "yoda",
 };
 
-Preset ezraPreset = {
-  "son/common;Staple_Sword", "Staple_Sword/tracks/EzraTheme.wav",
-  ezraStyle,
-  ezraStyle,
-  "ezra",
-};
-
 Preset vaderPreset = {
   "son/common;Father", "Father/tracks/Imperial_March_Short.wav",
   vaderStyle,
