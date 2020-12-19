@@ -1,12 +1,5 @@
 #include "../../blades/son/common_blades.h"
 
-Preset sonPreset = {
-  "son/common;Rogue", "son/tracks/TheForce4.wav",
-  sonStyle,
-  sonStyle,
-  "son",
-};
-
 Preset reyPreset = {
   "son/common;FinalSteps", "FinalSteps/tracks/track1.wav",
   reyStyle,
@@ -49,25 +42,11 @@ Preset rogueVaderPreset = {
   "rogue vader",
 };
 
-Preset spitfirePreset = {
-  "son/common;Spitfire", "son/tracks/TheForce4.wav",
-  spitfireStyle,
-  spitfireStyle,
-  "spitfire",
-};
-
 Preset catPreset = {
   "shrodinger_cat;son/common", "",
   rainbowStyle,
   rainbowStyle,
   "meow",
-};
-
-Preset ascensionPreset = {
-  "son/common;Ascension", "",
-  ascensionStyle,
-  ascensionStyle,
-  "ascension",
 };
 
 Preset noBladePreset = {

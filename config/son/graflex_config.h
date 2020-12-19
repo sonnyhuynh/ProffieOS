@@ -46,6 +46,7 @@ const unsigned int maxLedsPerStrip = 144;
 
 #ifdef CONFIG_PRESETS
 #include "common_presets.h"
+#include "son_presets.h"
 #include "graflex_presets.h"
 #include "mw2_presets.h"
 #include "k4_presets.h"
