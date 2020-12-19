@@ -114,12 +114,22 @@
 //     Multi-blast mode - hold + swing
 //     Lockup - hold + clash
 //
+// POWER + AUX
+//   "Use the Force" mode - hold AUX + click PWR
+//   "Use the Force" mode - hold PWR + click AUX
+//
 // CUSTOM SOUNDS SUPPORTED (add to font to enable):
 //
 // On Demand Power Save - dim.wav
 // On Demand Battery Level - battery.wav
 // Fast On (optional) - faston.wav
 // Force Push (optional) - push.wav
+// Force Blast (optional) - fblst.wav or fblaster.wav
+// Force Clash (optional) - fclsh.wav or fclash.wav
+// Force Preon (optional) - fpreon.wav
+// Force Quote (optional) - fquote.wav
+// Force Mode On (optional) - fbegin.wav
+// Force Mode Off (optional) - fend.wav
 
 #ifndef PROPS_SABER_SON_BUTTONS_H
 #define PROPS_SABER_SON_BUTTONS_H
@@ -178,6 +188,8 @@ EFFECT(dim); // for EFFECT_POWERSAVE
 EFFECT(battery); // for EFFECT_BATTERY_LEVEL
 EFFECT(faston); // for EFFECT_FAST_ON
 EFFECT(push); // for Force Push gesture in Battle Mode
+EFFECT(fbegin); // Force mode on
+EFFECT(fend); // Force mode off
 
 // The Saber class implements the basic states and actions
 // for the saber.
@@ -627,13 +639,8 @@ public:
 
   // Multi-Blaster Deflection mode
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_POWER):
-    if (!swing_blast_) {
-      swing_blast_ = true;
-      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
-    } else {
-      swing_blast_ = false;
-      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
-    }
+    swing_blast_ = !swing_blast_;
+    hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     return true;
 
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON):
@@ -713,13 +720,8 @@ public:
 
   // Multi-Blaster Deflection mode
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON | BUTTON_AUX):
-    if (!swing_blast_) {
-      swing_blast_ = true;
-      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
-    } else {
-      swing_blast_ = false;
-      hybrid_font.SB_Effect(EFFECT_BLAST, 0);
-    }
+    swing_blast_ = !swing_blast_;
+    hybrid_font.SB_Effect(EFFECT_BLAST, 0);
     return true;
 
   case EVENTID(BUTTON_NONE, EVENT_SWING, MODE_ON):
@@ -737,6 +739,27 @@ public:
       return true;
     }
     break;
+
+  // Use the Force mode
+  case EVENTID(BUTTON_POWER, EVENT_CLICK_SHORT, MODE_ON | BUTTON_AUX):
+  case EVENTID(BUTTON_POWER, EVENT_CLICK_SHORT, MODE_OFF | BUTTON_AUX):
+  case EVENTID(BUTTON_AUX, EVENT_CLICK_SHORT, MODE_ON | BUTTON_POWER):
+  case EVENTID(BUTTON_AUX, EVENT_CLICK_SHORT, MODE_OFF | BUTTON_POWER):
+    hybrid_font.ToggleUseTheForce();
+    if (hybrid_font.UsingTheForce()) {
+      if (SFX_fbegin) {
+        hybrid_font.PlayCommon(&SFX_fbegin);
+      } else {
+        beeper.Beep(0.5, 5000);
+      }
+    } else {
+      if (SFX_fend) {
+        hybrid_font.PlayCommon(&SFX_fend);
+      } else {
+        beeper.Beep(0.5, 3000);
+      }
+    }
+    return true;
 
 #endif
 // 2+ button end

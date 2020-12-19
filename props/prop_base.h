@@ -279,6 +279,7 @@ public:
     bool on = SaberBase::IsOn();
     if (on) Off();
     SaveColorChangeIfNeeded();
+    hybrid_font.DoNotUseTheForce();
     // First free all styles, then allocate new ones to avoid memory
     // fragmentation.
 #define UNSET_BLADE_STYLE(N) \

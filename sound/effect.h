@@ -516,6 +516,14 @@ EFFECT(blast); // Not to be confused with "blst" and "blaster" as blocking sound
 // battery low
 EFFECT(lowbatt);	// battery low
 
+// Use the Force mode
+EFFECT(fblaster);
+EFFECT(fblst);
+EFFECT(fquote);
+EFFECT(fpreon);
+EFFECT(fclash);
+EFFECT(fclsh);
+
 // TODO: Optimize this and make it possible
 // have the WAV reader use this.
 class EffectFileReader : public FileReader {

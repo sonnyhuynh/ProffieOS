@@ -302,7 +302,12 @@ public:
   }
 
   void SB_PreOn(float* delay) override {
-    if (SFX_preon) {
+    if (use_the_force_ && SFX_fpreon) {
+      RefPtr<BufferedWavPlayer> tmp = PlayPolyphonic(&SFX_fpreon);
+      if (tmp) {
+        *delay = std::max(*delay, tmp->length());
+      }
+    } else {
       RefPtr<BufferedWavPlayer> tmp = PlayPolyphonic(&SFX_preon);
       if (tmp) {
         *delay = std::max(*delay, tmp->length());
@@ -384,9 +389,27 @@ public:
       case EFFECT_STAB:
 	if (SFX_stab) { PlayCommon(&SFX_stab); return; }
 	// If no stab sounds are found, fall through to clash
-      case EFFECT_CLASH: Play(&SFX_clash, &SFX_clsh); return;
-      case EFFECT_FORCE: PlayCommon(&SFX_force); return;
-      case EFFECT_BLAST: Play(&SFX_blaster, &SFX_blst); return;
+      case EFFECT_CLASH:
+        if (use_the_force_ && (SFX_fclash || SFX_fclsh)) {
+          Play(&SFX_fclash, &SFX_fclsh);
+        } else {
+          Play(&SFX_clash, &SFX_clsh);
+        }
+        return;
+      case EFFECT_FORCE:
+        if (use_the_force_ && SFX_fquote) {
+          PlayCommon(&SFX_fquote);
+        } else {
+          PlayCommon(&SFX_force);
+        }
+        return;
+      case EFFECT_BLAST:
+        if (use_the_force_ && (SFX_fblaster || SFX_fblst)) {
+          Play(&SFX_fblaster, &SFX_fblst);
+        } else {
+          Play(&SFX_blaster, &SFX_blst);
+        }
+        return;
       case EFFECT_BOOT: beeper.Beep(0.05, 1000); return;
       case EFFECT_NEWFONT: SB_NewFont(); return;
       case EFFECT_LOCKUP_BEGIN: SB_BeginLockup(); return;
@@ -613,6 +636,11 @@ public:
     }
   }
 
+
+  bool UsingTheForce() { return use_the_force_; }
+  void ToggleUseTheForce() { use_the_force_ = !use_the_force_; }
+  void DoNotUseTheForce() { use_the_force_ = false; }
+
  private:
   uint32_t last_micros_;
   uint32_t last_swing_micros_;
@@ -627,7 +655,7 @@ public:
   State state_;
   float volume_;
   float current_effect_length_ = 0.0;
-
+  bool use_the_force_ = false;
 };
 
 #endif
