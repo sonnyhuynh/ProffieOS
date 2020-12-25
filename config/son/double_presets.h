@@ -36,7 +36,7 @@ Preset revanPreset = {
 };
 
 Preset secondSisterPreset = {
-  "son/common;The_Second", "The_Second/tracks/JFO1.wav",
+  "son/common;The_Second", "The_Second/tracks/JFO4.wav",
   secondSisterStyle,
   secondSisterStyle,
   "sister",
