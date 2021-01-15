@@ -19,13 +19,13 @@ const unsigned int maxLedsPerStrip = 144;
 #define SHARED_POWER_PINS
 
 // blade detect
-//#define BLADE_DETECT_PIN blade3Pin
+#define BLADE_DETECT_PIN blade3Pin
 
 // blade id
-//#define ENABLE_POWER_FOR_ID PowerPINS<bladePowerPin2,bladePowerPin3>
+#define ENABLE_POWER_FOR_ID PowerPINS<bladePowerPin2,bladePowerPin3>
 
 // blade id pull up
-//#define BLADE_ID_CLASS ExternalPullupBladeID<bladeIdentifyPin, 22000>
+#define BLADE_ID_CLASS ExternalPullupBladeID<bladeIdentifyPin, 22000>
 
 #define SON_SWING_ON
 #define SON_TWIST_ON
@@ -146,16 +146,7 @@ Preset presets[] = {
   ascensionPreset,
 };
 
-BladeConfig blades[] = {
-  {
-    0,
-    // 24" blade
-    WS281XBladePtr<83, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    CONFIGARRAY(presets),
-    "CONFIG/blade"
-  },
-};
+#include "blade_config.h"
 
 #endif
 
