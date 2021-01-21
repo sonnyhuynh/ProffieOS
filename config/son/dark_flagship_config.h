@@ -69,7 +69,6 @@ Preset noBladePresets[] = {
   // personal
   sonPreset,
   spitfirePreset,
-  purplePreset,
   ascensionPreset,
 
   //kotor
@@ -107,6 +106,7 @@ Preset noBladePresets[] = {
 
   // prequel
   yodaPreset,
+  palpatinePreset,
 
   // fun
   pikachuPreset,
@@ -118,7 +118,6 @@ Preset presets[] = {
   // personal
   sonPreset,
   spitfirePreset,
-  purplePreset,
   ascensionPreset,
 
   //kotor
@@ -156,6 +155,7 @@ Preset presets[] = {
 
   // prequel
   yodaPreset,
+  palpatinePreset,
 
   // fun
   pikachuPreset,
