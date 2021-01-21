@@ -14,3 +14,17 @@ Preset ls6Preset = {
   "ls6",
 };
 
+Preset ls6CavePreset = {
+  "son/common;EVIL SON/FIRST STEPS", "LS6/tracks/luke_intro.wav",
+  ls6Style,
+  ls6Style,
+  "first steps",
+};
+
+Preset ls6EvilPreset = {
+  "son/common;EVIL SON/ATTRITION", "LS6/tracks/throne_duel.wav",
+  ls6Style,
+  ls6Style,
+  "attrition",
+};
+
