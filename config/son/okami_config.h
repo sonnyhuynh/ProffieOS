@@ -88,7 +88,8 @@ Preset noBladePresets[] = {
   // rebels
   ezraPreset,
   kananPreset,
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
 
   // fun
   catPreset,
@@ -120,7 +121,8 @@ Preset presets[] = {
   // rebels
   ezraPreset,
   kananPreset,
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
 
   // fun
   catPreset,

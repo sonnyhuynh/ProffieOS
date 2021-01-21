@@ -102,7 +102,8 @@ Preset noBladePresets[] = {
   // rebels
   ezraPreset,
   kananPreset,
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
 
   // prequel
   yodaPreset,
@@ -150,7 +151,8 @@ Preset presets[] = {
   // rebels
   ezraPreset,
   kananPreset,
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
 
   // prequel
   yodaPreset,
