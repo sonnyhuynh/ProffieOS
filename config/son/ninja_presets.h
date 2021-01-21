@@ -1,10 +1,17 @@
 #include "../../blades/son/ninja_blades.h"
 
-Preset darksaberPreset = {
-  "son/common;Dark_V2/Moff_Gideon;Dark_V2/Font", "Dark_V2/Font/tracks/track2.wav",
-  darksaberStyle,
-  darksaberStyle,
-  "darksaber",
+Preset darksaberAnimatedPreset = {
+  "son/common;Dark_V2", "Dark_V2/tracks/track1.wav",
+  darksaberAnimatedStyle,
+  darksaberAnimatedStyle,
+  "darksaber animated",
+};
+
+Preset darksaberLivePreset = {
+  "son/common;Dark_V3/Beskar;Dark_V3/Standard", "Dark_V3/_Extras/Music/track4.wav",
+  darksaberLiveStyle,
+  darksaberLiveStyle,
+  "darksaber live",
 };
 
 Preset ezraPreset = {
