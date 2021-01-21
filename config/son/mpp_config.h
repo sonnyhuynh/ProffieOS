@@ -89,6 +89,7 @@ Preset noBladePresets[] = {
   kyloPreset,
 
   // prequel
+  palpatinePreset,
   yodaPreset,
   macePreset,
   maulPreset,
@@ -131,6 +132,7 @@ Preset presets[] = {
   kyloPreset,
 
   // prequel
+  palpatinePreset,
   yodaPreset,
   macePreset,
   maulPreset,
