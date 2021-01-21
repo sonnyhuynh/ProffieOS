@@ -75,6 +75,8 @@ Preset noBladePresets[] = {
   ob4Preset,
   vaderPreset,
   ls6Preset,
+  ls6CavePreset,
+  ls6EvilPreset,
 
   // personal
   sonPreset,
@@ -100,6 +102,8 @@ Preset presets[] = {
   ob4Preset,
   vaderPreset,
   ls6Preset,
+  ls6CavePreset,
+  ls6EvilPreset,
 
   // personal
   sonPreset,

@@ -79,6 +79,8 @@ Preset noBladePresets[] = {
   anhPreset,
   esbPreset,
   ls6Preset,
+  ls6CavePreset,
+  ls6EvilPreset,
 
   // sequel
   reyFlexPreset,
@@ -119,6 +121,8 @@ Preset presets[] = {
   anhPreset,
   esbPreset,
   ls6Preset,
+  ls6CavePreset,
+  ls6EvilPreset,
 
   // sequel
   reyFlexPreset,
