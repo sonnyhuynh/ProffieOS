@@ -3,6 +3,7 @@
 #include "../../blades/son/common_blades.h"
 #include "../../blades/son/son_blades.h"
 #include "../../blades/son/fun_blades.h"
+#include "../../blades/son/k4_blades.h"
 
 StyleAllocator buttonOnStyle = StyleNormalPtr<WHITE, WHITE, 300, 800>();
 StyleAllocator buttonOffStyle = StyleNormalPtr<BLACK, BLACK, 300, 800>();
@@ -103,5 +104,13 @@ Preset pikachuPreset = {
   pikachuStyle,
   buttonOffStyle,
   "pikachu",
+};
+
+Preset ls6EvilPreset = {
+  "son/common;EVIL SON/ATTRITION", "LS6/tracks/throne_duel.wav",
+  ls6Style,
+  ls6Style,
+  buttonOffStyle,
+  "attrition",
 };
 

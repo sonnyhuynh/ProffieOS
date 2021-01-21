@@ -50,6 +50,7 @@ Preset presets[] = {
   secondSisterPreset,
   palpatinePreset,
   revanPreset,
+  ls6EvilPreset,
   kyloPreset,
   sonPreset,
   spitfirePreset,
