@@ -60,6 +60,7 @@ StylePtr<Layers<
     TrConcat<TrInstant,Red,TrFade<400>>,
     SaberBase::LOCKUP_NORMAL
   >,
+  ResponsiveLightningBlockL<Strobe<White,AudioFlicker<White,Blue>,50,1>,TrConcat<TrInstant,AlphaL<White,Bump<Int<12000>,Int<18000>>>,TrFade<200>>,TrConcat<TrInstant,HumpFlickerL<AlphaL<White,Int<16000>>,30>,TrSmoothFade<600>>>,
   ResponsiveStabL<Red,TrWipeIn<600>,TrWipe<600>>,
   EffectSequence<EFFECT_BLAST,ResponsiveBlastL<TransitionEffect<White,Red,TrInstant,TrFade<50>,EFFECT_BLAST>,Int<400>,Scale<SwingSpeed<200>,Int<100>,Int<400>>>,Layers<ResponsiveBlastFadeL<TransitionEffect<White,Red,TrInstant,TrFade<100>,EFFECT_BLAST>,Scale<SwingSpeed<200>,Int<10000>,Int<18000>>>,ResponsiveBlastFadeL<Red,Scale<SwingSpeed<200>,Int<4000>,Int<10000>>>>,BlastL<TransitionEffect<White,Red,TrInstant,TrFade<50>,EFFECT_BLAST>>,ResponsiveBlastL<TransitionEffect<White,Red,TrInstant,TrFade<50>,EFFECT_BLAST>>>,BlastL<TransitionEffect<White,Red,TrInstant,TrFade<50>,EFFECT_BLAST>>,
   ResponsiveClashL<Red,TrInstant,TrFade<400>,Scale<BladeAngle<0,16000>,Int<4000>,Int<26000>>,Int<6000>,Int<20000>>,
