@@ -87,7 +87,8 @@ Preset noBladePresets[] = {
   secondSisterPreset,
 
   // white
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
   ahsokaPreset,
 
   // yellow
@@ -129,7 +130,8 @@ Preset presets[] = {
   secondSisterPreset,
 
   // white
-  darksaberPreset,
+  darksaberAnimatedPreset,
+  darksaberLivePreset,
   ahsokaPreset,
 
   // yellow
