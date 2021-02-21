@@ -5,9 +5,19 @@ StyleAllocator sonCCStyle =
 StylePtr<Layers<Black,InOutTrL<TrFade<300>,TrFade<300>,Mix<IsLessThan<SlowNoise<Int<3000>>,Int<10000>>,RandomFlicker<ColorChange<TrBoing<300,3>,DarkOrange,Rgb<95,0,210>>,ColorChange<TrBoing<300,3>,Rgb<128,34,0>,Rgb<42,0,105>>>,Black>>>>()
 ;
 
+// audioflicker canon red cc
+StyleAllocator pulseRedCCStyle =
+StylePtr<Layers<Black,InOutTrL<TrFade<300>,TrFade<300>,Pulsing<RotateColorsX<Variation,Red>,RotateColorsX<Variation,Rgb<10,0,0>>,3000>>>>()
+;
+
 // audioflicker canon blue cc
 StyleAllocator pulseBlueCCStyle =
-StylePtr<Layers<Black,InOutTrL<TrFade<300>,TrFadeX<WavLen<EFFECT_RETRACTION>>,Pulsing<RotateColorsX<Variation,Rgb<0,0,128>>,RotateColorsX<Variation,Rgb<0,0,10>>,3000>>>>()
+StylePtr<Layers<Black,InOutTrL<TrFade<300>,TrFade<300>,Pulsing<RotateColorsX<Variation,Rgb<0,0,128>>,RotateColorsX<Variation,Rgb<0,0,10>>,3000>>>>()
+;
+
+// audioflicker canon green cc
+StyleAllocator pulseGreenCCStyle =
+StylePtr<Layers<Black,InOutTrL<TrFade<300>,TrFade<300>,Pulsing<RotateColorsX<Variation,Green>,RotateColorsX<Variation,Rgb<0,10,0>>,3000>>>>()
 ;
 
 // fallen red cc

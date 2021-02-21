@@ -88,6 +88,22 @@ Preset ls6EvilPreset = {
   "attrition",
 };
 
+Preset rescuePreset = {
+  "son/common;Rescue", "Rescue/tracks/Outro_Short_Beginning.wav",
+  ls6Style,
+  ls6Style,
+  pulseGreenCCStyle,
+  "rescue",
+};
+
+Preset rogueVaderPreset = {
+  "son/common;RogueVader", "RogueVader/tracks/hallway.wav",
+  vaderStyle,
+  vaderStyle,
+  pulseRedCCStyle,
+  "rogue vader",
+};
+
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
   nobladeStyle,
