@@ -73,6 +73,9 @@ Preset noBladePresets[] = {
   spitfirePreset,
   ascensionPreset,
 
+  rescuePreset,
+  rogueVaderPreset,
+
   secondSisterPreset,
   ls6EvilPreset,
   kyloPreset,
@@ -88,6 +91,9 @@ Preset presets[] = {
   sonPreset,
   spitfirePreset,
   ascensionPreset,
+
+  rescuePreset,
+  rogueVaderPreset,
 
   secondSisterPreset,
   ls6EvilPreset,
