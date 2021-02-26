@@ -9,7 +9,6 @@
 //  - fast on by fett263
 //  - force push gesture by fett263
 //  - thrust gesture by fett263
-//  - power save by fett263
 //  - on demand battery level by fett263
 //
 // Tightened click timings (sa22c)
@@ -336,6 +335,22 @@ public:
     }
   }
 
+#ifdef DYNAMIC_BLADE_DIMMING
+  void ToggleBrightness() {
+    if (SaberBase::GetCurrentDimming() != 4096) {
+      SaberBase::SetDimming(4096); // 25%
+    } else {
+      SaberBase::SetDimming(16384); // 100%
+    }
+
+    if (SFX_dim) {
+      hybrid_font.PlayCommon(&SFX_dim);
+    } else {
+      beeper.Beep(0.5, 3000);
+    }
+  }
+#endif
+
   bool Event2(enum BUTTON button, EVENT event, uint32_t modifiers) override {
     switch (EVENTID(button, event, modifiers)) {
       case EVENTID(BUTTON_POWER, EVENT_PRESSED, MODE_ON):
@@ -626,10 +641,12 @@ public:
     return true;
 #endif
 
+#ifdef DYNAMIC_BLADE_DIMMING
   // power save
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
-    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+    ToggleBrightness();
     return true;
+#endif
 
   // Blaster Deflection
   case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
@@ -701,12 +718,16 @@ public:
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_ON):
 #ifdef COLOR_CHANGE_DIRECT
     if (fusor.angle1() >  M_PI / 3) {
-      SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+      #ifdef DYNAMIC_BLADE_DIMMING
+      ToggleBrightness();
+      #endif
     } else {
       DirectColorChange();
     }
 #else
-    SaberBase::DoEffect(EFFECT_POWERSAVE, 0);
+    #ifdef DYNAMIC_BLADE_DIMMING
+    ToggleBrightness();
+    #endif
 #endif
     return true;
 
@@ -821,13 +842,6 @@ public:
 
   void SB_Effect(EffectType effect, float location) override {
     switch (effect) {
-      case EFFECT_POWERSAVE:
-        if (SFX_dim) {
-          hybrid_font.PlayCommon(&SFX_dim);
-        } else {
-          beeper.Beep(0.5, 3000);
-        }
-        return;
       case EFFECT_BATTERY_LEVEL:
         if (SFX_battery) {
           hybrid_font.PlayCommon(&SFX_battery);

@@ -2,7 +2,6 @@
 // multi-blast effect
 // retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
-// power save all effects 25%
 StyleAllocator audioflickerArgStyle =
 StylePtr<Layers<
   Mix<SwingSpeed<400>,AudioFlicker<RotateColorsX<Variation,RgbArg<1,DodgerBlue>>,RotateColorsX<Variation,RgbArg<2,SteelBlue>>>,Mix<SwingSpeed<600>,RotateColorsX<Variation,RgbArg<1,DodgerBlue>>,RotateColorsX<Variation,RgbArg<3,Rgb<100,185,255>>>>>,
@@ -21,7 +20,6 @@ StylePtr<Layers<
   ResponsiveClashL<RgbArg<10,White>,TrInstant,TrFade<400>,Scale<BladeAngle<0,16000>,Int<4000>,Int<26000>>,Int<6000>>,
   LockupTrL<AlphaL<BrownNoiseFlickerL<RgbArg<11,White>,Int<300>>,SmoothStep<Int<30000>,Int<5000>>>,TrWipeIn<400>,TrFade<300>,SaberBase::LOCKUP_DRAG>,
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<12,Red>,RgbArg<13,Orange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
-  EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeInX<WavLen<EFFECT_RETRACTION>>>,
   TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
@@ -31,7 +29,6 @@ StylePtr<Layers<
 // multi-blast effect
 // retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
-// power save all effects 25%
 StyleAllocator supremeLeaderArgStyle =
 StylePtr<Layers<
   StripesX<Int<1500>,Scale<SlowNoise<Int<2500>>,Int<-3000>,Int<-5000>>,RotateColorsX<Variation,RgbArg<1,Red>>,RotateColorsX<Variation,RgbArg<2,Rgb<80,0,0>>>,RotateColorsX<Variation,RgbArg<1,Red>>,RotateColorsX<Variation,RgbArg<3,Rgb<20,0,0>>>,RotateColorsX<Variation,RgbArg<1,Red>>>,
@@ -50,7 +47,6 @@ StylePtr<Layers<
   ResponsiveClashL<RgbArg<10,White>,TrInstant,TrFade<400>,Scale<BladeAngle<0,16000>,Int<4000>,Int<26000>>,Int<6000>>,
   LockupTrL<AlphaL<BrownNoiseFlickerL<RgbArg<11,White>,Int<300>>,SmoothStep<Int<30000>,Int<5000>>>,TrWipeIn<400>,TrFade<300>,SaberBase::LOCKUP_DRAG>,
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<12,Rgb<255,200,0>>,RgbArg<13,DarkOrange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
-  EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeInX<WavLen<EFFECT_RETRACTION>>,Black>,
   TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
@@ -60,7 +56,6 @@ StylePtr<Layers<
 // multi-blast effect
 // retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
-// power save all effects 25%
 StyleAllocator fallenOrderArgStyle =
 StylePtr<Layers<
   Stripes<
@@ -88,7 +83,6 @@ StylePtr<Layers<
   ResponsiveClashL<White,TrInstant,TrFade<400>,Scale<BladeAngle<0,16000>,Int<4000>,Int<26000>>,Int<6000>>,
   LockupTrL<AlphaL<BrownNoiseFlickerL<White,Int<300>>,SmoothStep<Int<30000>,Int<5000>>>,TrWipeIn<400>,TrFade<300>,SaberBase::LOCKUP_DRAG>,
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<6,Red>,RgbArg<7,Orange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
-  EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeInX<WavLen<EFFECT_RETRACTION>>,Black>,
   TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()
@@ -98,7 +92,6 @@ StylePtr<Layers<
 // multi-blast effect
 // retraction wavlen
 // on demand battery level: % blade - green to red (300ms ignition, 1s display, 500ms retraction mods)s
-// power save all effects 25%
 StyleAllocator secondSisterArgStyle =
 StylePtr<Layers<
   Stripes<10000,-1700,RotateColorsX<Variation,RgbArg<2,Rgb<80,0,0>>>,RotateColorsX<Variation,RgbArg<1,Red>>,RotateColorsX<Variation,RgbArg<3,Rgb<128,0,0>>>,RotateColorsX<Variation,RgbArg<4,Rgb<50,0,0>>>,RotateColorsX<Variation,RgbArg<1,Red>>>,
@@ -117,7 +110,6 @@ StylePtr<Layers<
   ResponsiveClashL<White,TrInstant,TrFade<400>,Scale<BladeAngle<0,16000>,Int<4000>,Int<26000>>,Int<6000>>,
   LockupTrL<AlphaL<BrownNoiseFlickerL<White,Int<300>>,SmoothStep<Int<30000>,Int<5000>>>,TrWipeIn<400>,TrFade<300>,SaberBase::LOCKUP_DRAG>,
   LockupTrL<AlphaL<Mix<TwistAngle<>,RgbArg<7,Rgb<255,200,0>>,RgbArg<8,DarkOrange>>,SmoothStep<Int<28000>,Int<5000>>>,TrWipeIn<600>,TrFade<300>,SaberBase::LOCKUP_MELT>,
-  EffectSequence<EFFECT_POWERSAVE,AlphaL<Black,Int<8192>>,AlphaL<Black,Int<16384>>,AlphaL<Black,Int<24576>>,AlphaL<Black,Int<0>>>,
   InOutTrL<TrWipe<300>,TrWipeInX<WavLen<EFFECT_RETRACTION>>,Black>,
   TransitionEffectL<TrConcat<TrWipe<300>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrDelay<1000>,AlphaL<Mix<BatteryLevel,Red,Green>,SmoothStep<BatteryLevel,Int<-10>>>,TrWipeIn<500>>,EFFECT_BATTERY_LEVEL>
 >>()

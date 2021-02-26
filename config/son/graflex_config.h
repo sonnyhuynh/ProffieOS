@@ -38,6 +38,9 @@ const unsigned int maxLedsPerStrip = 144;
 // reset blade color
 #define RESET_COLOR
 
+#define DYNAMIC_BLADE_DIMMING
+#define SAVE_BLADE_DIMMING
+
 #endif
 
 #ifdef CONFIG_PROP
