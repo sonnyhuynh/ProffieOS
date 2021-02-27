@@ -1,7 +1,7 @@
 #ifdef CONFIG_TOP
 #include "../proffieboard_v2_config.h"
 
-#define NUM_BLADES 3
+#define NUM_BLADES 2
 #define NUM_BUTTONS 2
 #define VOLUME 100
 #define MAX_VOLUME 1500
@@ -77,7 +77,7 @@ BladeConfig blades[] = {
     // chassis leds
     WS281XBladePtr<8, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin4> >(),
     // yellow button
-    SimpleBladePtr<CH1LED, CH2LED, NoLED, NoLED, bladePowerPin5, bladePowerPin6, -1, -1>(),
+//    SimpleBladePtr<CH1LED, CH2LED, NoLED, NoLED, bladePowerPin5, bladePowerPin6, -1, -1>(),
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
