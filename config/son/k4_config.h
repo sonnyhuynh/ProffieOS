@@ -80,6 +80,7 @@ Preset noBladePresets[] = {
   ls6Preset,
   ls6CavePreset,
   ls6EvilPreset,
+  rescuePreset,
 
   // personal
   sonPreset,
@@ -107,6 +108,7 @@ Preset presets[] = {
   ls6Preset,
   ls6CavePreset,
   ls6EvilPreset,
+  rescuePreset,
 
   // personal
   sonPreset,
