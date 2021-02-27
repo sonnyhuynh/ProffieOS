@@ -127,75 +127,71 @@ Preset presets[] = {
   catPreset,
 };
 
+#include "blades.h"
+
 BladeConfig blades[] = {
   {
     0,
-    WS281XBladePtr<144, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    bladeMax,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     6200,
-    // 28" bendu blade
-    WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    benduBlade28,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     8100,
-    // 7" bendu blade
-    WS281XBladePtr<19, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    benduBlade7,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     9000,
-    // 20" bendu blade
-    WS281XBladePtr<67, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    benduBlade20,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     33000,
-    // 28" blade
-    WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<0, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    blade28,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     39000,
-    // 24" blade
-    WS281XBladePtr<83, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    blade24,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     68000,
-    // 16" blade
-    WS281XBladePtr<54, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    blade16,
+    npxlOff,
     CONFIGARRAY(presets),
     "CONFIG/blade"
   },
   {
     // no blade
     670000,
-    WS281XBladePtr<5, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    bladeNpxl,
+    npxlOff,
     CONFIGARRAY(noBladePresets),
     "CONFIG/noblade"
   },
   {
     // no emitter
     NO_BLADE,
-    WS281XBladePtr<1, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
-    WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >(),
+    bladeOff,
+    npxl,
     CONFIGARRAY(noBladePresets),
     "CONFIG/noemitter"
   },

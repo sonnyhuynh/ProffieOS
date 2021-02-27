@@ -10,6 +10,7 @@ BladeBase* blade28 = WS281XBladePtr<97, bladePin, Color8::GRB, PowerPINS<bladePo
 BladeBase* blade24 = WS281XBladePtr<83, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >();
 BladeBase* blade16 = WS281XBladePtr<54, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >();
 
+BladeBase* bladeNpxl = WS281XBladePtr<5, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >();
 BladeBase* bladeOff = WS281XBladePtr<0, bladePin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >();
 
 BladeBase* npxl = WS281XBladePtr<5, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin2, bladePowerPin3> >();
