@@ -36,7 +36,13 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
+#include "common_presets.h"
 #include "bors_presets.h"
+#include "dark_presets.h"
+#include "double_presets.h"
+#include "son_presets.h"
+#include "fun_presets.h"
+#include "k4_presets.h"
 
 /*
 Preset lengthFinder[] = {
@@ -49,7 +55,7 @@ Preset lengthFinder[] = {
 */
 
 Preset presets[] = {
-  malakPreset,
+  malakGreenPreset,
   secondSisterPreset,
   palpatinePreset,
   revanPreset,

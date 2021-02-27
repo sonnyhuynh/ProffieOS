@@ -50,7 +50,12 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
+#include "../../blades/son/cc_styles.h"
+#include "common_presets.h"
 #include "ardent_presets.h"
+#include "son_presets.h"
+#include "double_presets.h"
+#include "k4_presets.h"
 
 /*
 Preset lengthFinder[] = {

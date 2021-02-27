@@ -2,50 +2,47 @@
 
 Preset snipsPreset = {
   "son/ahsoka;son/common;heroes/ahsoka;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
-  snipsStyle,
-  snipsStyle,
+  STYLE(snipsStyle),
   "snips",
 };
 
 Preset shotoPreset = {
   "son/ahsoka;son/common;heroes/ahsoka;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
-  shotoStyle,
-  shotoStyle,
+  STYLE(shotoStyle),
   "shoto",
 };
 
 Preset tanoPreset = {
   "son/common;Commander_Tano", "Commander_Tano/tracks/track2.wav",
-  tanoStyle,
-  tanoStyle,
+  STYLE(tanoStyle),
   "tano",
 };
 
 Preset ahsokaPreset = {
   "son/common;Code_Fulcrum", "Code_Fulcrum/tracks/track1.wav",
-  ahsokaStyle,
-  ahsokaStyle,
+  STYLE(ahsokaStyle),
   "ahsoka",
 };
 
 Preset revanPreset = {
   "son/common;The_Prodigal_Butcher", "The_Prodigal_Butcher/tracks/track1.wav",
-  revanStyle,
-  revanStyle,
+  STYLE(revanStyle),
   "revan",
 };
 
 Preset secondSisterPreset = {
   "son/common;The_Second", "The_Second/tracks/JFO4.wav",
-  secondSisterStyle,
-  secondSisterStyle,
+#ifdef HAS_CC
+  STYLE_W_CC(secondSisterStyle, fallenRedCCStyle),
+#else
+  STYLE(secondSisterStyle),
+#endif
   "sister",
 };
 
 Preset maulPreset = {
   "son/common;MAUL_S7E9", "MAUL_S7E9/tracks/track1.wav",
-  maulStyle,
-  maulStyle,
+  STYLE(maulStyle),
   "maul",
 };
 

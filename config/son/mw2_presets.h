@@ -2,15 +2,13 @@
 
 Preset macePreset = {
   "son/common;MACE", "MACE/tracks/track1.wav",
-  maceStyle,
-  maceStyle,
+  STYLE(maceStyle),
   "mace",
 };
 
 Preset powerRangersPreset = {
   "son/common;MMPR", "",
-  powerRangersStyle,
-  powerRangersStyle,
+  STYLE(powerRangersStyle),
   "gogo",
 };
 

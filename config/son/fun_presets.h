@@ -2,15 +2,13 @@
 
 Preset pikachuPreset = {
   "son/common;Electric_Mouse", "Electric_Mouse/tracks/Battle.wav",
-  pikachuStyle,
-  pikachuStyle,
+  STYLE(pikachuStyle),
   "pikachu",
 };
 
 Preset smashPreset = {
   "son/common;Smash_Sword", "",
-  smashStyle,
-  smashStyle,
+  STYLE(smashStyle),
   "smash",
 };
 

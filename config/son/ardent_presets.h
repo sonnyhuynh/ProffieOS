@@ -1,9 +1,3 @@
-#include "../../blades/son/son_blades.h"
-#include "../../blades/son/common_blades.h"
-#include "../../blades/son/cc_styles.h"
-#include "../../blades/son/double_blades.h"
-#include "../../blades/son/k4_blades.h"
-
 // fallen red cc w/ 150ms ignition mod
 StyleAllocator ardentCCStyle =
 StylePtr<Layers<Black,InOutTrL<TrFade<150>,TrFade<300>,Mix<IsLessThan<SlowNoise<Int<3000>>,Int<10000>>,RandomFlicker<RotateColorsX<Variation,Red>,RotateColorsX<Variation,Rgb<90,0,0>>>,Black>>>>()
@@ -25,89 +19,7 @@ StylePtr<Layers<AudioFlicker<RotateColorsX<Variation,Red>,RotateColorsX<Variatio
 
 Preset ardentPreset = {
   "son/common;Ardent", "son/tracks/TheForce4.wav",
-  ardentStyle,
-  ardentStyle,
-  ardentCCStyle,
+  STYLE_W_CC(ardentStyle, ardentCCStyle),
   "ardent",
-};
-
-Preset sonPreset = {
-  "son/common;Rogue", "son/tracks/TheForce4.wav",
-  sonStyle,
-  sonStyle,
-  sonCCStyle,
-  "son",
-};
-
-Preset spitfirePreset = {
-  "son/common;Spitfire", "son/tracks/TheForce4.wav",
-  spitfireStyle,
-  spitfireStyle,
-  fallenCyanCCStyle,
-  "spitfire",
-};
-
-Preset ascensionPreset = {
-  "son/common;Ascension", "",
-  ascensionStyle,
-  ascensionStyle,
-  pulseBlueCCStyle,
-  "ascension",
-};
-
-Preset catPreset = {
-  "shrodinger_cat;son/common", "",
-  rainbowStyle,
-  rainbowStyle,
-  rainbowCCStyle,
-  "meow",
-};
-
-Preset secondSisterPreset = {
-  "son/common;The_Second", "The_Second/tracks/JFO4.wav",
-  secondSisterStyle,
-  secondSisterStyle,
-  fallenRedCCStyle,
-  "sister",
-};
-
-Preset kyloPreset = {
-  "son/common;Unstable_v2", "Unstable_v2/tracks/track4.wav",
-  kyloStyle,
-  kyloStyle,
-  fallenRedCCStyle,
-  "kylo",
-};
-
-Preset ls6EvilPreset = {
-  "son/common;EVIL SON/ATTRITION", "LS6/tracks/throne_duel.wav",
-  ls6Style,
-  ls6Style,
-  fallenGreenCCStyle,
-  "attrition",
-};
-
-Preset rescuePreset = {
-  "son/common;Rescue", "Rescue/tracks/Outro_Short_Beginning.wav",
-  ls6Style,
-  ls6Style,
-  pulseGreenCCStyle,
-  "rescue",
-};
-
-Preset rogueVaderPreset = {
-  "son/common;RogueVader", "RogueVader/tracks/hallway.wav",
-  vaderStyle,
-  vaderStyle,
-  pulseRedCCStyle,
-  "rogue vader",
-};
-
-Preset noBladePreset = {
-  "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
-  nobladeStyle,
-  nobladeStyle,
-  nobladeCCStyle,
-  "noblade",
 };
 
