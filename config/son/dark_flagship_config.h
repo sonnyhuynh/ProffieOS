@@ -56,16 +56,6 @@ const unsigned int maxLedsPerStrip = 144;
 #include "fun_presets.h"
 #include "fo_presets.h"
 
-/*
-Preset lengthFinder[] = {
-  {
-    "heroes/owk;heroes/common", "",
-    StylePtr<LengthFinder<>>(),
-    "numpixel",
-  },
-};
-*/
-
 Preset noBladePresets[] = {
   noBladePreset,
 
