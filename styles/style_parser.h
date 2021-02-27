@@ -4,7 +4,6 @@
 #include "../common/preset.h"
 #include "../common/arg_parser.h"
 #include "../functions/int_arg.h"
-#include "../blades/son/preset_blades.h"
 
 class NamedStyle {
 public:
@@ -44,22 +43,6 @@ public:
 BuiltinPresetAllocator builtin_preset_allocator;
 
 NamedStyle named_styles[] = {
-  { "standard",
-    audioflickerArgStyle,
-    "standard blade, primary color, slow swing color, fast swing color, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
-  },
-  { "unstable",
-    supremeLeaderArgStyle,
-    "unstable blade, primary color, flicker color 1, flicker color 2, lockup start color, lockup color 1, lockup color 2, lockup end color, stab color, blast color, clash color, drag color, melt color 1, melt color 2",
-  },
-  { "pulse",
-    fallenOrderArgStyle,
-    "pulsing blade, primary color, pulse color, force color, lockup color, stab color, melt color 1, melt color 2",
-  },
-  { "runningpulse",
-    secondSisterArgStyle,
-    "running pulse blade, primary color, running color 1, running color 2, running color 3, lockup color, stab color, melt color 1, melt color 2",
-  },
   { "builtin", &builtin_preset_allocator,
     "builtin preset styles, preset num, style index"
   },
