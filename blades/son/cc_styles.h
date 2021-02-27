@@ -1,3 +1,5 @@
+#define HAS_CC
+
 StyleAllocator offCCStyle = StyleNormalPtr<BLACK, BLACK, 300, 800>();
 
 // fallen orange cc modded with direct color change
