@@ -151,8 +151,16 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    68000,
+    63500,
     blade16,
+    npxlOff,
+    rgbSwitch,
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    69000,
+    blade12,
     npxlOff,
     rgbSwitch,
     CONFIGARRAY(presets),
