@@ -21,7 +21,7 @@
 // You can have multiple configuration files, and specify which one
 // to use here.
 
-#define CONFIG_FILE "config/son/graflex_config.h"
+#define CONFIG_FILE "config/son/tester_config.h"
 // #define CONFIG_FILE "config/default_proffieboard_config.h"
 // #define CONFIG_FILE "config/default_v3_config.h"
 // #define CONFIG_FILE "config/crossguard_config.h"
@@ -1734,4 +1734,3 @@ void loop() {
 #define CONFIG_BOTTOM
 #include CONFIG_FILE
 #undef CONFIG_BOTTOM
-
