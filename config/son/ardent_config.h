@@ -135,7 +135,15 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    33000,
+    10000,
+    blade32,
+    npxlOff,
+    rgbSwitch,
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    32000, // 33k
     blade28,
     npxlOff,
     rgbSwitch,
@@ -143,7 +151,7 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    39000,
+    37900, // 39k
     blade24,
     npxlOff,
     rgbSwitch,
@@ -151,7 +159,7 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    63500,
+    63500, // 68k
     blade16,
     npxlOff,
     rgbSwitch,
@@ -159,8 +167,16 @@ BladeConfig blades[] = {
     "CONFIG/blade"
   },
   {
-    69000,
+    69000, // 75k
     blade12,
+    npxlOff,
+    rgbSwitch,
+    CONFIGARRAY(presets),
+    "CONFIG/blade"
+  },
+  {
+    75000, // 82k
+    blade8,
     npxlOff,
     rgbSwitch,
     CONFIGARRAY(presets),
