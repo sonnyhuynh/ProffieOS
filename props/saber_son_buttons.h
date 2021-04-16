@@ -865,11 +865,7 @@ private:
   bool swing_on_ = false;
   bool auto_lockup_on_ = false;
   bool auto_melt_on_ = false;
-#if NUM_BUTTONS == 0
   bool battle_mode_ = true;
-#else
-  bool battle_mode_ = false;
-#endif
   uint32_t thrust_begin_millis_ = millis();
   uint32_t push_begin_millis_ = millis();
   uint32_t clash_impact_millis_ = millis();
