@@ -12,6 +12,9 @@
 #elif NUM_BLADES == 3
 #define STYLE(X) X, X, X
 #define STYLE_W_CC(X, Y) X, X, Y
+#elif NUM_BLADES == 4
+#define STYLE(X) X, X, X, X
+#define STYLE_W_CC(X, Y) X, X, X, Y
 #else
 #error NUM_BLADES is too big
 #endif
