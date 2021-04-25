@@ -66,8 +66,8 @@ Preset presets[] = {
 
 #include "blades.h"
 
-BladeBase* leftSideBlade = WS281XBladePtr<5 + 20, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin5> >();
-BladeBase* rightSideBlade = WS281XBladePtr<5 + 10, blade4Pin, Color8::GRB, PowerPINS<bladePowerPin4> >();
+BladeBase* leftSideBlade = WS281XBladePtr<5 + 12, blade3Pin, Color8::GRB, PowerPINS<bladePowerPin5> >();
+BladeBase* rightSideBlade = WS281XBladePtr<5 + 12, blade4Pin, Color8::GRB, PowerPINS<bladePowerPin4> >();
 
 BladeConfig blades[] = {
   {
