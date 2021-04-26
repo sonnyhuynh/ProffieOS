@@ -43,6 +43,8 @@ const unsigned int maxLedsPerStrip = 144;
 
 #define IDLE_OFF_TIME 60 * 1 * 1000
 
+#define IS_CROSSGUARD
+
 #endif
 
 #ifdef CONFIG_PROP
@@ -50,10 +52,18 @@ const unsigned int maxLedsPerStrip = 144;
 #endif
 
 #ifdef CONFIG_PRESETS
+#include "common_presets.h"
 #include "kylo_presets.h"
+#include "son_presets.h"
+#include "double_presets.h"
+#include "fun_presets.h"
+#include "fo_presets.h"
 
-Preset presets[] = {
-  unstablePreset,
+Preset noBladePresets[] = {
+  noBladePreset,
+
+  // kylo
+  kyloPreset,
   unstableDelayedPreset,
   tfaPreset,
   tfaDelayedPreset,
@@ -61,7 +71,62 @@ Preset presets[] = {
   tljDelayedPreset,
   trosPreset,
   trosDelayedPreset,
+
+  // personal
   spitfirePreset,
+
+  // misc
+  reyPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
+
+  // fun
+  pikachuPreset,
+  catPreset,
+};
+
+Preset presets[] = {
+  // kylo
+  kyloPreset,
+  unstableDelayedPreset,
+  tfaPreset,
+  tfaDelayedPreset,
+  tljPreset,
+  tljDelayedPreset,
+  trosPreset,
+  trosDelayedPreset,
+
+  // personal
+  spitfirePreset,
+
+  // misc
+  reyPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
+
+  // fun
+  pikachuPreset,
+  catPreset,
 };
 
 #include "blades.h"
@@ -175,7 +240,7 @@ BladeConfig blades[] = {
     npxl,
     leftSideBlade,
     rightSideBlade,
-    CONFIGARRAY(presets),
+    CONFIGARRAY(noBladePresets),
     "CONFIG/noblade",
   }
 };

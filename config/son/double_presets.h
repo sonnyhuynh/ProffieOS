@@ -1,5 +1,9 @@
 #include "../../blades/son/double_blades.h"
 
+#ifdef IS_CROSSGUARD
+#include "../../blades/son/double_side_blades.h"
+#endif
+
 Preset snipsPreset = {
   "son/ahsoka;son/common;heroes/ahsoka;heroes/common", "heroes/common/tracks/BattleOfHeros.wav",
   STYLE(snipsStyle),
@@ -32,10 +36,14 @@ Preset revanPreset = {
 
 Preset secondSisterPreset = {
   "son/common;The_Second", "The_Second/tracks/JFO4.wav",
+#ifndef IS_CROSSGUARD
 #ifdef HAS_CC
   STYLE_W_CC(secondSisterStyle, fallenRedCCStyle),
 #else
   STYLE(secondSisterStyle),
+#endif
+#else
+  CROSSGUARD2(secondSisterStyle, secondSisterSideStyle),
 #endif
   "sister",
 };

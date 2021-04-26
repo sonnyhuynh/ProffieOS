@@ -1,18 +1,3 @@
-#include "../../blades/son/common_blades.h"
-#include "../../blades/son/common_side_blades.h"
-#include "../../blades/son/son_blades.h"
-#include "../../blades/son/son_side_blades.h"
-
-#define CROSSGUARD3(MAIN, LEFT_SIDE, RIGHT_SIDE) MAIN, MAIN, LEFT_SIDE, RIGHT_SIDE
-#define CROSSGUARD2(MAIN, SIDE) CROSSGUARD3(MAIN, SIDE, SIDE)
-#define CROSSGUARD(MAIN) CROSSGUARD2(MAIN, MAIN)
-
-Preset unstablePreset = {
-  "son/common;Unstable_v2", "Unstable_v2/tracks/track4.wav",
-  CROSSGUARD2(kyloStyle, kyloSideStyle),
-  "unstable",
-};
-
 Preset unstableDelayedPreset = {
   "son/common;Unstable_v1;Unstable_v2", "Unstable_v2/tracks/track4.wav",
   CROSSGUARD2(kyloStyle, kyloDelayedSideStyle),
@@ -56,23 +41,5 @@ Preset trosDelayedPreset = {
   KYLO_UNSTABLE_DELAYED_STYLE(145),
   KYLO_UNSTABLE_DELAYED_STYLE(145),
   "tros delay",
-};
-
-Preset spitfirePreset = {
-  "son/common;Spitfire", "son/tracks/TheForce4.wav",
-  CROSSGUARD2(spitfireStyle, spitfireBlueSideStyle),
-  "spitfire",
-};
-
-Preset catPreset = {
-  "shrodinger_cat;son/common", "",
-  CROSSGUARD(rainbowStyle),
-  "meow",
-};
-
-Preset noBladePreset = {
-  "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
-  CROSSGUARD(nobladeStyle),
-  "noblade",
 };
 

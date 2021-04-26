@@ -1,5 +1,14 @@
 #include "../../blades/son/common_blades.h"
 
+#ifdef IS_CROSSGUARD
+#include "../../blades/son/common_side_blades.h"
+
+#define CROSSGUARD3(MAIN, LEFT_SIDE, RIGHT_SIDE) MAIN, MAIN, LEFT_SIDE, RIGHT_SIDE
+#define CROSSGUARD2(MAIN, SIDE) CROSSGUARD3(MAIN, SIDE, SIDE)
+#define CROSSGUARD(MAIN) CROSSGUARD2(MAIN, MAIN)
+
+#endif
+
 #if NUM_BLADES == 0
 #define STYLE(X)
 #define STYLE_W_CC(X, Y)
@@ -27,10 +36,14 @@ Preset reyPreset = {
 
 Preset kyloPreset = {
   "son/common;Unstable_v2", "Unstable_v2/tracks/track4.wav",
+#ifndef IS_CROSSGUARD
 #ifdef HAS_CC
   STYLE_W_CC(kyloStyle, fallenRedCCStyle),
 #else
   STYLE(kyloStyle),
+#endif
+#else
+  CROSSGUARD2(kyloStyle, kyloSideStyle),
 #endif
   "kylo",
 };
@@ -60,20 +73,28 @@ Preset rogueVaderPreset = {
 
 Preset catPreset = {
   "shrodinger_cat;son/common", "",
+#ifndef IS_CROSSGUARD
 #ifdef HAS_CC
   STYLE_W_CC(rainbowStyle, rainbowCCStyle),
 #else
   STYLE(rainbowStyle),
+#endif
+#else
+  CROSSGUARD2(rainbowStyle, rainbowSideStyle),
 #endif
   "meow",
 };
 
 Preset noBladePreset = {
   "son/common;Calibrate", "heroes/common/tracks/BattleOfHeros.wav",
+#ifndef IS_CROSSGUARD
 #ifdef HAS_CC
   STYLE_W_CC(nobladeStyle, nobladeCCStyle),
 #else
   STYLE(nobladeStyle),
+#endif
+#else
+  CROSSGUARD2(nobladeStyle, nobladeSideStyle),
 #endif
   "noblade",
 };
