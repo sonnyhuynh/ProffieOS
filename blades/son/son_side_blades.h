@@ -9,7 +9,7 @@ StylePtr<Layers<StripesX<Int<1500>,Scale<SlowNoise<Int<2500>>,Int<-3000>,Int<-50
 // lightning block effect: lightning block transitions
 // retraction wavlen
 StyleAllocator spitfireBlueSideStyle =
-StylePtr<Layers<StripesX<Int<1500>,Scale<SlowNoise<Int<2500>>,Int<-3000>,Int<-5000>>,RotateColorsX<Variation,Blue>,RotateColorsX<Variation,Rgb<0,0,80>>,RotateColorsX<Variation,Blue>,RotateColorsX<Variation,Rgb<0,0,20>>,RotateColorsX<Variation,Blue>>,ResponsiveLightningBlockL<AlphaL<Red,Int<0>>,TrConcat<TrInstant,AlphaL<White,Bump<Int<12000>,Int<18000>>>,TrFade<200>>,TrConcat<TrInstant,HumpFlickerL<AlphaL<White,Int<16000>>,30>,TrSmoothFade<600>>>,InOutTrL<TrWipe<300>,TrWipeIn<500>,Black>>>()
+StylePtr<Layers<StripesX<Int<1500>,Scale<SlowNoise<Int<2500>>,Int<-3000>,Int<-5000>>,RotateColorsX<Variation,Blue>,RotateColorsX<Variation,Rgb<0,0,80>>,RotateColorsX<Variation,Blue>,RotateColorsX<Variation,Rgb<0,0,20>>,RotateColorsX<Variation,Blue>>,ResponsiveLightningBlockL<AlphaL<Red,Int<0>>,TrConcat<TrInstant,AlphaL<White,Bump<Int<12000>,Int<18000>>>,TrFade<200>>,TrConcat<TrInstant,HumpFlickerL<AlphaL<White,Int<16000>>,30>,TrSmoothFade<600>>>,InOutTrL<TrWipe<300>,TrWipeInX<WavLen<EFFECT_RETRACTION>>,Black>>>()
 ;
 
 // fully responsive audioflicker canon blue
