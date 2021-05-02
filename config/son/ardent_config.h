@@ -55,6 +55,7 @@ const unsigned int maxLedsPerStrip = 144;
 #include "ardent_presets.h"
 #include "son_presets.h"
 #include "double_presets.h"
+#include "fo_presets.h"
 #include "k4_presets.h"
 
 Preset noBladePresets[] = {
@@ -70,9 +71,20 @@ Preset noBladePresets[] = {
   rescuePreset,
   rogueVaderPreset,
 
-  secondSisterPreset,
   ls6EvilPreset,
   kyloPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
 
   // fun
   catPreset,
@@ -89,9 +101,20 @@ Preset presets[] = {
   rescuePreset,
   rogueVaderPreset,
 
-  secondSisterPreset,
   ls6EvilPreset,
   kyloPreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+  secondSisterPreset,
 
   // fun
   catPreset,
