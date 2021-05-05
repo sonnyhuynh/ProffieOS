@@ -73,6 +73,7 @@
 //     Prev Preset - hold and wait (medium)
 //     Exit Volume - hold and wait (medium) until sound confirmation
 //     Reset Blade Color - hold + twist the hilt
+//     "Use the Force" mode - quadruple click and wait (medium)
 //
 //   while ON
 //     Turn off blade - hold and wait until blade is off
@@ -80,6 +81,7 @@
 //     Force Effects - double click
 //     Lightning Block - double click and hold
 //     Melt - hold while stabbing (clash with forward motion, horizontal)
+//     "Use the Force" mode - quadruple click and wait (medium)
 //
 // 1 Button
 //   while OFF
@@ -631,6 +633,12 @@ public:
     }
     return true;
 #endif
+
+  // Use the Force mode
+  case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_MEDIUM, MODE_OFF):
+  case EVENTID(BUTTON_POWER, EVENT_FOURTH_HELD_MEDIUM, MODE_ON):
+    ToggleUseTheForce();
+    return true;
 
 #endif
 
