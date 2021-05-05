@@ -68,8 +68,9 @@ Preset noBladePresets[] = {
   vaderPreset,
   rogueVaderPreset,
   ls6Preset,
-  ls6CavePreset,
-  ls6EvilPreset,
+  ls6ModernPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
 
   // sequel
   reyFlexPreset,
@@ -103,8 +104,9 @@ Preset presets[] = {
   vaderPreset,
   rogueVaderPreset,
   ls6Preset,
-  ls6CavePreset,
-  ls6EvilPreset,
+  ls6ModernPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
 
   // sequel
   reyFlexPreset,

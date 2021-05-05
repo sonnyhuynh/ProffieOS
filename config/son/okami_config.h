@@ -76,10 +76,12 @@ Preset noBladePresets[] = {
   shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  ahsokaMandoPreset,
   maulPreset,
 
   // rebels
-  ezraPreset,
+  ezraBluePreset,
+  ezraGreenPreset,
   kananPreset,
   darksaberAnimatedPreset,
   darksaberLivePreset,
@@ -109,10 +111,12 @@ Preset presets[] = {
   shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  ahsokaMandoPreset,
   maulPreset,
 
   // rebels
-  ezraPreset,
+  ezraBluePreset,
+  ezraGreenPreset,
   kananPreset,
   darksaberAnimatedPreset,
   darksaberLivePreset,

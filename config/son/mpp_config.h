@@ -72,8 +72,9 @@ Preset noBladePresets[] = {
   anhPreset,
   esbPreset,
   ls6Preset,
-  ls6CavePreset,
-  ls6EvilPreset,
+  ls6ModernPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
 
   // sequel
   reyFlexPreset,
@@ -83,9 +84,11 @@ Preset noBladePresets[] = {
 
   // prequel
   palpatinePreset,
+  senateRotsPreset,
+  senateTcwPreset,
   yodaPreset,
   macePreset,
-  maulPreset,
+  crimsonMenacePreset,
 
   // kotor
   malakPreset,
@@ -115,8 +118,9 @@ Preset presets[] = {
   anhPreset,
   esbPreset,
   ls6Preset,
-  ls6CavePreset,
-  ls6EvilPreset,
+  ls6ModernPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
 
   // sequel
   reyFlexPreset,
@@ -126,9 +130,11 @@ Preset presets[] = {
 
   // prequel
   palpatinePreset,
+  senateRotsPreset,
+  senateTcwPreset,
   yodaPreset,
   macePreset,
-  maulPreset,
+  crimsonMenacePreset,
 
   // kotor
   malakPreset,

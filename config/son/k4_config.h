@@ -64,12 +64,16 @@ const unsigned int maxLedsPerStrip = 144;
 Preset noBladePresets[] = {
   noBladePreset,
 
-  // original
   ob4Preset,
+  negotiatorSassyPreset,
+
+  // original
   vaderPreset,
   ls6Preset,
+  ls6ModernPreset,
   ls6CavePreset,
-  ls6EvilPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
   rescuePreset,
 
   // personal
@@ -92,12 +96,16 @@ Preset noBladePresets[] = {
 };
 
 Preset presets[] = {
-  // original
   ob4Preset,
+  negotiatorSassyPreset,
+
+  // original
   vaderPreset,
   ls6Preset,
+  ls6ModernPreset,
   ls6CavePreset,
-  ls6EvilPreset,
+  evilSonFirstStepsPreset,
+  evilSonAttritionPreset,
   rescuePreset,
 
   // personal

@@ -43,14 +43,34 @@ const unsigned int maxLedsPerStrip = 144;
 #include "son_presets.h"
 #include "fun_presets.h"
 #include "k4_presets.h"
+#include "fo_presets.h"
 
 Preset presets[] = {
   malakGreenPreset,
   secondSisterPreset,
   palpatinePreset,
+  senateRotsPreset,
+  senateTcwPreset,
   revanPreset,
-  ls6EvilPreset,
+  evilSonAttritionPreset,
   kyloPreset,
+
+  negotiatorSassyPreset,
+
+  crimsonMenacePreset,
+  savagePreset,
+
+  // fallen order
+  blueFoPreset,
+  greenFoPreset,
+  purpleFoPreset,
+  orangeFoPreset,
+  yellowFoPreset,
+  cyanFoPreset,
+  magentaFoPreset,
+  indigoFoPreset,
+  redFoPreset,
+
   sonPreset,
   spitfirePreset,
   ascensionPreset,

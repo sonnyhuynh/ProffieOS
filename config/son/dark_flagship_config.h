@@ -89,10 +89,14 @@ Preset noBladePresets[] = {
   shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  ahsokaMandoPreset,
   maulPreset,
+  crimsonMenacePreset,
+  savagePreset,
 
   // rebels
-  ezraPreset,
+  ezraBluePreset,
+  ezraGreenPreset,
   kananPreset,
   darksaberAnimatedPreset,
   darksaberLivePreset,
@@ -100,6 +104,8 @@ Preset noBladePresets[] = {
   // prequel
   yodaPreset,
   palpatinePreset,
+  senateRotsPreset,
+  senateTcwPreset,
 
   // fun
   pikachuPreset,
@@ -138,10 +144,14 @@ Preset presets[] = {
   shotoPreset,
   tanoPreset,
   ahsokaPreset,
+  ahsokaMandoPreset,
   maulPreset,
+  crimsonMenacePreset,
+  savagePreset,
 
   // rebels
-  ezraPreset,
+  ezraBluePreset,
+  ezraGreenPreset,
   kananPreset,
   darksaberAnimatedPreset,
   darksaberLivePreset,
@@ -149,6 +159,8 @@ Preset presets[] = {
   // prequel
   yodaPreset,
   palpatinePreset,
+  senateRotsPreset,
+  senateTcwPreset,
 
   // fun
   pikachuPreset,

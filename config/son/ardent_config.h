@@ -71,8 +71,12 @@ Preset noBladePresets[] = {
   rescuePreset,
   rogueVaderPreset,
 
-  ls6EvilPreset,
   kyloPreset,
+
+  negotiatorSassyPreset,
+
+  crimsonMenacePreset,
+  savagePreset,
 
   // fallen order
   blueFoPreset,
@@ -101,8 +105,12 @@ Preset presets[] = {
   rescuePreset,
   rogueVaderPreset,
 
-  ls6EvilPreset,
   kyloPreset,
+
+  negotiatorSassyPreset,
+
+  crimsonMenacePreset,
+  savagePreset,
 
   // fallen order
   blueFoPreset,
