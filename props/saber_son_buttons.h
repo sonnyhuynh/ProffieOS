@@ -335,6 +335,23 @@ public:
     }
   }
 
+  void ToggleUseTheForce() {
+    hybrid_font.ToggleUseTheForce();
+    if (hybrid_font.UsingTheForce()) {
+      if (SFX_fbegin) {
+        hybrid_font.PlayCommon(&SFX_fbegin);
+      } else {
+        beeper.Beep(0.5, 5000);
+      }
+    } else {
+      if (SFX_fend) {
+        hybrid_font.PlayCommon(&SFX_fend);
+      } else {
+        beeper.Beep(0.5, 3000);
+      }
+    }
+  }
+
 #ifdef DYNAMIC_BLADE_DIMMING
   void ToggleBrightness() {
     if (SaberBase::GetCurrentDimming() != 4096) {
@@ -766,20 +783,7 @@ public:
   case EVENTID(BUTTON_POWER, EVENT_CLICK_SHORT, MODE_OFF | BUTTON_AUX):
   case EVENTID(BUTTON_AUX, EVENT_CLICK_SHORT, MODE_ON | BUTTON_POWER):
   case EVENTID(BUTTON_AUX, EVENT_CLICK_SHORT, MODE_OFF | BUTTON_POWER):
-    hybrid_font.ToggleUseTheForce();
-    if (hybrid_font.UsingTheForce()) {
-      if (SFX_fbegin) {
-        hybrid_font.PlayCommon(&SFX_fbegin);
-      } else {
-        beeper.Beep(0.5, 5000);
-      }
-    } else {
-      if (SFX_fend) {
-        hybrid_font.PlayCommon(&SFX_fend);
-      } else {
-        beeper.Beep(0.5, 3000);
-      }
-    }
+    ToggleUseTheForce();
     return true;
 
 #endif
