@@ -539,6 +539,11 @@ EFFECT(fquote);
 EFFECT(fpreon);
 EFFECT(fclash);
 EFFECT(fclsh);
+//EFFECT(fpstoff);
+EFFECT(fbgnlock);
+EFFECT(flock);
+EFFECT(fendlock);
+EFFECT(fout);
 
 // TODO: Optimize this and make it possible
 // have the WAV reader use this.

@@ -126,6 +126,11 @@
 // Force Blast (optional) - fblst.wav or fblaster.wav
 // Force Clash (optional) - fclsh.wav or fclash.wav
 // Force Preon (optional) - fpreon.wav
+// TODO Force Postoff (optional) - fpstoff.wav
+// Force Begin Lock (optional) - fbgnlock.wav
+// Force Lock (optional) - flock.wav
+// Force End Lock (optional) - fendlock.wav
+// Force Ignition (optional) - fout.wav
 // Force Quote (optional) - fquote.wav
 // Force Mode On (optional) - fbegin.wav
 // Force Mode Off (optional) - fend.wav

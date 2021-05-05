@@ -328,7 +328,14 @@ public:
         hum_player_->PlayLoop(SFX_humm ? &SFX_humm : &SFX_hum);
         hum_start_ = millis();
       }
-      RefPtr<BufferedWavPlayer> tmp = PlayPolyphonic(SFX_out ? &SFX_out : &SFX_poweron);
+      RefPtr<BufferedWavPlayer> tmp;
+
+      if (use_the_force_ && SFX_fout) {
+        tmp = PlayPolyphonic(&SFX_fout);
+      } else {
+        tmp = PlayPolyphonic(SFX_out ? &SFX_out : &SFX_poweron);
+      }
+
       hum_fade_in_ = 0.2;
       if (SFX_humm && tmp) {
 	hum_fade_in_ = tmp->length();
@@ -486,12 +493,14 @@ public:
         // fall through
       case SaberBase::LOCKUP_NORMAL:
 	normal_fallback:
+        if (!once && use_the_force_ && SFX_fbgnlock) once = &SFX_fbgnlock;
         if (!once && SFX_bgnlock) once = &SFX_bgnlock;
         // fall through
       case SaberBase::LOCKUP_NONE:
         break;
     }
 
+    if (!loop && use_the_force_ && SFX_flock) loop = &SFX_flock;
     if (!loop) loop = SFX_lockup ? &SFX_lockup : &SFX_lock;
     if (!once) once = loop;
 
@@ -529,6 +538,7 @@ public:
         // fall through
       case SaberBase::LOCKUP_NORMAL:
 	normal_fallback_end:
+        if (!end && use_the_force_ && SFX_fendlock) end = &SFX_fendlock;
         if (!end && SFX_endlock) end = &SFX_endlock;
         if (!end) end = &SFX_clash;
         // fall through
