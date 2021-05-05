@@ -28,6 +28,18 @@ Preset ahsokaPreset = {
   "ahsoka",
 };
 
+Preset ahsokaMandoPreset = {
+  "son/common;The_Sorcerer/Standard", "The_Sorcerer/tracks/track1.wav",
+  STYLE(ahsokaStyle),
+  "mando",
+};
+
+Preset ahsokaMandoBeskarPreset = {
+  "son/common;The_Sorcerer/Beskar;The_Sorcerer/Standard", "The_Sorcerer/tracks/track3.wav",
+  STYLE(ahsokaStyle),
+  "beskar",
+};
+
 Preset revanPreset = {
   "son/common;The_Prodigal_Butcher", "The_Prodigal_Butcher/tracks/track1.wav",
   STYLE(revanStyle),
@@ -52,5 +64,25 @@ Preset maulPreset = {
   "son/common;MAUL_S7E9", "MAUL_S7E9/tracks/track1.wav",
   STYLE(maulStyle),
   "maul",
+};
+
+Preset crimsonMenacePreset = {
+  "son/common;CrimsonMenace", "CrimsonMenace/tracks/Duel of the Fates.wav",
+#ifdef HAS_CC
+  STYLE_W_CC(maulStyle, fallenRedCCStyle),
+#else
+  STYLE(maulStyle),
+#endif
+  "crimson",
+};
+
+Preset savagePreset = {
+  "son/common;Savage", "Savage/tracks/track1.wav",
+#ifdef HAS_CC
+  STYLE_W_CC(maulStyle, pulseRedCCStyle),
+#else
+  STYLE(maulStyle),
+#endif
+  "savaage",
 };
 

@@ -12,3 +12,15 @@ Preset palpatinePreset = {
   "tragedy",
 };
 
+Preset senateRotsPreset = {
+  "son/common;TheSenate/ROTS;TheSenate/common", "TheSenate/tracks/Sid Theme.wav",
+  STYLE(palpatineStyle),
+  "rots",
+};
+
+Preset senateTcwPreset = {
+  "son/common;TheSenate/TCW;TheSenate/common", "TheSenate/tracks/TCW vs Maul.wav",
+  STYLE(palpatineStyle),
+  "tcw",
+};
+

@@ -7,14 +7,26 @@ Preset darksaberAnimatedPreset = {
 };
 
 Preset darksaberLivePreset = {
-  "son/common;Dark_V3/Beskar;Dark_V3/Standard", "Dark_V3/_Extras/Music/track4.wav",
+  "son/common;Dark_V3/Standard", "Dark_V3/_Extras/Music/track4.wav",
   STYLE(darksaberLiveStyle),
   "darksaber live",
 };
 
-Preset ezraPreset = {
+Preset darksaberLiveBeskarPreset = {
+  "son/common;Dark_V3/Beskar;Dark_V3/Standard", "Dark_V3/_Extras/Music/track4.wav",
+  STYLE(darksaberLiveStyle),
+  "darksaber beskar",
+};
+
+Preset ezraBluePreset = {
   "son/common;Staple_Sword", "Staple_Sword/tracks/EzraTheme.wav",
-  STYLE(ezraStyle),
+  STYLE(ezraBlueStyle),
+  "stapler",
+};
+
+Preset ezraGreenPreset = {
+  "son/common;Loth_Hero", "Staple_Sword/tracks/track3.wav",
+  STYLE(ezraGreenStyle),
   "ezra",
 };
 

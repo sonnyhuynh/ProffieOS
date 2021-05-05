@@ -1,9 +1,15 @@
 #include "../../blades/son/graflex_blades.h"
 
 Preset anhPreset = {
-  "son/luke;son/common;ANH_Training", "ANH_Training/tracks/Training_Ambience.wav",
+  "son/common;ANH_V2", "ANH_V2/tracks/training_ambience.wav",
   STYLE(graflexOTStyle),
   "anh",
+};
+
+Preset anhTrainingPreset = {
+  "son/common;ANH_V2/ANH_Training;ANH_V2", "ANH_V2/tracks/training_ambience.wav",
+  STYLE(graflexOTStyle),
+  "anh training",
 };
 
 Preset esbPreset = {
