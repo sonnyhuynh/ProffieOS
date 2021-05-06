@@ -13,6 +13,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_SD
 #define ENABLE_SSD1306
 #define SAVE_PRESET
+#define SAVE_VOLUME
 // this creates the preset.ini file
 #define SAVE_COLOR_CHANGE
 
@@ -46,7 +47,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define DYNAMIC_BLADE_DIMMING
 #define SAVE_BLADE_DIMMING
 
-#define IDLE_OFF_TIME 30 * 1000
+#define IDLE_OFF_TIME 60 * 1 * 1000
 
 #endif
 

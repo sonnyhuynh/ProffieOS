@@ -3,7 +3,7 @@
 
 #define NUM_BLADES 2
 #define NUM_BUTTONS 1
-#define VOLUME 100
+#define VOLUME 300
 #define MAX_VOLUME 1500
 const unsigned int maxLedsPerStrip = 144;
 #define CLASH_THRESHOLD_G 2.9
@@ -12,6 +12,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_WS2811
 #define ENABLE_SD
 #define SAVE_PRESET
+#define SAVE_VOLUME
 // this creates the preset.ini file
 #define SAVE_COLOR_CHANGE
 
@@ -40,6 +41,8 @@ const unsigned int maxLedsPerStrip = 144;
 
 #define DYNAMIC_BLADE_DIMMING
 #define SAVE_BLADE_DIMMING
+
+#define IDLE_OFF_TIME 60 * 1 * 1000
 
 #endif
 

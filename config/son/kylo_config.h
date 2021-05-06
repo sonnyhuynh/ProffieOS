@@ -12,6 +12,7 @@ const unsigned int maxLedsPerStrip = 144;
 #define ENABLE_WS2811
 #define ENABLE_SD
 #define SAVE_PRESET
+#define SAVE_VOLUME
 // this creates the preset.ini file
 #define SAVE_COLOR_CHANGE
 
