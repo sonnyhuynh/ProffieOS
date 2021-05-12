@@ -342,6 +342,24 @@ public:
     }
   }
 
+  void OffOrToggleColorChange() {
+    if (!SaberBase::Lockup()) {
+      if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
+        // Just exit color change mode.
+        // Don't turn saber off.
+        ToggleColorChangeMode();
+        return;
+      }
+      // Delay twist events to prevent false trigger from over twisting
+      if (!swinging_ && (millis() - last_twist_ > 3000)) {
+        Off();
+        last_twist_ = millis();
+        saber_off_time_ = millis();
+      }
+    }
+    swing_blast_ = false;
+  }
+
   void ToggleUseTheForce() {
     hybrid_font.ToggleUseTheForce();
     if (hybrid_font.UsingTheForce()) {
@@ -575,21 +593,7 @@ public:
 
   // Turn Blade OFF
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_ON):
-    if (!SaberBase::Lockup()) {
-      if (SaberBase::GetColorChangeMode() != SaberBase::COLOR_CHANGE_MODE_NONE) {
-        // Just exit color change mode.
-        // Don't turn saber off.
-        ToggleColorChangeMode();
-        return true;
-      }
-      // Delay twist events to prevent false trigger from over twisting
-      if (!swinging_ && (millis() - last_twist_ > 3000)) {
-        Off();
-        last_twist_ = millis();
-        saber_off_time_ = millis();
-      }
-    }
-    swing_blast_ = false;
+    OffOrToggleColorChange();
     return true;
 
   // Force effect
