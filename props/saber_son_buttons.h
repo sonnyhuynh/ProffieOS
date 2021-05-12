@@ -98,6 +98,7 @@
 //
 // POWER
 //   while ON
+//     Turn off blade - short click
 //     Direct Color Change - triple click
 //     Power Save - triple click (while pointing up or straight up?)
 //
@@ -707,6 +708,10 @@ public:
 
 // 2+ button start
 #if NUM_BUTTONS > 1
+  case EVENTID(BUTTON_POWER, EVENT_FIRST_SAVED_CLICK_SHORT, MODE_ON):
+    OffOrToggleColorChange();
+    return true;
+
   // Exit Volume Menu
   case EVENTID(BUTTON_POWER, EVENT_SECOND_HELD_LONG, MODE_OFF):
     if (mode_volume_) {
