@@ -62,7 +62,6 @@
 // 1+ Buttons
 //   while OFF
 //     Enter/Exit Volume - triple click hold
-//     (BROKEN IN 5.X) Exit Volume - hold and wait (long) until sound confirmation
 //     Battery level - triple click
 //     Turn on blade (Muted) - double click and hold
 //     Play/Stop Music - double click
@@ -529,14 +528,6 @@ public:
     }
     return true;
 
-  // Exit Volume MENU (alternate)
-  // TODO broken in 5.X, so added as part of EVENT_FIRST_HELD_MEDIUM
-  case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_LONG, MODE_OFF):
-    if (mode_volume_) {
-      ExitVolumeMenu();
-    }
-    return true;
-
   // Battery level
   case EVENTID(BUTTON_POWER, EVENT_THIRD_SAVED_CLICK_SHORT, MODE_OFF):
     SaberBase::DoEffect(EFFECT_BATTERY_LEVEL, 0);
@@ -572,7 +563,7 @@ public:
     }
     return true;
 
-   // Previous Preset
+   // Previous Preset AND Exit Volume MENU (alternate)
   case EVENTID(BUTTON_POWER, EVENT_FIRST_HELD_MEDIUM, MODE_OFF):
     if (!mode_volume_) {
       previous_preset();
