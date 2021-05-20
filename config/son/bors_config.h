@@ -87,7 +87,7 @@ Preset presets[] = {
 BladeConfig blades[] = {
   {
     0,
-    blade24,
+    blade16,
     // chassis leds
     WS281XBladePtr<8, blade2Pin, Color8::GRB, PowerPINS<bladePowerPin4> >(),
     // yellow button
